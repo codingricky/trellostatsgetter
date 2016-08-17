@@ -1,0 +1,13 @@
+sudo: required
+
+language: ruby
+
+rvm:
+  - 2.3.0
+
+rails:
+  - 5.0.0
+
+before_install:
+  - bundle update
+  - bundle install
