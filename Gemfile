@@ -8,6 +8,7 @@ gem 'travis'
 
 group :development, :test do
 gem 'rspec-rails'
+gem 'rspec'
 gem 'simplecov', :require => false, :group => :test
 gem 'pry'
 gem 'capybara'
