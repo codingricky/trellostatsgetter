@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trellostatsgetter</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+</head>
+<body>
+<div class = "container-fluid">
+  <div class="row">
+    <br>
+    <br>
+    <div class = "row">
+      <div class = "col-xs-2" align="center">
+      </div>
+      <div class = "col-xs-8 rcorners2" style="text-align: center">
+        <%= yield %>
+      </div>
+      <div class = "col-xs-2">
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

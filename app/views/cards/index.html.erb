@@ -1,0 +1,21 @@
+<h1>Listing Current Trello Cards</h1>
+
+<br>
+<div class="panel-default">
+  <table class="table-striped custom-stripe table-bordered custom-border sortable" width="80%" align="center">
+    <tr>
+      <th width="35%">Card ID</th>
+      <th width="65%">Card Description</th>
+    </tr>
+
+    <% @cards.each do |card| %>
+        <tr>
+          <td><%= card.creator %></td>
+          <td><%= card.messagebody %></td>
+        </tr>
+    <% end %>
+  </table>
+  <br>
+  <a href="/" class="btn btn-danger" role="button" id="refresh_page">Update</a>
+</div>
+<br>
