@@ -12,6 +12,7 @@ gem 'pry'
 gem 'capybara'
 gem 'shoulda-matchers'
 gem 'cucumber-rails', :require => false
+gem 'dotenv-rails'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
