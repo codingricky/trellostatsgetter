@@ -24,7 +24,6 @@ before_script:
   - mysql --user=root -e 'create database ***REMOVED***_test'
 
 dist: trusty
-sudo: required
 addons:
   apt:
     packages:
