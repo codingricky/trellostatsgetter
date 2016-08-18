@@ -6,6 +6,7 @@ gem 'jquery-turbolinks'
 gem 'ruby-trello'
 gem 'travis'
 gem 'rails-controller-testing'
+gem 'pg'
 
 group :development, :test do
 gem 'rspec-rails'

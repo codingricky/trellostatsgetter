@@ -149,6 +149,7 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     oauth (0.5.1)
+    pg (0.18.4)
     pkg-config (1.1.7)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -302,6 +303,7 @@ DEPENDENCIES
   jquery-turbolinks
   listen (~> 3.0.5)
   mysql2
+  pg
   pry
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
