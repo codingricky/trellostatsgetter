@@ -5,6 +5,7 @@ gem 'autoprefixer-rails'
 gem 'jquery-turbolinks'
 gem 'ruby-trello'
 gem 'travis'
+gem 'rails-controller-testing'
 
 group :development, :test do
 gem 'rspec-rails'
@@ -15,12 +16,13 @@ gem 'capybara'
 gem 'shoulda-matchers'
 gem 'cucumber-rails', :require => false
 gem 'dotenv-rails'
+gem 'database_cleaner'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use mysql2 as the database for Active Record
+gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

@@ -17,9 +17,28 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'simplecov'
+require 'database_cleaner'
 SimpleCov.start
 require "capybara/rspec"
 RSpec.configure do |config|
+
+  ### For database_cleaner...
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:deletion) # clean suite now up-front
+  end
+
+# letting database cleaner take care of transactional tests:
+  config.before(:each) do
+    DatabaseCleaner.start # starts tracking
+    # other setup ...
+  end
+  config.after(:each) do
+    # other teardown ...
+    DatabaseCleaner.clean # cleans tracked records
+  end
+  ###
+
   config.include Capybara::DSL
   config.expect_with(:rspec) { |c| c.syntax = :should }
   # rspec-expectations config goes here. You can use an alternate
