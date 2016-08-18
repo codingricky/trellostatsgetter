@@ -8,8 +8,9 @@ rvm:
 rails:
   - 5.0.0
 
+services:
+  - mysql
+
 before_install:
   - bundle update
   - bundle install
-
-
