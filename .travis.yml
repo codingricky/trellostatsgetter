@@ -8,22 +8,17 @@ rvm:
 rails:
   - 5.0.0
 
-services:
-  - mysql
-
 before_install:
   - bundle update
   - bundle install
 
 before_script:
-  - cp config/database.travis.yml config/database.yml
-  - mysql --user=root -e 'create database ***REMOVED***_test'
+  - rake db:create
+  - rake db:migrate
 
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bin/rails db:environment:set RAILS_ENV=test
-  - bundle exec rake db:test:prepare
-  - bundle exec rake
+  - bundle exec rake --trace
 
 dist: trusty
 addons:
