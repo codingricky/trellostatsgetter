@@ -11,11 +11,10 @@ RSpec.describe CardsController, type: :controller do
     end
   end
 
-    # describe "Routing" do
-    #   it "routes / to cards#index" do
-    #     visit '/'
-    #     response.should have_http_status(:success)
-    #     response.should have_content("Current")
-    #   end
-    # end
+  describe "Routing" do
+      it "routes / to cards#index" do
+        visit '/'
+        response.should have_http_status(:success)
+      end
+  end
 end

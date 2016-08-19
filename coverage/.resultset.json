@@ -289,11 +289,10 @@
         null,
         null,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         null
@@ -301,7 +300,7 @@
       "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/controllers/cards_controller.rb": [
         1,
         1,
-        1,
+        2,
         null,
         null,
         1,
@@ -325,7 +324,6 @@
         1,
         null,
         1,
-        1,
         null,
         1,
         1,
@@ -335,15 +333,8 @@
         1,
         1,
         1,
-        null,
-        1,
-        1,
-        1,
-        1,
         1,
         null,
-        null,
-        1,
         1,
         1,
         1,
@@ -351,6 +342,14 @@
         1,
         1,
         null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         null
@@ -406,6 +405,6 @@
         null
       ]
     },
-    "timestamp": 1471496328
+    "timestamp": 1471566360
   }
 }
