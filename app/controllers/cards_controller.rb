@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   def index
+    Card.get_trello_authentication
 	  @cards = Card.all
   end
 
