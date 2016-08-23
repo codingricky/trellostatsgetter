@@ -1,21 +1,19 @@
-<h1>Listing Current Trello Cards</h1>
+<h1>Listing current Trello cards:</h1>
 
 <br>
 <div class="panel-default">
   <table class="table-striped custom-stripe table-bordered custom-border sortable" width="80%" align="center">
     <tr>
       <th width="35%">Card ID</th>
-      <th width="65%">Card Description</th>
+      <th width="65%">Card Name</th>
     </tr>
 
+    <% @cards.each do |card| %>
         <tr>
-          <td><%= Card.get_trello_authentication %></td>
-          <td> </td>
+          <td><%= card.id %></td>
+          <td><%= card.name %></td>
         </tr>
-
+    <% end %>
   </table>
   <br>
-  <a href="/update" class="btn btn-danger" role="button" id="card_update">Update Cards</a>
-  <a href="/delete" class="btn btn-danger" role="button" id="card_delete">Delete Duplicates</a>
-<br>
   </div>

@@ -12,11 +12,4 @@
 
 ActiveRecord::Schema.define(version: 20160817000215) do
 
-  create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "messagebody", limit: 65535
-    t.string   "creator"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
 end

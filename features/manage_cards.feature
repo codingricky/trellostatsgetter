@@ -8,9 +8,9 @@ Feature: Manage cards.
     Then I should see the index for cards
 
   Scenario: Seeing new cards in the index list.
-    Given I have cards by TestersEd1 and TestersEd2
+    Given I have a cards named Michael
     When I update the index of cards
-    Then I should see cards by TestersEd1 and TestersEd2
+    Then I should see a card named Michael
 
   Scenario: Display the duration of the card's life in a particular swim lane.
     Given x

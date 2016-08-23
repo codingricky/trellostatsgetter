@@ -3,21 +3,21 @@ Given(/^I am on the index page for cards$/) do
 end
 
 Then(/^I should see the index for cards$/) do
-  expect(page).to have_content 'Current Trello Cards'
+  expect(page).to have_content 'current Trello cards'
 end
 
 ##
 
-Given(/^I have cards by TestersEd1 and TestersEd2$/) do
-  Card.create!(creator:'TestersEd1')
-  Card.create!(creator:'TestersEd2')
+Given(/^I have a cards named Michael$/) do
+  cardStruct = OpenStruct.new
+  cardStruct.name = 'Michael'
+  @cards = [ cardStruct ]
 end
 
 When(/^I update the index of cards/) do
   visit('/')
 end
 
-Then(/^I should see cards by TestersEd1 and TestersEd2$/) do
-  expect(page).to have_content 'TestersEd1'
-  expect(page).to have_content 'TestersEd2'
+Then(/^I should see a card named Michael$/) do
+  expect(page).to have_content 'Michael'
 end

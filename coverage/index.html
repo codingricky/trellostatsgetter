@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-08-19T10:26:00+10:00">2016-08-19T10:26:00+10:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-08-23T17:21:28+10:00">2016-08-23T17:21:28+10:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">92.13%</span></span>
+    (<span class="covered_percent"><span class="green">100.0%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.08
+         1.83
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>25</b> files in total.
-    <b>127</b> relevant lines. 
-    <span class="green"><b>117</b> lines covered</span> and
-    <span class="red"><b>10</b> lines missed </span>
+    <b>27</b> files in total.
+    <b>138</b> relevant lines. 
+    <span class="green"><b>138</b> lines covered</span> and
+    <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -62,12 +62,12 @@
       
       <tr>
         <td class="strong"><a href="#1c50d7749d9479d31fd66d23e6ed7f66c19411a8" class="src_link" title="app/controllers/cards_controller.rb">app/controllers/cards_controller.rb</a></td>
-        <td class="red strong">55.56 %</td>
-        <td>15</td>
-        <td>9</td>
-        <td>5</td>
+        <td class="green strong">100.0 %</td>
+        <td>6</td>
         <td>4</td>
-        <td>0.7</td>
+        <td>4</td>
+        <td>0</td>
+        <td>2.5</td>
       </tr>
       
       <tr>
@@ -102,12 +102,22 @@
       
       <tr>
         <td class="strong"><a href="#28b56e603a3020be42ab361c5ccef4572391ee10" class="src_link" title="app/models/card.rb">app/models/card.rb</a></td>
-        <td class="red strong">76.0 %</td>
-        <td>43</td>
-        <td>25</td>
-        <td>19</td>
+        <td class="green strong">100.0 %</td>
+        <td>27</td>
+        <td>17</td>
+        <td>17</td>
+        <td>0</td>
+        <td>6.6</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#d00082452aba2b1a13c7c018fb0bd89ca35e57fe" class="src_link" title="app/services/card_service.rb">app/services/card_service.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>10</td>
         <td>6</td>
-        <td>1.3</td>
+        <td>6</td>
+        <td>0</td>
+        <td>2.5</td>
       </tr>
       
       <tr>
@@ -253,9 +263,9 @@
       <tr>
         <td class="strong"><a href="#02462de5dd632e45aa5c6fed7732ea787ac9bfeb" class="src_link" title="config/routes.rb">config/routes.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>10</td>
-        <td>5</td>
-        <td>5</td>
+        <td>7</td>
+        <td>3</td>
+        <td>3</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -283,9 +293,9 @@
       <tr>
         <td class="strong"><a href="#a522823cc8fffe21263dc008e43b695615a86095" class="src_link" title="spec/model/card_spec.rb">spec/model/card_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>33</td>
-        <td>25</td>
-        <td>25</td>
+        <td>48</td>
+        <td>35</td>
+        <td>35</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -296,6 +306,16 @@
         <td>57</td>
         <td>11</td>
         <td>11</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#6cbec5cd7752ad2ad71d067601fb2cfd90c69d28" class="src_link" title="spec/view/card_view_spec.rb">spec/view/card_view_spec.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>15</td>
+        <td>10</td>
+        <td>10</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -355,11 +375,11 @@
         <div class="source_table" id="1c50d7749d9479d31fd66d23e6ed7f66c19411a8">
   <div class="header">
     <h3>app/controllers/cards_controller.rb</h3>
-    <h4><span class="red">55.56 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>9</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
-      <span class="red"><b>4</b> lines missed.</span>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -378,79 +398,25 @@
           <code class="ruby">  def index</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="3">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="3">
+          <span class="hits">4</span>
           
-          <code class="ruby">	  @cards = Card.all</code>
+          <code class="ruby">    CardService.trello_authenticator</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="4">
+        <li class="covered" data-hits="4" data-linenumber="4">
+          <span class="hits">4</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">	  @cards = Card.find_trello_data</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="5">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def update</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="7">
-          
-          
-          <code class="ruby">    Card.get_trello_authentication</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="8">
-          
-          
-          <code class="ruby">    redirect_to root_path</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="9">
-          
-          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="11">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def delete</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="12">
-          
-          
-          <code class="ruby">    Card.delete_duplicates</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="13">
-          
-          
-          <code class="ruby">    redirect_to root_path</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="14">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="15">
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby">end</code>
@@ -559,11 +525,11 @@
         <div class="source_table" id="28b56e603a3020be42ab361c5ccef4572391ee10">
   <div class="header">
     <h3>app/models/card.rb</h3>
-    <h4><span class="red">76.0 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>25</b> relevant lines. 
-      <span class="green"><b>19</b> lines covered</span> and
-      <span class="red"><b>6</b> lines missed.</span>
+      <b>17</b> relevant lines. 
+      <span class="green"><b>17</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -597,232 +563,214 @@
         <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">  def self.delete_duplicates</code>
+          <code class="ruby">  def self.find_trello_data</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="6">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="6">
+          <span class="hits">4</span>
           
-          <code class="ruby">    grouped = all.group_by{|card| [card.creator, card.messagebody]}</code>
+          <code class="ruby">    me = Trello::Member.find(&#39;***REMOVED***&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="7">
+          <span class="hits">4</span>
           
-          <code class="ruby">    grouped.values.each do |duplicates|</code>
+          <code class="ruby">    if me.present?</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="8">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="8">
+          <span class="hits">4</span>
           
-          <code class="ruby">      duplicates.pop</code>
+          <code class="ruby">      Card.find_board(me)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="9">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="9">
           
-          <code class="ruby">      duplicates.each{|double| double.destroy}</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="12">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="13">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def self.get_trello_authentication</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="14">
-          
-          
-          <code class="ruby">    Trello.configure do |config|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="15">
-          
-          
-          <code class="ruby">      config.developer_public_key = ENV[&#39;DEVELOPER_PUBLIC_KEY&#39;]</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="16">
-          
-          
-          <code class="ruby">      config.member_token = ENV[&#39;MEMBER_TOKEN&#39;]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="17">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="18">
-          
-          
-          <code class="ruby">    Card.find_member</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="20">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="21">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def self.find_member</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="22">
-          
-          
-          <code class="ruby">    me = Trello::Member.find(&#39;***REMOVED***&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="23">
-          
-          
-          <code class="ruby">    Card.find_board(me)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="24">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="25">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="26">
+        <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
           <code class="ruby">  def self.find_board(me)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="27">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="7" data-linenumber="13">
+          <span class="hits">7</span>
           
           <code class="ruby">    board = me.boards.first</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="28">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="7" data-linenumber="14">
+          <span class="hits">7</span>
           
-          <code class="ruby">    Card.collect_cards(board)</code>
+          <code class="ruby">    Card.find_cards(board)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="29">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="16">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="31">
+        <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
-          <code class="ruby">  def self.collect_cards(board)</code>
+          <code class="ruby">  def self.find_cards(board)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="32">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="7" data-linenumber="18">
+          <span class="hits">7</span>
+          
+          <code class="ruby">    cards = Array.new</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="19">
+          <span class="hits">7</span>
           
           <code class="ruby">    board.cards.collect do |card|</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="33">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="15" data-linenumber="20">
+          <span class="hits">15</span>
           
-          <code class="ruby">        Card.store_in_db(card)</code>
+          <code class="ruby">        cardStruct = OpenStruct.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="34">
+        <li class="covered" data-hits="15" data-linenumber="21">
+          <span class="hits">15</span>
+          
+          <code class="ruby">        cardStruct.name = card.name</code>
+        </li>
+      
+        <li class="covered" data-hits="15" data-linenumber="22">
+          <span class="hits">15</span>
+          
+          <code class="ruby">        cardStruct.id = card.id</code>
+        </li>
+      
+        <li class="covered" data-hits="15" data-linenumber="23">
+          <span class="hits">15</span>
+          
+          <code class="ruby">        cards &lt;&lt; cardStruct</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="covered" data-hits="7" data-linenumber="25">
+          <span class="hits">7</span>
+          
+          <code class="ruby">    return cards</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="36">
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="d00082452aba2b1a13c7c018fb0bd89ca35e57fe">
+  <div class="header">
+    <h3>app/services/card_service.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>6</b> relevant lines. 
+      <span class="green"><b>6</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;trello&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
+        <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  def self.store_in_db(card)</code>
+          <code class="ruby">class CardService</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="38">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
           
-          <code class="ruby">    Card.create do |localcard|</code>
+          <code class="ruby">  def self.trello_authenticator</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="39">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="5">
+          <span class="hits">4</span>
           
-          <code class="ruby">      localcard.creator = card.id</code>
+          <code class="ruby">  Trello.configure do |config|</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="40">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="6">
+          <span class="hits">4</span>
           
-          <code class="ruby">      localcard.messagebody = card.name</code>
+          <code class="ruby">    config.developer_public_key = ENV[&#39;DEVELOPER_PUBLIC_KEY&#39;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="41">
+        <li class="covered" data-hits="4" data-linenumber="7">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    config.member_token = ENV[&#39;MEMBER_TOKEN&#39;]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="9">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby">end</code>
@@ -2043,8 +1991,8 @@
     <h3>config/routes.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>5</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
+      <b>3</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2085,28 +2033,10 @@
         <li class="never" data-hits="" data-linenumber="6">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  get &#39;update&#39;, to: &#39;cards#update&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="8">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  get &#39;delete&#39;, to: &#39;cards#delete&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="9">
-          
-          
           <code class="ruby">  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="7">
           
           
           <code class="ruby">end</code>
@@ -2265,7 +2195,7 @@
         <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
-          <code class="ruby">    describe &quot;Routing&quot; do</code>
+          <code class="ruby">  describe &quot;Routing&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="15">
@@ -2295,7 +2225,7 @@
         <li class="never" data-hits="" data-linenumber="19">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
@@ -2313,8 +2243,8 @@
     <h3>spec/model/card_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>25</b> relevant lines. 
-      <span class="green"><b>25</b> lines covered</span> and
+      <b>35</b> relevant lines. 
+      <span class="green"><b>35</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2355,166 +2285,256 @@
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">  card2 = OpenStruct.new</code>
+          <code class="ruby">  cardStruct = OpenStruct.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
-          <code class="ruby">  card2.name = &#39;Do this and that2.&#39;</code>
+          <code class="ruby">  cardStruct.name = &#39;Michael&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
-          <code class="ruby">  card2.id = &#39;54mp132&#39;</code>
+          <code class="ruby">  cardStruct.id = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
-          <code class="ruby">  card1 = OpenStruct.new</code>
+          <code class="ruby">  cardStruct2 = OpenStruct.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
-          <code class="ruby">  card1.name = &#39;Do this and that.&#39;</code>
+          <code class="ruby">  cardStruct2.name = &#39;Michaele&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
-          <code class="ruby">  card1.id = &#39;54mp13&#39;</code>
+          <code class="ruby">  cardStruct2.id = &#39;2&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
-          <code class="ruby">  board1 = OpenStruct.new</code>
+          <code class="ruby">  cardStructE = OpenStruct.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
-          <code class="ruby">  board2 = OpenStruct.new</code>
+          <code class="ruby">  cardStructE.name = &#39;There was an error contacting the Trello API.&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  me = OpenStruct.new</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="15">
+        <li class="never" data-hits="" data-linenumber="14">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  card2 = OpenStruct.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
-          <code class="ruby">  context &quot;receives a card from trello&quot; do</code>
+          <code class="ruby">  card2.name = &#39;Michaele&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;saves a card to the db&quot; do</code>
+          <code class="ruby">  card2.id = &#39;2&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
-          <code class="ruby">      board1.cards = [ card1 ]</code>
+          <code class="ruby">  card1 = OpenStruct.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="19">
           <span class="hits">1</span>
           
-          <code class="ruby">      me.boards = [ board1 ]</code>
+          <code class="ruby">  card1.name = &#39;Michael&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">      Card.find_board(me)</code>
+          <code class="ruby">  card1.id = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="21">
           <span class="hits">1</span>
           
-          <code class="ruby">      Card.all.count.should eq(1)</code>
+          <code class="ruby">  board1 = OpenStruct.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">  board2 = OpenStruct.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="23">
+        <li class="covered" data-hits="1" data-linenumber="23">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  me = OpenStruct.new</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="24">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &quot;deletes a duplicate card&quot; do</code>
-        </li>
-      
         <li class="covered" data-hits="1" data-linenumber="25">
           <span class="hits">1</span>
           
-          <code class="ruby">      board1.cards = [ card1, card1 ]</code>
+          <code class="ruby">  context &quot;receives a card from trello&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="26">
           <span class="hits">1</span>
           
-          <code class="ruby">      me.boards = [ board1 ]</code>
+          <code class="ruby">    it &quot;puts the card&#39;s name and id into an array&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">      Card.find_board(me)</code>
+          <code class="ruby">      board1.cards = [ card1 ]</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
-          <code class="ruby">      Card.all.count.should eq(2)</code>
+          <code class="ruby">      me.boards = [ board1 ]</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="29">
           <span class="hits">1</span>
           
-          <code class="ruby">      Card.delete_duplicates</code>
+          <code class="ruby">      Card.find_board(me).should eq([ cardStruct ])</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="30">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      Card.all.count.should eq(1)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="33">
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  context &quot;receives multiple cards from trello&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="34">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;puts the cards&#39; name and id into an array&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      board1.cards = [ card1, card2 ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="36">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      me.boards = [ board1 ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="37">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Card.find_board(me).should eq([ cardStruct, cardStruct2 ])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  context &quot;receives no cards from trello&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="42">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;returns an empty array&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="43">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      board1.cards = [ ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="44">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      me.boards = [ board1 ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="45">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Card.find_board(me).should eq([ ])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="46">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
           
           
           <code class="ruby">end</code>
@@ -2875,6 +2895,114 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="6cbec5cd7752ad2ad71d067601fb2cfd90c69d28">
+  <div class="header">
+    <h3>spec/view/card_view_spec.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>10</b> relevant lines. 
+      <span class="green"><b>10</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;rspec&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;spec_helper&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">describe &#39;card/index.html.erb&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;should display the correct page&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    visit &#39;/&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    page.should have_content(&quot;current Trello cards&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;displays card stats upon loading&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @cards = &#39;GIVE IT AN ARRAY&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    visit &#39;/&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    page.should have_content(&#39;WHATEVER WAS IN THE ARRAY&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby">end</code>
