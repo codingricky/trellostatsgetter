@@ -4,14 +4,16 @@
 <div class="panel-default">
   <table class="table-striped custom-stripe table-bordered custom-border sortable" width="80%" align="center">
     <tr>
-      <th width="35%">Card ID</th>
-      <th width="65%">Card Name</th>
+      <th width="30%">Card ID</th>
+      <th width="35%">Card Name</th>
+      <th width="35%">Current Swimlane ID</th>
     </tr>
 
     <% @cards.each do |card| %>
         <tr>
           <td><%= card.id %></td>
           <td><%= card.name %></td>
+          <td><%= card.list_id %></td>
         </tr>
     <% end %>
   </table>

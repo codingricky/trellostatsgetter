@@ -11,13 +11,3 @@ Feature: Manage cards.
     Given I have a cards named Michael
     When I update the index of cards
     Then I should see a card named Michael
-
-  Scenario: Display the duration of the card's life in a particular swim lane.
-    Given x
-    When y
-    Then z
-
-  Scenario: Display the number of cards in a particular swim lane at a given point in time.
-    Given x
-    When y
-    Then z

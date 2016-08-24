@@ -1,4 +1,13 @@
+card1 = OpenStruct.new
+board1 = OpenStruct.new
+me = OpenStruct.new
+card1.name = 'Michael'
+card1.id = '1'
+board1.cards = [ card1 ]
+me.boards = [ board1 ]
+
 Given(/^I am on the index page for cards$/) do
+  Card.should_receive(:find_trello_data).and_return(me)
   visit('/')
 end
 
@@ -9,9 +18,7 @@ end
 ##
 
 Given(/^I have a cards named Michael$/) do
-  cardStruct = OpenStruct.new
-  cardStruct.name = 'Michael'
-  @cards = [ cardStruct ]
+  Card.should_receive(:find_trello_data).and_return(me)
 end
 
 When(/^I update the index of cards/) do
