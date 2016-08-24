@@ -1,9 +1,17 @@
 card1 = OpenStruct.new
-board1 = OpenStruct.new
-me = OpenStruct.new
 card1.name = 'Michael'
 card1.id = '1'
+card1.list_id = '2'
+
+list1 = OpenStruct.new
+list1.id = '2'
+list1.name = 'Yay'
+
+board1 = OpenStruct.new
 board1.cards = [ card1 ]
+board1.lists = [ list1 ]
+
+me = OpenStruct.new
 me.boards = [ board1 ]
 
 Given(/^I am on the index page for cards$/) do
@@ -17,7 +25,7 @@ end
 
 ##
 
-Given(/^I have a cards named Michael$/) do
+Given(/^I have a card named Michael$/) do
   Card.should_receive(:find_trello_data).and_return(me)
 end
 

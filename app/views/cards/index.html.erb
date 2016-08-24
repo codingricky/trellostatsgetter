@@ -6,14 +6,14 @@
     <tr>
       <th width="30%">Card ID</th>
       <th width="35%">Card Name</th>
-      <th width="35%">Current Swimlane ID</th>
+      <th width="35%">Current Swimlane Name</th>
     </tr>
 
     <% @cards.each do |card| %>
         <tr>
           <td><%= card.id %></td>
           <td><%= card.name %></td>
-          <td><%= card.list_id %></td>
+          <td><%= card.list_name %></td>
         </tr>
     <% end %>
   </table>

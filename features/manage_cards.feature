@@ -8,6 +8,6 @@ Feature: Manage cards.
     Then I should see the index for cards
 
   Scenario: Seeing new cards in the index list.
-    Given I have a cards named Michael
+    Given I have a card named Michael
     When I update the index of cards
     Then I should see a card named Michael

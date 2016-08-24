@@ -3,23 +3,26 @@ require 'spec_helper'
 
 describe Card do
 
-  card_struct = OpenStruct.new
-  card_struct.name = 'Michael'
-  card_struct.id = '1'
-  card_struct.list_id = nil
-  card_struct2 = OpenStruct.new
-  card_struct2.name = 'Michaele'
-  card_struct2.id = '2'
-  card_struct2.list_id = nil
-
-  card2 = OpenStruct.new
-  card2.name = 'Michaele'
-  card2.id = '2'
-  card2.list_id = nil
   card1 = OpenStruct.new
   card1.name = 'Michael'
   card1.id = '1'
-  card1.list_id = nil
+  card1.list_id = '1'
+  card1.list_name = 'Yay'
+
+  card2 = OpenStruct.new
+  card2.name = 'Michael2'
+  card2.id = '2'
+  card2.list_id = '2'
+  card2.list_name = 'Nay'
+
+  list1 = OpenStruct.new
+  list1.id = '1'
+  list1.name = 'Yay'
+
+  list2 = OpenStruct.new
+  list2.id = '2'
+  list2.name = 'Nay'
+
   board1 = OpenStruct.new
   board2 = OpenStruct.new
   me = OpenStruct.new
@@ -27,6 +30,7 @@ describe Card do
   context "receives a card from trello" do
     before do
       board1.cards = [ card1 ]
+      board1.lists = [ list1, list2 ]
       me.boards = [ board1, board2 ]
     end
 
@@ -35,13 +39,14 @@ describe Card do
     end
 
     it "puts the card's name and id into an array" do
-      Card.find_cards(board1).should eq([ card_struct ])
+      Card.find_cards(board1).should eq([ card1 ])
     end
   end
 
   context "receives multiple cards from trello" do
     before do
       board1.cards = [ card1, card2 ]
+      board1.lists = [ list1, list2 ]
       me.boards = [ board1, board2 ]
     end
 
@@ -50,13 +55,14 @@ describe Card do
     end
 
     it "puts the cards' name and id into an array" do
-      Card.find_cards(board1).should eq([ card_struct, card_struct2 ])
+      Card.find_cards(board1).should eq([ card1, card2 ])
     end
   end
 
   context "receives no cards from trello" do
     before do
       board1.cards = [ ]
+      board1.lists = [ list1, list2 ]
       me.boards = [ board1, board2 ]
     end
 
@@ -64,7 +70,7 @@ describe Card do
       Card.find_board(me).should eq(board1)
     end
 
-    it "puts the cards' name and id into an array" do
+    it "puts nothing into an array" do
       Card.find_cards(board1).should eq([ ])
     end
   end
