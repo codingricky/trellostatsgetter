@@ -1,11 +1,5 @@
 class CardsController < ApplicationController
   def index
-    @cards = get_cards
+    @cards = CardService.all
   end
-
-  def get_cards
-    CardService.all
-  end
-
-  helper_method :get_cards
 end
