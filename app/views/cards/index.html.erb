@@ -9,12 +9,16 @@
       <th width="35%">Current Swimlane Name</th>
     </tr>
 
-    <% @cards.each do |card| %>
+    <% if @cards.present? %>
+        <% @cards.each do |card| %>
         <tr>
           <td><%= card.id %></td>
           <td><%= card.name %></td>
           <td><%= card.list_name %></td>
         </tr>
+        <% end %>
+    <% else %>
+      <p> No cards. </p>
     <% end %>
   </table>
   <br>

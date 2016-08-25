@@ -24,22 +24,16 @@ describe Card do
   list2.name = 'Nay'
 
   board1 = OpenStruct.new
-  board2 = OpenStruct.new
-  me = OpenStruct.new
 
   context "receives a card from trello" do
     before do
       board1.cards = [ card1 ]
       board1.lists = [ list1, list2 ]
-      me.boards = [ board1, board2 ]
-    end
-
-    it "gets the first board" do
-      Card.find_board(me).should eq(board1)
     end
 
     it "puts the card's name and id into an array" do
-      Card.find_cards(board1).should eq([ card1 ])
+      CardService.find_cards(board1) == 1
+      Card.name == card1.name
     end
   end
 
@@ -47,15 +41,11 @@ describe Card do
     before do
       board1.cards = [ card1, card2 ]
       board1.lists = [ list1, list2 ]
-      me.boards = [ board1, board2 ]
-    end
-
-    it "gets the first board" do
-      Card.find_board(me).should eq(board1)
     end
 
     it "puts the cards' name and id into an array" do
-      Card.find_cards(board1).should eq([ card1, card2 ])
+      CardService.find_cards(board1) == 2
+      Card.name == (card1.name + card2.name)
     end
   end
 
@@ -63,15 +53,10 @@ describe Card do
     before do
       board1.cards = [ ]
       board1.lists = [ list1, list2 ]
-      me.boards = [ board1, board2 ]
-    end
-
-    it "gets the first board" do
-      Card.find_board(me).should eq(board1)
     end
 
     it "puts nothing into an array" do
-      Card.find_cards(board1).should eq([ ])
+      CardService.find_cards(board1).should eq([ ])
     end
   end
 end

@@ -1,19 +1,24 @@
 require 'rspec'
 require 'spec_helper'
 
-describe 'card/index.html.erb' do
+describe 'cards/index', type: :view do
   it "should display the correct page" do
-    expect_any_instance_of(CardsController).to receive(:get_cards).and_return([])
-    visit '/'
-    page.should have_content("current Trello cards")
+    render
+    rendered.should match /current Trello cards/
+  end
+
+  it "should display to the user 'No cards.' when @cards is nil" do
+    render
+    rendered.should match /No cards/
   end
 
   it "displays card stats upon loading" do
     card_struct = OpenStruct.new
     card_struct.name = 'Michael'
     card_struct.id = '1'
-    expect_any_instance_of(CardsController).to receive(:get_cards).and_return([ card_struct ])
-    visit '/'
-    page.should have_content('Michael')
+    @cards = [ card_struct ]
+    assign(:cards, @cards)
+    render
+    rendered.should match /Michael/
   end
 end

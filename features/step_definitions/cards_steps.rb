@@ -15,7 +15,7 @@ me = OpenStruct.new
 me.boards = [ board1 ]
 
 Given(/^I am on the index page for cards$/) do
-  Card.should_receive(:find_trello_data).and_return(me)
+  CardService.should_receive(:find_member).and_return(me)
   visit('/')
 end
 
@@ -26,7 +26,7 @@ end
 ##
 
 Given(/^I have a card named Michael$/) do
-  Card.should_receive(:find_trello_data).and_return(me)
+  CardService.should_receive(:find_member).and_return(me)
 end
 
 When(/^I update the index of cards/) do
