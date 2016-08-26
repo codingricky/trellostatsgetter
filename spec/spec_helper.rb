@@ -21,6 +21,9 @@ require 'database_cleaner'
 SimpleCov.start
 require "capybara/rspec"
 RSpec.configure do |config|
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
 
   ### For database_cleaner...
   config.before(:suite) do

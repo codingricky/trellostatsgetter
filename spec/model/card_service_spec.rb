@@ -1,7 +1,8 @@
 require 'rspec'
 require 'spec_helper'
+require 'trello'
 
-describe Card do
+describe CardService do
 
   card1 = OpenStruct.new
   card1.name = 'Michael'
@@ -24,15 +25,18 @@ describe Card do
   list2.name = 'Nay'
 
   board1 = OpenStruct.new
-  #TODO refactor tests, model (change to cardservice) test for output, cucumber test output+render
+  member = OpenStruct.new
+
   context "receives a card from trello" do
     before do
       board1.cards = [ card1 ]
       board1.lists = [ list1, list2 ]
+      member.boards = [ board1 ]
+      Trello::Member.should_receive(:find).and_return(member)
     end
 
     it "puts the card's name and id into an array" do
-      CardService.find_cards(board1) == 1
+      CardService.all == 1
       Card.name == card1.name
     end
   end
@@ -41,10 +45,12 @@ describe Card do
     before do
       board1.cards = [ card1, card2 ]
       board1.lists = [ list1, list2 ]
+      member.boards = [ board1 ]
+      Trello::Member.should_receive(:find).and_return(member)
     end
 
     it "puts the cards' name and id into an array" do
-      CardService.find_cards(board1) == 2
+      CardService.all == 2
       Card.name == (card1.name + card2.name)
     end
   end
@@ -53,10 +59,12 @@ describe Card do
     before do
       board1.cards = [ ]
       board1.lists = [ list1, list2 ]
+      member.boards = [ board1 ]
+      Trello::Member.should_receive(:find).and_return(member)
     end
 
     it "puts nothing into an array" do
-      CardService.find_cards(board1).should eq([ ])
+      CardService.all.should eq([ ])
     end
   end
 end

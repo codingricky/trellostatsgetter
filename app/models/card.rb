@@ -10,7 +10,6 @@ class Card
     @name = name
     @id = id
     @list_id = list_id
-    binding.pry
     list = board.lists.find { |list| list.id == list_id }
     @list_name = list.name
   end

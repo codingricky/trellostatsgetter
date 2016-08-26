@@ -2,13 +2,14 @@
 come back and fix member.find call
 
 
-explore correct use of .collect
-move trelloauth into the all
 move methods from card.rb into cardservice
-numerable class, for find_list_name
 inline find_board
 rename me to member
 move from openstruct to class with attributes
-view spec tests should not call controller
+explore correct use of .collect
+fix other tests + view spec tests should not call controller
+
+enumerable
+
 
 
