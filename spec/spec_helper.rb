@@ -21,10 +21,6 @@ require 'database_cleaner'
 SimpleCov.start
 require "capybara/rspec"
 RSpec.configure do |config|
-  config.expect_with :rspec do |c|
-    c.syntax = [:should, :expect]
-  end
-
   ### For database_cleaner...
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
@@ -43,7 +39,15 @@ RSpec.configure do |config|
   ###
 
   config.include Capybara::DSL
-  config.expect_with(:rspec) { |c| c.syntax = :should }
+  # config.expect_with(:rspec) { |c|  c.syntax = [:should, :expect] }
+  RSpec.configure do |config|
+    config.expect_with :rspec do |c|
+      c.syntax = :should
+    end
+    config.mock_with :rspec do |c|
+      c.syntax = :should
+    end
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
