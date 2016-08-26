@@ -24,7 +24,7 @@ describe Card do
   list2.name = 'Nay'
 
   board1 = OpenStruct.new
-
+  #TODO refactor tests, model (change to cardservice) test for output, cucumber test output+render
   context "receives a card from trello" do
     before do
       board1.cards = [ card1 ]
