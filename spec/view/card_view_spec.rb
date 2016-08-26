@@ -13,12 +13,16 @@ describe 'cards/index', type: :view do
   end
 
   it "displays card stats upon loading" do
-    card_struct = OpenStruct.new
-    card_struct.name = 'Michael'
-    card_struct.id = '1'
-    @cards = [ card_struct ]
+    @board1 = OpenStruct.new
+    @list1 = OpenStruct.new
+    @list1.id = '1'
+    @list1.name = 'Sample List'
+    @board1.lists = [ @list1 ]
+    @cards = [ Card.new(@board1, 'Michael', '1', '1') ]
     assign(:cards, @cards)
     render
     rendered.should match /Michael/
+    rendered.should match /1/
+    rendered.should match /Sample List/
   end
 end
