@@ -72,7 +72,7 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate (createCard) into an array" do
+    it "puts the card's name, id, swimlane, and startdate (of a card that was created in the Resumes swimlane) into an array" do
       cards = CardService.all
       cards.first.name.should eq(@card1.name)
       cards.first.id.should eq(@card1.id)
@@ -91,13 +91,32 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate (updateCard) into an array" do
+    it "puts the card's name, id, swimlane, and startdate (of a card that was moved in to the Resumes swimlane) into an array" do
       cards = CardService.all
       cards.first.name.should eq(@card2.name)
       cards.first.id.should eq(@card2.id)
       cards.count.should eq(1)
       cards.first.list_name.should eq(@card2.list_name)
       cards.first.start_date.should eq(@action3.date)
+    end
+  end
+
+  context "receives a card from trello" do
+    before do
+      @board1.cards = [ @card2 ]
+      @board1.lists = [ @list1, @list2 ]
+      @board1.actions = [ ]
+      @member.boards = [ @board1 ]
+      Trello::Member.should_receive(:find).and_return(@member)
+    end
+
+    it "puts the card's name, id, swimlane, and startdate (of a card that has never existed in the Resumes to be Screened swimlane) into an array, telling the user the card hasn't been set up properly" do
+      cards = CardService.all
+      cards.first.name.should eq(@card2.name)
+      cards.first.id.should eq(@card2.id)
+      cards.count.should eq(1)
+      cards.first.list_name.should eq(@card2.list_name)
+      cards.first.start_date.should eq('This card has never been placed in the Resumes to be Screened lane.')
     end
   end
 
@@ -110,7 +129,7 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the cards' name, id, swimlane, and startdate (createCards) into an array" do
+    it "puts the cards' name, id, swimlane, and startdate (of multiple cards that were created in the Resumes swimlane) into an array" do
       cards = CardService.all
       cards.first.name.should eq(@card1.name)
       cards.first.id.should eq(@card1.id)
@@ -133,7 +152,7 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the cards' name, id, swimlane, and startdate (mix of actions) into an array" do
+    it "puts the cards' name, id, swimlane, and startdate (cards that have multiple actions such as being both created and later moved into the Resumes swimlane) into an array, using the latest movement into the Resumes swimlane as the start date" do
       cards = CardService.all
       cards.first.name.should eq(@card1.name)
       cards.first.id.should eq(@card1.id)
