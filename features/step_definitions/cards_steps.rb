@@ -25,9 +25,16 @@ Given(/^I have a card named Michael$/) do
   list1 = OpenStruct.new
   list1.id = '2'
   list1.name = 'Yay'
+  action1 = OpenStruct.new
+  action1.type = 'createCard'
+  action1.data = {"list"=>{"name"=>"Resumes to be Screened"},
+                   "card"=>
+                       {"id"=>"1"}}
+  action1.date = '1/1/1991'
   board1 = OpenStruct.new
   board1.cards = [ card1 ]
   board1.lists = [ list1 ]
+  board1.actions = [ action1 ]
   me = OpenStruct.new
   me.boards = [ board1 ]
   Trello::Member.should_receive(:find).and_return(me)
@@ -41,5 +48,5 @@ Then(/^I should see a card named Michael$/) do
   page.should have_content 'Michael'
   page.should have_content '1'
   page.should have_content 'Yay'
-  page.should have_content '1/1/1990'
+  page.should have_content '1/1/1991'
 end

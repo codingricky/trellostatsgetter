@@ -24,25 +24,80 @@ describe CardService do
     @list2.id = '2'
     @list2.name = 'Nay'
 
+    @action1 = OpenStruct.new
+    @action1.type = 'createCard'
+    @action1.data = {"list"=>{"name"=>"Resumes to be Screened"},
+                     "card"=>
+                         {"id"=>"1"}}
+    @action1.date = '1/1/1991'
+
+    @action2 = OpenStruct.new
+    @action2.type = 'updateCard'
+    @action2.data = {"listAfter"=>{"name"=>"Resumes to be Screened"},
+                     "card"=>
+                         {"id"=>"1"}}
+    @action2.date = '1/1/1992'
+
+    @action2later = OpenStruct.new
+    @action2later.type = 'updateCard'
+    @action2later.data = {"listAfter"=>{"name"=>"Resumes to be Screened"},
+                     "card"=>
+                         {"id"=>"1"}}
+    @action2later.date = '2/1/1992'
+
+    @action3 = OpenStruct.new
+    @action3.type = 'createCard'
+    @action3.data = {"list"=>{"name"=>"Resumes to be Screened"},
+                     "card"=>
+                         {"id"=>"2"}}
+    @action3.date = '1/1/1993'
+
+    @action4 = OpenStruct.new
+    @action4.type = 'updateCard'
+    @action4.data = {"listAfter"=>{"name"=>"Resumes to be Screened"},
+                     "card"=>
+                         {"id"=>"2"}}
+    @action4.date = '1/1/1994'
+
     @board1 = OpenStruct.new
     @member = OpenStruct.new
   end
 
-  describe "receives a card from trello" do
+  context "receives a card from trello" do
     before do
       @board1.cards = [ @card1 ]
       @board1.lists = [ @list1, @list2 ]
+      @board1.actions = [ @action1 ]
       @member.boards = [ @board1 ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate into an array" do
+    it "puts the card's name, id, swimlane, and startdate (createCard) into an array" do
       cards = CardService.all
       cards.first.name.should eq(@card1.name)
       cards.first.id.should eq(@card1.id)
       cards.count.should eq(1)
       cards.first.list_name.should eq(@card1.list_name)
-      cards.first.start_date.should eq(@card1.start_date)
+      cards.first.start_date.should eq(@action1.date)
+    end
+  end
+
+  context "receives a card from trello" do
+    before do
+      @board1.cards = [ @card2 ]
+      @board1.lists = [ @list1, @list2 ]
+      @board1.actions = [ @action3 ]
+      @member.boards = [ @board1 ]
+      Trello::Member.should_receive(:find).and_return(@member)
+    end
+
+    it "puts the card's name, id, swimlane, and startdate (updateCard) into an array" do
+      cards = CardService.all
+      cards.first.name.should eq(@card2.name)
+      cards.first.id.should eq(@card2.id)
+      cards.count.should eq(1)
+      cards.first.list_name.should eq(@card2.list_name)
+      cards.first.start_date.should eq(@action3.date)
     end
   end
 
@@ -50,20 +105,44 @@ describe CardService do
     before do
       @board1.cards = [ @card1, @card2 ]
       @board1.lists = [ @list1, @list2 ]
+      @board1.actions = [ @action1, @action3 ]
       @member.boards = [ @board1 ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the cards' name, id, swimlane, and startdate into an array" do
+    it "puts the cards' name, id, swimlane, and startdate (createCards) into an array" do
       cards = CardService.all
       cards.first.name.should eq(@card1.name)
       cards.first.id.should eq(@card1.id)
       cards.first.list_name.should eq(@card1.list_name)
-      cards.first.start_date.should eq(@card1.start_date)
+      cards.first.start_date.should eq(@action1.date)
       cards.last.name.should eq(@card2.name)
       cards.last.id.should eq(@card2.id)
       cards.last.list_name.should eq(@card2.list_name)
-      cards.last.start_date.should eq(@card2.start_date)
+      cards.last.start_date.should eq(@action3.date)
+      cards.count.should eq(2)
+    end
+  end
+
+  context "receives multiple cards from trello" do
+    before do
+      @board1.cards = [ @card1, @card2 ]
+      @board1.lists = [ @list1, @list2 ]
+      @board1.actions = [ @action2later, @action2, @action3, @action4 ]
+      @member.boards = [ @board1 ]
+      Trello::Member.should_receive(:find).and_return(@member)
+    end
+
+    it "puts the cards' name, id, swimlane, and startdate (mix of actions) into an array" do
+      cards = CardService.all
+      cards.first.name.should eq(@card1.name)
+      cards.first.id.should eq(@card1.id)
+      cards.first.list_name.should eq(@card1.list_name)
+      cards.first.start_date.should eq(@action2later.date)
+      cards.last.name.should eq(@card2.name)
+      cards.last.id.should eq(@card2.id)
+      cards.last.list_name.should eq(@card2.list_name)
+      cards.last.start_date.should eq(@action3.date)
       cards.count.should eq(2)
     end
   end
