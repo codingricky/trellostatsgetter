@@ -63,7 +63,7 @@ describe CardService do
     @member = OpenStruct.new
   end
 
-  context "receives a card from trello" do
+  context "receives a card from trello that was created in the Resumes swimlane" do
     before do
       @board1.cards = [ @card1 ]
       @board1.lists = [ @list1, @list2 ]
@@ -72,7 +72,7 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate (of a card that was created in the Resumes swimlane) into an array" do
+    it "puts the card's name, id, swimlane, and startdate into an array" do
       cards = CardService.all
       cards.first.name.should eq(@card1.name)
       cards.first.id.should eq(@card1.id)
@@ -82,7 +82,7 @@ describe CardService do
     end
   end
 
-  context "receives a card from trello" do
+  context "receives a card from trello of a card that was moved in to the Resumes to be Screened swimlane" do
     before do
       @board1.cards = [ @card2 ]
       @board1.lists = [ @list1, @list2 ]
@@ -91,7 +91,7 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate (of a card that was moved in to the Resumes swimlane) into an array" do
+    it "puts the card's name, id, swimlane, and startdate into an array using the latest movement into the Resumes swimlane as the start date" do
       cards = CardService.all
       cards.first.name.should eq(@card2.name)
       cards.first.id.should eq(@card2.id)
@@ -101,7 +101,7 @@ describe CardService do
     end
   end
 
-  context "receives a card from trello" do
+  context "receives a card from trello that has never existed in the Resumes to be Screened swimlane" do
     before do
       @board1.cards = [ @card2 ]
       @board1.lists = [ @list1, @list2 ]
@@ -110,7 +110,7 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate (of a card that has never existed in the Resumes to be Screened swimlane) into an array, telling the user the card hasn't been set up properly" do
+    it "puts the card's name, id, swimlane, and startdate into an array, telling the user the card hasn't been set up properly" do
       cards = CardService.all
       cards.first.name.should eq(@card2.name)
       cards.first.id.should eq(@card2.id)
@@ -120,7 +120,7 @@ describe CardService do
     end
   end
 
-  context "receives multiple cards from trello" do
+  context "receives multiple cards from trello that were created in the Resumes swimlane" do
     before do
       @board1.cards = [ @card1, @card2 ]
       @board1.lists = [ @list1, @list2 ]
@@ -129,7 +129,7 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the cards' name, id, swimlane, and startdate (of multiple cards that were created in the Resumes swimlane) into an array" do
+    it "puts the cards' name, id, swimlane, and startdate into an array" do
       cards = CardService.all
       cards.first.name.should eq(@card1.name)
       cards.first.id.should eq(@card1.id)
@@ -143,7 +143,7 @@ describe CardService do
     end
   end
 
-  context "receives multiple cards from trello" do
+  context "receives multiple cards from trello that have multiple actions such as being both created and later moved into the Resumes swimlane" do
     before do
       @board1.cards = [ @card1, @card2 ]
       @board1.lists = [ @list1, @list2 ]
@@ -152,7 +152,7 @@ describe CardService do
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the cards' name, id, swimlane, and startdate (cards that have multiple actions such as being both created and later moved into the Resumes swimlane) into an array, using the latest movement into the Resumes swimlane as the start date" do
+    it "puts the cards' name, id, swimlane, and startdate into an array, using the latest movement into the Resumes swimlane as the start date" do
       cards = CardService.all
       cards.first.name.should eq(@card1.name)
       cards.first.id.should eq(@card1.id)
