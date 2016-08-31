@@ -7,6 +7,8 @@ gem 'ruby-trello'
 gem 'travis'
 gem 'rails-controller-testing'
 gem 'pg'
+#gem 'yymmdd'
+#gem 'time_diff'
 
 group :development, :test do
 gem 'rspec-rails'

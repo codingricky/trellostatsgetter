@@ -4,173 +4,165 @@ require 'trello'
 
 describe CardService do
   before do
-    @card1 = OpenStruct.new
-    @card1.name = 'Michael'
-    @card1.id = '1'
-    @card1.list_id = '1'
-    @card1.list_name = 'Yay'
+    @list_alpha = List.new('1', 'Alphas List')
+    @list_bravo = List.new('2', 'Bravos List')
 
-    @card2 = OpenStruct.new
-    @card2.name = 'Michael2'
-    @card2.id = '2'
-    @card2.list_id = '2'
-    @card2.list_name = 'Nay'
+    @action_create_alpha = Action.new('createCard', '1', '1/1/1991')
+    @action_update_alpha = Action.new('updateCard', '1', '1/1/2001')
+    @action_update_alpha_latest = Action.new('updateCard', '1', '1/1/2011')
+    @action_create_bravo = Action.new('createCard', '2', '1/1/1992')
+    @action_update_bravo = Action.new('updateCard', '2', '1/1/2002')
+    @action_update_bravo_latest = Action.new('updateCard', '2', '1/1/2012')
 
-    @list1 = OpenStruct.new
-    @list1.id = '1'
-    @list1.name = 'Yay'
-
-    @list2 = OpenStruct.new
-    @list2.id = '2'
-    @list2.name = 'Nay'
-
-    @action1 = OpenStruct.new
-    @action1.type = 'createCard'
-    @action1.data = {"list"=>{"name"=>"Resumes to be Screened"},
-                     "card"=>
-                         {"id"=>"1"}}
-    @action1.date = '1/1/1991'
-
-    @action2 = OpenStruct.new
-    @action2.type = 'updateCard'
-    @action2.data = {"listAfter"=>{"name"=>"Resumes to be Screened"},
-                     "card"=>
-                         {"id"=>"1"}}
-    @action2.date = '1/1/1992'
-
-    @action2later = OpenStruct.new
-    @action2later.type = 'updateCard'
-    @action2later.data = {"listAfter"=>{"name"=>"Resumes to be Screened"},
-                     "card"=>
-                         {"id"=>"1"}}
-    @action2later.date = '2/1/1992'
-
-    @action3 = OpenStruct.new
-    @action3.type = 'createCard'
-    @action3.data = {"list"=>{"name"=>"Resumes to be Screened"},
-                     "card"=>
-                         {"id"=>"2"}}
-    @action3.date = '1/1/1993'
-
-    @action4 = OpenStruct.new
-    @action4.type = 'updateCard'
-    @action4.data = {"listAfter"=>{"name"=>"Resumes to be Screened"},
-                     "card"=>
-                         {"id"=>"2"}}
-    @action4.date = '1/1/1994'
-
-    @board1 = OpenStruct.new
-    @member = OpenStruct.new
+    @first_board = Board.new
+    @member = Member.new
   end
 
   context "receives a card from trello that was created in the Resumes swimlane" do
     before do
-      @board1.cards = [ @card1 ]
-      @board1.lists = [ @list1, @list2 ]
-      @board1.actions = [ @action1 ]
-      @member.boards = [ @board1 ]
+      @first_board.lists = [ @list_alpha ]
+      @first_board.actions = [ @action_create_alpha ]
+      @card_alpha = Card.new(@first_board, 'Alpha', '1', '1')
+      @first_board.cards = [ @card_alpha ]
+      @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate into an array" do
+    it "puts the card's names into an array" do
       cards = CardService.all
-      cards.first.name.should eq(@card1.name)
-      cards.first.id.should eq(@card1.id)
       cards.count.should eq(1)
-      cards.first.list_name.should eq(@card1.list_name)
-      cards.first.start_date.should eq(@action1.date)
+      cards.first.name.should eq(@card_alpha.name)
+    end
+
+    it "puts the card's swimlanes into an array" do
+      cards = CardService.all
+      cards.count.should eq(1)
+      cards.first.list_name.should eq(@card_alpha.list_name)
+    end
+
+    it "puts the card's creation dates into an array" do
+      cards = CardService.all
+      cards.count.should eq(1)
+      cards.first.start_date.should eq(@action_create_alpha.date)
     end
   end
 
   context "receives a card from trello of a card that was moved in to the Resumes to be Screened swimlane" do
     before do
-      @board1.cards = [ @card2 ]
-      @board1.lists = [ @list1, @list2 ]
-      @board1.actions = [ @action3 ]
-      @member.boards = [ @board1 ]
+      @first_board.lists = [ @list_bravo ]
+      @first_board.actions = [ @action_update_bravo_latest, @action_update_bravo ]
+      @card_bravo = Card.new(@first_board, 'Bravo', '2', '2')
+      @first_board.cards = [ @card_bravo ]
+      @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate into an array using the latest movement into the Resumes swimlane as the start date" do
+    it "puts the card's name into an array" do
       cards = CardService.all
-      cards.first.name.should eq(@card2.name)
-      cards.first.id.should eq(@card2.id)
       cards.count.should eq(1)
-      cards.first.list_name.should eq(@card2.list_name)
-      cards.first.start_date.should eq(@action3.date)
+      cards.first.name.should eq(@card_bravo.name)
+    end
+
+    it "puts the card's swimlane into an array" do
+      cards = CardService.all
+      cards.count.should eq(1)
+      cards.first.list_name.should eq(@card_bravo.list_name)
+    end
+
+    it "puts the card's date of its latest movement into the Resumes swimlane into an array" do
+      cards = CardService.all
+      cards.count.should eq(1)
+      cards.first.start_date.should eq(@action_update_bravo_latest.date)
     end
   end
 
   context "receives a card from trello that has never existed in the Resumes to be Screened swimlane" do
     before do
-      @board1.cards = [ @card2 ]
-      @board1.lists = [ @list1, @list2 ]
-      @board1.actions = [ ]
-      @member.boards = [ @board1 ]
+      @first_board.lists = [ @list_bravo ]
+      @first_board.actions = [ ]
+      @card_bravo = Card.new(@first_board, 'Bravo', '2', '2')
+      @first_board.cards = [ @card_bravo ]
+      @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the card's name, id, swimlane, and startdate into an array, telling the user the card hasn't been set up properly" do
+    it "puts a warning to the user in place of the startdate" do
       cards = CardService.all
-      cards.first.name.should eq(@card2.name)
-      cards.first.id.should eq(@card2.id)
       cards.count.should eq(1)
-      cards.first.list_name.should eq(@card2.list_name)
       cards.first.start_date.should eq('This card has never been placed in the Resumes to be Screened lane.')
     end
   end
 
   context "receives multiple cards from trello that were created in the Resumes swimlane" do
     before do
-      @board1.cards = [ @card1, @card2 ]
-      @board1.lists = [ @list1, @list2 ]
-      @board1.actions = [ @action1, @action3 ]
-      @member.boards = [ @board1 ]
+      @member.boards = [ @first_board ]
+      @first_board.lists = [ @list_alpha, @list_bravo ]
+      @first_board.actions = [ @action_create_alpha, @action_create_bravo ]
+      @card_bravo = Card.new(@first_board, 'Bravo', '2', '2')
+      @card_alpha = Card.new(@first_board, 'Alpha', '1', '1')
+      @first_board.cards = [ @card_alpha, @card_bravo ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the cards' name, id, swimlane, and startdate into an array" do
+    it "puts the cards' name into an array" do
       cards = CardService.all
-      cards.first.name.should eq(@card1.name)
-      cards.first.id.should eq(@card1.id)
-      cards.first.list_name.should eq(@card1.list_name)
-      cards.first.start_date.should eq(@action1.date)
-      cards.last.name.should eq(@card2.name)
-      cards.last.id.should eq(@card2.id)
-      cards.last.list_name.should eq(@card2.list_name)
-      cards.last.start_date.should eq(@action3.date)
       cards.count.should eq(2)
+      cards.first.name.should eq(@card_alpha.name)
+      cards.last.name.should eq(@card_bravo.name)
+    end
+
+    it "puts the cards' swimlane into an array" do
+      cards = CardService.all
+      cards.count.should eq(2)
+      cards.first.list_name.should eq(@card_alpha.list_name)
+      cards.last.list_name.should eq(@card_bravo.list_name)
+    end
+
+    it "puts the cards' startdate into an array" do
+      cards = CardService.all
+      cards.count.should eq(2)
+      cards.first.start_date.should eq(@action_create_alpha.date)
+      cards.last.start_date.should eq(@action_create_bravo.date)
     end
   end
 
   context "receives multiple cards from trello that have multiple actions such as being both created and later moved into the Resumes swimlane" do
     before do
-      @board1.cards = [ @card1, @card2 ]
-      @board1.lists = [ @list1, @list2 ]
-      @board1.actions = [ @action2later, @action2, @action3, @action4 ]
-      @member.boards = [ @board1 ]
+      @first_board.lists = [ @list_alpha, @list_bravo ]
+      @first_board.actions = [ @action_update_alpha_latest, @action_update_alpha, @action_update_bravo, @action_create_bravo ]
+      @card_bravo = Card.new(@first_board, 'Bravo', '2', '2')
+      @card_alpha = Card.new(@first_board, 'Alpha', '1', '1')
+      @first_board.cards = [ @card_alpha, @card_bravo ]
+      @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
-    it "puts the cards' name, id, swimlane, and startdate into an array, using the latest movement into the Resumes swimlane as the start date" do
+    it "puts the cards' names into an array" do
       cards = CardService.all
-      cards.first.name.should eq(@card1.name)
-      cards.first.id.should eq(@card1.id)
-      cards.first.list_name.should eq(@card1.list_name)
-      cards.first.start_date.should eq(@action2later.date)
-      cards.last.name.should eq(@card2.name)
-      cards.last.id.should eq(@card2.id)
-      cards.last.list_name.should eq(@card2.list_name)
-      cards.last.start_date.should eq(@action3.date)
       cards.count.should eq(2)
+      cards.first.name.should eq(@card_alpha.name)
+      cards.last.name.should eq(@card_bravo.name)
+    end
+
+    it "puts the cards' swimlanes into an array" do
+      cards = CardService.all
+      cards.count.should eq(2)
+      cards.first.list_name.should eq(@card_alpha.list_name)
+      cards.last.list_name.should eq(@card_bravo.list_name)
+    end
+
+    it "puts the cards' startdates into an array, using the latest movement into the Resumes swimlane as the start date for alpha, and the creation date of the card for bravo" do
+      cards = CardService.all
+      cards.count.should eq(2)
+      cards.first.start_date.should eq(@action_update_alpha_latest.date)
+      cards.last.start_date.should eq(@action_create_bravo.date)
     end
   end
 
   context "receives no cards from trello" do
     before do
-      @board1.cards = [ ]
-      @board1.lists = [ @list1, @list2 ]
-      @member.boards = [ @board1 ]
+      @first_board.cards = [ ]
+      @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
