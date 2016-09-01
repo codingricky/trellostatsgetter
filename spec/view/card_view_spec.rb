@@ -34,8 +34,8 @@ describe 'cards/index', type: :view do
     assign(:cards, @cards)
     render
     rendered.should match /Michael/
-    rendered.should match /1/
     rendered.should match /Sample List/
     rendered.should match /1991/
+    rendered.should match /This card is not placed in the success lane/
   end
 end

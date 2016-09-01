@@ -4,9 +4,10 @@
 <div class="panel-default">
   <table class="table-striped custom-stripe table-bordered custom-border sortable" width="80%" align="center">
     <tr>
-      <th width="30%">Card Name</th>
-      <th width="35%">Current Swimlane Name</th>
-      <th width="35%">Date Placed in Resumes Swimlane</th>
+      <th width="25%">Card Name</th>
+      <th width="25%">Current Swimlane Name</th>
+      <th width="25%">Date Placed in Resumes Lane</th>
+      <th width="25%">Date Placed in Success Lane</th>
     </tr>
 
     <% if @cards.present? %>
@@ -15,6 +16,7 @@
           <td><%= card.name %></td>
           <td><%= card.list_name %></td>
           <td><%= card.start_date %></td>
+          <td><%= card.end_date %></td>
         </tr>
         <% end %>
     <% else %>

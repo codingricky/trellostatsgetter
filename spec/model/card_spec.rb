@@ -2,25 +2,29 @@ require 'rspec'
 require 'spec_helper'
 require 'trello'
 
-#TODO make all the hard-coded tests into variables so one place changes all
-#TODO update cukes and other rspec tests to use new constructors
-
 describe Card do
   context "Trello api returns data with one card" do
     before do
-      @list_name = 'The List'
+      @list_name = 'Success - This is a sample end lane'
       @list_id = '1'
+
       @action_type = 'createCard'
-      @action_id = '1'
+      @action_card_id = '1'
       @action_date = '1/1/1991'
+
+      @action_type_finish = 'updateCard_finish'
+      @action_date_finish = '1/1/1992'
+
       @card_name = 'Bob'
       @card_id = '1'
       @card_list_id = '1'
+
       @list = List.new(@list_id, @list_name)
-      @action = Action.new(@action_type, @action_id, @action_date)
+      @action = Action.new(@action_type, @action_card_id, @action_date)
+      @action2 = Action.new(@action_type_finish, @action_card_id, @action_date_finish)
       @board = Board.new
       @board.lists = [ @list ]
-      @board.actions = [ @action ]
+      @board.actions = [ @action, @action2 ]
       @card = Card.new(@board, @card_name, @card_id, @card_list_id)
     end
 
@@ -42,6 +46,10 @@ describe Card do
 
     it "gets the card's start date" do
       @card.start_date.should eq(@action_date)
+    end
+
+    it "gets the card's end date" do
+      @card.end_date.should eq(@action_date_finish)
     end
   end
 

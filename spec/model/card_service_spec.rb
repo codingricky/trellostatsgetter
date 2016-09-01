@@ -52,6 +52,7 @@ describe CardService do
       cards = CardService.all
       cards.count.should eq(1)
       cards.first.start_date.should eq(@action_create_alpha.date)
+      cards.first.end_date.should eq('This card is not placed in the success lane.')
     end
   end
 
