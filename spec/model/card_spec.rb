@@ -4,70 +4,108 @@ require 'trello'
 
 #TODO make all the hard-coded tests into variables so one place changes all
 #TODO update cukes and other rspec tests to use new constructors
+
 describe Card do
   context "Trello api returns data with one card" do
     before do
-      @list = List.new('1', 'The List')
-      @action = Action.new('createCard', '1', '1/1/1991')
+      @list_name = 'The List'
+      @list_id = '1'
+      @action_type = 'createCard'
+      @action_id = '1'
+      @action_date = '1/1/1991'
+      @card_name = 'Bob'
+      @card_id = '1'
+      @card_list_id = '1'
+      @list = List.new(@list_id, @list_name)
+      @action = Action.new(@action_type, @action_id, @action_date)
       @board = Board.new
       @board.lists = [ @list ]
       @board.actions = [ @action ]
-      @card = Card.new(@board, 'Bob', '1', '1')
+      @card = Card.new(@board, @card_name, @card_id, @card_list_id)
     end
 
     it "gets the card's name" do
-      @card.name.should eq('Bob')
+      @card.name.should eq(@card_name)
     end
 
     it "gets the card's id" do
-      @card.id.should eq('1')
+      @card.id.should eq(@card_id)
     end
 
     it "gets the card's list id" do
-      @card.list_id.should eq('1')
+      @card.list_id.should eq(@card_list_id)
     end
 
     it "gets the card's list name" do
-      @card.list_name.should eq('The List')
+      @card.list_name.should eq(@list_name)
     end
 
     it "gets the card's start date" do
-      @card.start_date.should eq('1/1/1991')
+      @card.start_date.should eq(@action_date)
     end
   end
 
   context "Trello api returns data with three lists" do
     before do
-      @list = List.new('2', 'The List')
-      @dudlist = List.new('1', 'Dud List')
-      @dudlist2 = List.new('3', 'Another dud List')
-      @action = Action.new('createCard', '2', '1/1/1991')
+      @list_name = 'The List'
+      @list_id = '2'
+      @dudlist_name = 'Dud List'
+      @dudlist_id = '1'
+      @dudlist2_name = 'Another dud List'
+      @dudlist2_id = '3'
+      @action_type = 'createCard'
+      @action_id = '2'
+      @action_date = '1/1/1991'
+      @card_name = 'Bob'
+      @card_id = '1'
+      @card_list_id = '2'
+      @list = List.new(@list_id, @list_name)
+      @dudlist = List.new(@dudlist_id, @dudlist_name)
+      @dudlist2 = List.new(@dudlist2_id, @dudlist2_name)
+      @action = Action.new(@action_type, @action_id, @action_date)
       @board = Board.new
       @board.lists = [ @list, @dudlist, @dudlist2 ]
       @board.actions = [ @action ]
-      @card = Card.new(@board, 'Bob', '1', '2')
     end
 
     it "finds the right list" do
-      @card.list_name.should eq('The List')
+      @card = Card.new(@board, @card_name, @card_id, @card_list_id)
+      @card.list_name.should eq(@list_name)
     end
   end
 
   context "Trello api returns data with multiple updateCard actions" do
     before do
-      @list = List.new('2', 'The List')
-      @action = Action.new('updateCard', '2', '1/1/2001')
-      @oldaction = Action.new('updateCard', '2', '1/1/1995')
-      @wrongaction = Action.new('updateCard', '1', '1/1/1991')
-      @wrongaction2 = Action.new('createCard', '1', '1/1/1991')
+      @list_name = 'The List'
+      @list_id = '2'
+      @action_type = 'updateCard'
+      @action_id = '2'
+      @action_date = '1/1/2001'
+      @oldaction_type = 'updateCard'
+      @oldaction_id = '2'
+      @oldaction_date = '1/1/1995'
+      @wrongaction_type = 'updateCard'
+      @wrongaction_id = '1'
+      @wrongaction_date = '1/1/1991'
+      @wrongaction2_type = 'createCard'
+      @wrongaction2_id = '1'
+      @wrongaction2_date = '1/1/1991'
+      @card_name = 'Bob'
+      @card_id = '2'
+      @card_list_id = '2'
+      @list = List.new(@list_id, @list_name)
+      @action = Action.new(@action_type, @action_id, @action_date)
+      @oldaction = Action.new(@oldaction_type, @oldaction_id, @oldaction_date)
+      @wrongaction = Action.new(@wrongaction_type, @wrongaction_id, @wrongaction_date)
+      @wrongaction2 = Action.new(@wrongaction2_type, @wrongaction2_id, @wrongaction2_date)
       @board = Board.new
       @board.lists = [ @list ]
       @board.actions = [ @action, @oldaction, @wrongaction, @wrongaction2 ]
-      @card = Card.new(@board, 'Bob', '2', '2')
     end
 
     it "finds the right action and gets the card's start date" do
-      @card.start_date.should eq('1/1/2001')
+      @card = Card.new(@board, @card_name, @card_id, @card_list_id)
+      @card.start_date.should eq(@action_date)
     end
   end
 end
