@@ -12,20 +12,25 @@ describe 'cards/index', type: :view do
     rendered.should match /No cards/
   end
 
+  before do
+    @list_id = '1'
+    @list_name = 'Sample List'
+    @action_type = 'createCard'
+    @action_data = '1'
+    @action_date = '1/1/1991'
+    @card_name = 'Michael'
+    @card_id = '1'
+    @card_list_id = '1'
+  end
+
   it "displays card stats upon loading" do
-    @board1 = OpenStruct.new
-    @list1 = OpenStruct.new
-    @list1.id = '1'
-    @list1.name = 'Sample List'
-    @board1.lists = [ @list1 ]
-    @action1 = OpenStruct.new
-    @action1.type = 'createCard'
-    @action1.data = {"list"=>{"name"=>"Resumes to be Screened"},
-                     "card"=>
-                         {"id"=>"1"}}
-    @action1.date = '1/1/1991'
-    @board1.actions = [ @action1 ]
-    @cards = [ Card.new(@board1, 'Michael', '1', '1') ]
+    @board = Board.new
+    @list = List.new(@list_id, @list_name)
+    @lists = [ @list ]
+    @board.lists = @lists
+    @action = Action.new(@action_type, @action_data, @action_date)
+    @board.actions = [ @action ]
+    @cards = [ Card.new(@board, @card_name, @card_id, @card_list_id) ]
     assign(:cards, @cards)
     render
     rendered.should match /Michael/

@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-01T14:31:53+10:00">2016-09-01T14:31:53+10:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-01T16:37:36+10:00">2016-09-01T16:37:36+10:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.72
+         4.65
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>32</b> files in total.
-    <b>409</b> relevant lines. 
-    <span class="green"><b>409</b> lines covered</span> and
+    <b>426</b> relevant lines. 
+    <span class="green"><b>426</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -97,7 +97,7 @@
         <td>10</td>
         <td>10</td>
         <td>0</td>
-        <td>38.9</td>
+        <td>39.3</td>
       </tr>
       
       <tr>
@@ -127,7 +127,7 @@
         <td>6</td>
         <td>6</td>
         <td>0</td>
-        <td>13.3</td>
+        <td>13.7</td>
       </tr>
       
       <tr>
@@ -333,7 +333,7 @@
       <tr>
         <td class="strong"><a href="#a522823cc8fffe21263dc008e43b695615a86095" class="src_link" title="spec/model/card_spec.rb">spec/model/card_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>112</td>
+        <td>111</td>
         <td>84</td>
         <td>84</td>
         <td>0</td>
@@ -343,11 +343,11 @@
       <tr>
         <td class="strong"><a href="#29354e2911a259bc81a77652b59387e827851e88" class="src_link" title="spec/model/test_constructors_spec.rb">spec/model/test_constructors_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>71</td>
-        <td>41</td>
-        <td>41</td>
+        <td>84</td>
+        <td>53</td>
+        <td>53</td>
         <td>0</td>
-        <td>1.0</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
@@ -363,11 +363,11 @@
       <tr>
         <td class="strong"><a href="#6cbec5cd7752ad2ad71d067601fb2cfd90c69d28" class="src_link" title="spec/view/card_view_spec.rb">spec/view/card_view_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>36</td>
-        <td>27</td>
-        <td>27</td>
+        <td>41</td>
+        <td>32</td>
+        <td>32</td>
         <td>0</td>
-        <td>1.0</td>
+        <td>1.5</td>
       </tr>
       
     </tbody>
@@ -580,8 +580,8 @@
           <code class="ruby">  def initialize(type, card_id, date)</code>
         </li>
       
-        <li class="covered" data-hits="96" data-linenumber="7">
-          <span class="hits">96</span>
+        <li class="covered" data-hits="97" data-linenumber="7">
+          <span class="hits">97</span>
           
           <code class="ruby">    @type = type</code>
         </li>
@@ -592,14 +592,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="96" data-linenumber="9">
-          <span class="hits">96</span>
+        <li class="covered" data-hits="97" data-linenumber="9">
+          <span class="hits">97</span>
           
           <code class="ruby">    if type == &quot;createCard&quot;</code>
         </li>
       
-        <li class="covered" data-hits="36" data-linenumber="10">
-          <span class="hits">36</span>
+        <li class="covered" data-hits="37" data-linenumber="10">
+          <span class="hits">37</span>
           
           <code class="ruby">      @data = {&quot;list&quot;=&gt;{&quot;name&quot;=&gt;&quot;Resumes to be Screened&quot;},</code>
         </li>
@@ -652,8 +652,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="96" data-linenumber="19">
-          <span class="hits">96</span>
+        <li class="covered" data-hits="97" data-linenumber="19">
+          <span class="hits">97</span>
           
           <code class="ruby">      @date = date</code>
         </li>
@@ -976,14 +976,14 @@
           <code class="ruby">  def initialize(id, name)</code>
         </li>
       
-        <li class="covered" data-hits="38" data-linenumber="6">
-          <span class="hits">38</span>
+        <li class="covered" data-hits="39" data-linenumber="6">
+          <span class="hits">39</span>
           
           <code class="ruby">    @id = id</code>
         </li>
       
-        <li class="covered" data-hits="38" data-linenumber="7">
-          <span class="hits">38</span>
+        <li class="covered" data-hits="39" data-linenumber="7">
+          <span class="hits">39</span>
           
           <code class="ruby">    @name = name</code>
         </li>
@@ -2539,31 +2539,31 @@
         <li class="covered" data-hits="2" data-linenumber="6">
           <span class="hits">2</span>
           
-          <code class="ruby">    @board1 = OpenStruct.new</code>
+          <code class="ruby">    @board = Board.new</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="7">
           <span class="hits">2</span>
           
-          <code class="ruby">    @member = OpenStruct.new</code>
+          <code class="ruby">    @member = Member.new</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="8">
           <span class="hits">2</span>
           
-          <code class="ruby">    @board1.cards = [ ]</code>
+          <code class="ruby">    @board.cards = [ ]</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="9">
           <span class="hits">2</span>
           
-          <code class="ruby">    @board1.lists = [ ]</code>
+          <code class="ruby">    @board.lists = [ ]</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="10">
           <span class="hits">2</span>
           
-          <code class="ruby">    @member.boards = [ @board1 ]</code>
+          <code class="ruby">    @member.boards = [ @board ]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
@@ -3853,634 +3853,628 @@
         <li class="never" data-hits="" data-linenumber="7">
           
           
-          <code class="ruby">#TODO test all constructors</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
+        <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
           <code class="ruby">describe Card do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
+        <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
           <code class="ruby">  context &quot;Trello api returns data with one card&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="11">
+        <li class="covered" data-hits="1" data-linenumber="10">
           <span class="hits">1</span>
           
           <code class="ruby">    before do</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="11">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      @list_name = &#39;The List&#39;</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="12">
           <span class="hits">5</span>
           
-          <code class="ruby">      @list_name = &#39;The List&#39;</code>
+          <code class="ruby">      @list_id = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="13">
           <span class="hits">5</span>
           
-          <code class="ruby">      @list_id = &#39;1&#39;</code>
+          <code class="ruby">      @action_type = &#39;createCard&#39;</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="14">
           <span class="hits">5</span>
           
-          <code class="ruby">      @action_type = &#39;createCard&#39;</code>
+          <code class="ruby">      @action_id = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="15">
           <span class="hits">5</span>
           
-          <code class="ruby">      @action_id = &#39;1&#39;</code>
+          <code class="ruby">      @action_date = &#39;1/1/1991&#39;</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="16">
           <span class="hits">5</span>
           
-          <code class="ruby">      @action_date = &#39;1/1/1991&#39;</code>
+          <code class="ruby">      @card_name = &#39;Bob&#39;</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="17">
           <span class="hits">5</span>
           
-          <code class="ruby">      @card_name = &#39;Bob&#39;</code>
+          <code class="ruby">      @card_id = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="18">
           <span class="hits">5</span>
           
-          <code class="ruby">      @card_id = &#39;1&#39;</code>
+          <code class="ruby">      @card_list_id = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="19">
           <span class="hits">5</span>
           
-          <code class="ruby">      @card_list_id = &#39;1&#39;</code>
+          <code class="ruby">      @list = List.new(@list_id, @list_name)</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="20">
           <span class="hits">5</span>
           
-          <code class="ruby">      @list = List.new(@list_id, @list_name)</code>
+          <code class="ruby">      @action = Action.new(@action_type, @action_id, @action_date)</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="21">
           <span class="hits">5</span>
           
-          <code class="ruby">      @action = Action.new(@action_type, @action_id, @action_date)</code>
+          <code class="ruby">      @board = Board.new</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="22">
           <span class="hits">5</span>
           
-          <code class="ruby">      @board = Board.new</code>
+          <code class="ruby">      @board.lists = [ @list ]</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="23">
           <span class="hits">5</span>
           
-          <code class="ruby">      @board.lists = [ @list ]</code>
+          <code class="ruby">      @board.actions = [ @action ]</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="24">
           <span class="hits">5</span>
           
-          <code class="ruby">      @board.actions = [ @action ]</code>
+          <code class="ruby">      @card = Card.new(@board, @card_name, @card_id, @card_list_id)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="25">
-          <span class="hits">5</span>
+        <li class="never" data-hits="" data-linenumber="25">
           
-          <code class="ruby">      @card = Card.new(@board, @card_name, @card_id, @card_list_id)</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="27">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="28">
+        <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;gets the card&#39;s name&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="29">
+        <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
           <code class="ruby">      @card.name.should eq(@card_name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="32">
+        <li class="covered" data-hits="1" data-linenumber="31">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;gets the card&#39;s id&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="33">
+        <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
           <code class="ruby">      @card.id.should eq(@card_id)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="34">
+        <li class="never" data-hits="" data-linenumber="33">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="34">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="36">
+        <li class="covered" data-hits="1" data-linenumber="35">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;gets the card&#39;s list id&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
+        <li class="covered" data-hits="1" data-linenumber="36">
           <span class="hits">1</span>
           
           <code class="ruby">      @card.list_id.should eq(@card_list_id)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="never" data-hits="" data-linenumber="37">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="39">
+        <li class="never" data-hits="" data-linenumber="38">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="40">
+        <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;gets the card&#39;s list name&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="40">
           <span class="hits">1</span>
           
           <code class="ruby">      @card.list_name.should eq(@list_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="42">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="43">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="44">
+        <li class="covered" data-hits="1" data-linenumber="43">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;gets the card&#39;s start date&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="45">
+        <li class="covered" data-hits="1" data-linenumber="44">
           <span class="hits">1</span>
           
           <code class="ruby">      @card.start_date.should eq(@action_date)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="45">
+          
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="48">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="49">
+        <li class="covered" data-hits="1" data-linenumber="48">
           <span class="hits">1</span>
           
           <code class="ruby">  context &quot;Trello api returns data with three lists&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="50">
+        <li class="covered" data-hits="1" data-linenumber="49">
           <span class="hits">1</span>
           
           <code class="ruby">    before do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="50">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      @list_name = &#39;The List&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="51">
           <span class="hits">1</span>
           
-          <code class="ruby">      @list_name = &#39;The List&#39;</code>
+          <code class="ruby">      @list_id = &#39;2&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="52">
           <span class="hits">1</span>
           
-          <code class="ruby">      @list_id = &#39;2&#39;</code>
+          <code class="ruby">      @dudlist_name = &#39;Dud List&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="53">
           <span class="hits">1</span>
           
-          <code class="ruby">      @dudlist_name = &#39;Dud List&#39;</code>
+          <code class="ruby">      @dudlist_id = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="54">
           <span class="hits">1</span>
           
-          <code class="ruby">      @dudlist_id = &#39;1&#39;</code>
+          <code class="ruby">      @dudlist2_name = &#39;Another dud List&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="55">
           <span class="hits">1</span>
           
-          <code class="ruby">      @dudlist2_name = &#39;Another dud List&#39;</code>
+          <code class="ruby">      @dudlist2_id = &#39;3&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
-          <code class="ruby">      @dudlist2_id = &#39;3&#39;</code>
+          <code class="ruby">      @action_type = &#39;createCard&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="57">
           <span class="hits">1</span>
           
-          <code class="ruby">      @action_type = &#39;createCard&#39;</code>
+          <code class="ruby">      @action_id = &#39;2&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="58">
           <span class="hits">1</span>
           
-          <code class="ruby">      @action_id = &#39;2&#39;</code>
+          <code class="ruby">      @action_date = &#39;1/1/1991&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="59">
           <span class="hits">1</span>
           
-          <code class="ruby">      @action_date = &#39;1/1/1991&#39;</code>
+          <code class="ruby">      @card_name = &#39;Bob&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="60">
           <span class="hits">1</span>
           
-          <code class="ruby">      @card_name = &#39;Bob&#39;</code>
+          <code class="ruby">      @card_id = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="61">
           <span class="hits">1</span>
           
-          <code class="ruby">      @card_id = &#39;1&#39;</code>
+          <code class="ruby">      @card_list_id = &#39;2&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="62">
           <span class="hits">1</span>
           
-          <code class="ruby">      @card_list_id = &#39;2&#39;</code>
+          <code class="ruby">      @list = List.new(@list_id, @list_name)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="63">
           <span class="hits">1</span>
           
-          <code class="ruby">      @list = List.new(@list_id, @list_name)</code>
+          <code class="ruby">      @dudlist = List.new(@dudlist_id, @dudlist_name)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="64">
           <span class="hits">1</span>
           
-          <code class="ruby">      @dudlist = List.new(@dudlist_id, @dudlist_name)</code>
+          <code class="ruby">      @dudlist2 = List.new(@dudlist2_id, @dudlist2_name)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="65">
           <span class="hits">1</span>
           
-          <code class="ruby">      @dudlist2 = List.new(@dudlist2_id, @dudlist2_name)</code>
+          <code class="ruby">      @action = Action.new(@action_type, @action_id, @action_date)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
-          <code class="ruby">      @action = Action.new(@action_type, @action_id, @action_date)</code>
+          <code class="ruby">      @board = Board.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="67">
           <span class="hits">1</span>
           
-          <code class="ruby">      @board = Board.new</code>
+          <code class="ruby">      @board.lists = [ @list, @dudlist, @dudlist2 ]</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="68">
           <span class="hits">1</span>
           
-          <code class="ruby">      @board.lists = [ @list, @dudlist, @dudlist2 ]</code>
+          <code class="ruby">      @board.actions = [ @action ]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="69">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="69">
           
-          <code class="ruby">      @board.actions = [ @action ]</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="70">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="71">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="72">
+        <li class="covered" data-hits="1" data-linenumber="71">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;finds the right list&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="73">
+        <li class="covered" data-hits="1" data-linenumber="72">
           <span class="hits">1</span>
           
           <code class="ruby">      @card = Card.new(@board, @card_name, @card_id, @card_list_id)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="74">
+        <li class="covered" data-hits="1" data-linenumber="73">
           <span class="hits">1</span>
           
           <code class="ruby">      @card.list_name.should eq(@list_name)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="74">
           
           
           <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="75">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="76">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="77">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="78">
+        <li class="covered" data-hits="1" data-linenumber="77">
           <span class="hits">1</span>
           
           <code class="ruby">  context &quot;Trello api returns data with multiple updateCard actions&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="79">
+        <li class="covered" data-hits="1" data-linenumber="78">
           <span class="hits">1</span>
           
           <code class="ruby">    before do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="80">
+        <li class="covered" data-hits="1" data-linenumber="79">
           <span class="hits">1</span>
           
           <code class="ruby">      @list_name = &#39;The List&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="81">
+        <li class="covered" data-hits="1" data-linenumber="80">
           <span class="hits">1</span>
           
           <code class="ruby">      @list_id = &#39;2&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="82">
+        <li class="covered" data-hits="1" data-linenumber="81">
           <span class="hits">1</span>
           
           <code class="ruby">      @action_type = &#39;updateCard&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="83">
+        <li class="covered" data-hits="1" data-linenumber="82">
           <span class="hits">1</span>
           
           <code class="ruby">      @action_id = &#39;2&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="84">
+        <li class="covered" data-hits="1" data-linenumber="83">
           <span class="hits">1</span>
           
           <code class="ruby">      @action_date = &#39;1/1/2001&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="85">
+        <li class="covered" data-hits="1" data-linenumber="84">
           <span class="hits">1</span>
           
           <code class="ruby">      @oldaction_type = &#39;updateCard&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="86">
+        <li class="covered" data-hits="1" data-linenumber="85">
           <span class="hits">1</span>
           
           <code class="ruby">      @oldaction_id = &#39;2&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="87">
+        <li class="covered" data-hits="1" data-linenumber="86">
           <span class="hits">1</span>
           
           <code class="ruby">      @oldaction_date = &#39;1/1/1995&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="88">
+        <li class="covered" data-hits="1" data-linenumber="87">
           <span class="hits">1</span>
           
           <code class="ruby">      @wrongaction_type = &#39;updateCard&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="89">
+        <li class="covered" data-hits="1" data-linenumber="88">
           <span class="hits">1</span>
           
           <code class="ruby">      @wrongaction_id = &#39;1&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="90">
+        <li class="covered" data-hits="1" data-linenumber="89">
           <span class="hits">1</span>
           
           <code class="ruby">      @wrongaction_date = &#39;1/1/1991&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="91">
+        <li class="covered" data-hits="1" data-linenumber="90">
           <span class="hits">1</span>
           
           <code class="ruby">      @wrongaction2_type = &#39;createCard&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="92">
+        <li class="covered" data-hits="1" data-linenumber="91">
           <span class="hits">1</span>
           
           <code class="ruby">      @wrongaction2_id = &#39;1&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="93">
+        <li class="covered" data-hits="1" data-linenumber="92">
           <span class="hits">1</span>
           
           <code class="ruby">      @wrongaction2_date = &#39;1/1/1991&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="94">
+        <li class="covered" data-hits="1" data-linenumber="93">
           <span class="hits">1</span>
           
           <code class="ruby">      @card_name = &#39;Bob&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="95">
+        <li class="covered" data-hits="1" data-linenumber="94">
           <span class="hits">1</span>
           
           <code class="ruby">      @card_id = &#39;2&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="96">
+        <li class="covered" data-hits="1" data-linenumber="95">
           <span class="hits">1</span>
           
           <code class="ruby">      @card_list_id = &#39;2&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="97">
+        <li class="covered" data-hits="1" data-linenumber="96">
           <span class="hits">1</span>
           
           <code class="ruby">      @list = List.new(@list_id, @list_name)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="98">
+        <li class="covered" data-hits="1" data-linenumber="97">
           <span class="hits">1</span>
           
           <code class="ruby">      @action = Action.new(@action_type, @action_id, @action_date)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="99">
+        <li class="covered" data-hits="1" data-linenumber="98">
           <span class="hits">1</span>
           
           <code class="ruby">      @oldaction = Action.new(@oldaction_type, @oldaction_id, @oldaction_date)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="100">
+        <li class="covered" data-hits="1" data-linenumber="99">
           <span class="hits">1</span>
           
           <code class="ruby">      @wrongaction = Action.new(@wrongaction_type, @wrongaction_id, @wrongaction_date)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="101">
+        <li class="covered" data-hits="1" data-linenumber="100">
           <span class="hits">1</span>
           
           <code class="ruby">      @wrongaction2 = Action.new(@wrongaction2_type, @wrongaction2_id, @wrongaction2_date)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="102">
+        <li class="covered" data-hits="1" data-linenumber="101">
           <span class="hits">1</span>
           
           <code class="ruby">      @board = Board.new</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="103">
+        <li class="covered" data-hits="1" data-linenumber="102">
           <span class="hits">1</span>
           
           <code class="ruby">      @board.lists = [ @list ]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="104">
+        <li class="covered" data-hits="1" data-linenumber="103">
           <span class="hits">1</span>
           
           <code class="ruby">      @board.actions = [ @action, @oldaction, @wrongaction, @wrongaction2 ]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="105">
+        <li class="never" data-hits="" data-linenumber="104">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="106">
+        <li class="never" data-hits="" data-linenumber="105">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="107">
+        <li class="covered" data-hits="1" data-linenumber="106">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;finds the right action and gets the card&#39;s start date&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="108">
+        <li class="covered" data-hits="1" data-linenumber="107">
           <span class="hits">1</span>
           
           <code class="ruby">      @card = Card.new(@board, @card_name, @card_id, @card_list_id)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="109">
+        <li class="covered" data-hits="1" data-linenumber="108">
           <span class="hits">1</span>
           
           <code class="ruby">      @card.start_date.should eq(@action_date)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="110">
+        <li class="never" data-hits="" data-linenumber="109">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="111">
+        <li class="never" data-hits="" data-linenumber="110">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="112">
+        <li class="never" data-hits="" data-linenumber="111">
           
           
           <code class="ruby">end</code>
@@ -4495,8 +4489,8 @@
     <h3>spec/model/test_constructors_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>41</b> relevant lines. 
-      <span class="green"><b>41</b> lines covered</span> and
+      <b>53</b> relevant lines. 
+      <span class="green"><b>53</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -4519,223 +4513,223 @@
         <li class="never" data-hits="" data-linenumber="3">
           
           
-          <code class="ruby">#TODO make all the hard-coded tests into variables so one place changes all</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="4">
-          
-          
-          <code class="ruby">#TODO update cukes and other rspec tests to use new constructors</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="5">
-          
-          
-          <code class="ruby">#TODO test all constructors</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="6">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
+        <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
           <code class="ruby">describe &quot;Constructors used for tests&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="8">
+        <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
           <code class="ruby">  describe Action do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &quot;takes three arguments and creates a createCard action&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="10">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      action = Action.new(&#39;createCard&#39;, &#39;1&#39;, &#39;1990&#39;)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="11">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      action.type.should eq(&#39;createCard&#39;)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="12">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      action.data.should eq({&quot;list&quot;=&gt;{&quot;name&quot;=&gt;&quot;Resumes to be Screened&quot;},</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="13">
-          
-          
-          <code class="ruby">                             &quot;card&quot;=&gt;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="14">
-          
-          
-          <code class="ruby">                                 {&quot;id&quot;=&gt;&#39;1&#39;}})</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="15">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      action.date.should eq(&#39;1990&#39;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="16">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="17">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="18">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &quot;takes three arguments and creates an updateCard action&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      action = Action.new(&#39;updateCard&#39;, &#39;2&#39;, &#39;1991&#39;)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      action.type.should eq(&#39;updateCard&#39;)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="21">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      action.data.should eq({&quot;listAfter&quot;=&gt;{&quot;name&quot;=&gt;&quot;Resumes to be Screened&quot;},</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="22">
-          
-          
-          <code class="ruby">                             &quot;card&quot;=&gt;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="23">
-          
-          
-          <code class="ruby">                                 {&quot;id&quot;=&gt;&#39;2&#39;}})</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="24">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      action.date.should eq(&#39;1991&#39;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="25">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="26">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="27">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="28">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  describe Member do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="29">
+        <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
           <code class="ruby">    before do</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="30">
+        <li class="covered" data-hits="2" data-linenumber="7">
           <span class="hits">2</span>
           
-          <code class="ruby">      @member = Member.new</code>
+          <code class="ruby">      @action_type_create = &#39;createCard&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="8">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      @action_type_update = &#39;updateCard&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="9">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      @action_id = &#39;1&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="10">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      @action_date = &#39;1990&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;takes three arguments and creates a createCard action&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      action = Action.new(@action_type_create, @action_id, @action_date)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      action.type.should eq(@action_type_create)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      action.data.should eq({&quot;list&quot;=&gt;{&quot;name&quot;=&gt;&quot;Resumes to be Screened&quot;},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">                             &quot;card&quot;=&gt;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby">                                 {&quot;id&quot;=&gt;@action_id}})</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      action.date.should eq(@action_date)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;takes three arguments and creates an updateCard action&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="23">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      action = Action.new(@action_type_update, @action_id, @action_date)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      action.type.should eq(@action_type_update)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      action.data.should eq({&quot;listAfter&quot;=&gt;{&quot;name&quot;=&gt;&quot;Resumes to be Screened&quot;},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby">                             &quot;card&quot;=&gt;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">                                 {&quot;id&quot;=&gt;@action_id}})</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      action.date.should eq(@action_date)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="covered" data-hits="1" data-linenumber="32">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  describe Member do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="33">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;can be initialized with no explicit arguments&quot; do</code>
+          <code class="ruby">    before do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="34">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="34">
+          <span class="hits">2</span>
           
-          <code class="ruby">      @member.boards.should eq(nil)</code>
+          <code class="ruby">      @member = Member.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="covered" data-hits="2" data-linenumber="35">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      @board_list = [ &#39;board1&#39;, &#39;board2&#39; ]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="37">
           
-          <code class="ruby">    it &quot;can take an array for attribute boards&quot; do</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="38">
           <span class="hits">1</span>
           
-          <code class="ruby">      @member.boards = [ &#39;board1&#39;, &#39;board2&#39; ]</code>
+          <code class="ruby">    it &quot;can be initialized with no explicit arguments&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
-          <code class="ruby">      @member.boards.first.should eq(&#39;board1&#39;)</code>
+          <code class="ruby">      @member.boards.should eq(nil)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
@@ -4747,37 +4741,37 @@
         <li class="never" data-hits="" data-linenumber="41">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="covered" data-hits="1" data-linenumber="42">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    it &quot;can take an array for attribute boards&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="43">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe Board do</code>
+          <code class="ruby">      @member.boards = @board_list</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="44">
           <span class="hits">1</span>
           
-          <code class="ruby">    before do</code>
+          <code class="ruby">      @member.boards.first.should eq(@board_list.first)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="45">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="45">
           
-          <code class="ruby">      @board = Board.new</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
@@ -4789,127 +4783,127 @@
         <li class="covered" data-hits="1" data-linenumber="48">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;can be initialized with no explicit arguments&quot; do</code>
+          <code class="ruby">  describe Board do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="49">
           <span class="hits">1</span>
           
-          <code class="ruby">      @board.cards.should eq(nil)</code>
+          <code class="ruby">    before do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="50">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="50">
+          <span class="hits">2</span>
           
-          <code class="ruby">      @board.lists.should eq(nil)</code>
+          <code class="ruby">      @board = Board.new</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="51">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="51">
+          <span class="hits">2</span>
           
-          <code class="ruby">      @board.actions.should eq(nil)</code>
+          <code class="ruby">      @cards = [ &#39;card1&#39;, &#39;card2&#39; ]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="covered" data-hits="2" data-linenumber="52">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      @lists = [ &#39;list1&#39;, &#39;list2&#39; ]</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="53">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      @actions = [ &#39;action1&#39;, &#39;action2&#39; ]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="53">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="54">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &quot;can take arguments for attributes; cards, lists, and actions&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="55">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      @board.cards = [&#39;card1&#39;, &#39;card2&#39;]</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
-          <code class="ruby">      @board.lists = [&#39;list1&#39;, &#39;list2&#39;]</code>
+          <code class="ruby">    it &quot;can be initialized with no explicit arguments&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="57">
           <span class="hits">1</span>
           
-          <code class="ruby">      @board.actions = [&#39;action1&#39;, &#39;action2&#39;]</code>
+          <code class="ruby">      @board.cards.should eq(nil)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="58">
           <span class="hits">1</span>
           
-          <code class="ruby">      @board.cards.first.should eq(&#39;card1&#39;)</code>
+          <code class="ruby">      @board.lists.should eq(nil)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="59">
           <span class="hits">1</span>
           
-          <code class="ruby">      @board.lists.first.should eq(&#39;list1&#39;)</code>
+          <code class="ruby">      @board.actions.should eq(nil)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="60">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      @board.actions.first.should eq(&#39;action1&#39;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="60">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="62">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;can take arguments for attributes; cards, lists, and actions&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="63">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      @board.cards = @cards</code>
+        </li>
+      
         <li class="covered" data-hits="1" data-linenumber="64">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe List do</code>
+          <code class="ruby">      @board.lists = @lists</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="65">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;takes two arguments and creates the list&quot; do</code>
+          <code class="ruby">      @board.actions = @actions</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
-          <code class="ruby">      @list = List.new(&#39;1&#39;, &#39;Sample List Name&#39;)</code>
+          <code class="ruby">      @board.cards.first.should eq(@cards.first)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="67">
           <span class="hits">1</span>
           
-          <code class="ruby">      @list.id.should eq(&#39;1&#39;)</code>
+          <code class="ruby">      @board.lists.first.should eq(@lists.first)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="68">
           <span class="hits">1</span>
           
-          <code class="ruby">      @list.name.should eq(&#39;Sample List Name&#39;)</code>
+          <code class="ruby">      @board.actions.first.should eq(@actions.first)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="69">
@@ -4925,6 +4919,84 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="71">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="72">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  describe List do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="73">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    before do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="74">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      @list_name = &#39;Sample List Name&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="75">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      @list_id = &#39;1&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="76">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="77">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="78">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;takes two arguments and creates the list&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="79">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      @list = List.new(@list_id, @list_name)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="80">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      @list.id.should eq(@list_id)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="81">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      @list.name.should eq(@list_name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="83">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="84">
           
           
           <code class="ruby">end</code>
@@ -5299,8 +5371,8 @@
     <h3>spec/view/card_view_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>27</b> relevant lines. 
-      <span class="green"><b>27</b> lines covered</span> and
+      <b>32</b> relevant lines. 
+      <span class="green"><b>32</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -5395,130 +5467,160 @@
         <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
-          <code class="ruby">  it &quot;displays card stats upon loading&quot; do</code>
+          <code class="ruby">  before do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="16">
+          <span class="hits">3</span>
           
-          <code class="ruby">    @board1 = OpenStruct.new</code>
+          <code class="ruby">    @list_id = &#39;1&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="17">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="17">
+          <span class="hits">3</span>
           
-          <code class="ruby">    @list1 = OpenStruct.new</code>
+          <code class="ruby">    @list_name = &#39;Sample List&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="18">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="18">
+          <span class="hits">3</span>
           
-          <code class="ruby">    @list1.id = &#39;1&#39;</code>
+          <code class="ruby">    @action_type = &#39;createCard&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="19">
+          <span class="hits">3</span>
           
-          <code class="ruby">    @list1.name = &#39;Sample List&#39;</code>
+          <code class="ruby">    @action_data = &#39;1&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="20">
+          <span class="hits">3</span>
           
-          <code class="ruby">    @board1.lists = [ @list1 ]</code>
+          <code class="ruby">    @action_date = &#39;1/1/1991&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="21">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="21">
+          <span class="hits">3</span>
           
-          <code class="ruby">    @action1 = OpenStruct.new</code>
+          <code class="ruby">    @card_name = &#39;Michael&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="22">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="22">
+          <span class="hits">3</span>
           
-          <code class="ruby">    @action1.type = &#39;createCard&#39;</code>
+          <code class="ruby">    @card_id = &#39;1&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="23">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="23">
+          <span class="hits">3</span>
           
-          <code class="ruby">    @action1.data = {&quot;list&quot;=&gt;{&quot;name&quot;=&gt;&quot;Resumes to be Screened&quot;},</code>
+          <code class="ruby">    @card_list_id = &#39;1&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">                     &quot;card&quot;=&gt;</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
           
           
-          <code class="ruby">                         {&quot;id&quot;=&gt;&quot;1&quot;}}</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="26">
           <span class="hits">1</span>
           
-          <code class="ruby">    @action1.date = &#39;1/1/1991&#39;</code>
+          <code class="ruby">  it &quot;displays card stats upon loading&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">    @board1.actions = [ @action1 ]</code>
+          <code class="ruby">    @board = Board.new</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
-          <code class="ruby">    @cards = [ Card.new(@board1, &#39;Michael&#39;, &#39;1&#39;, &#39;1&#39;) ]</code>
+          <code class="ruby">    @list = List.new(@list_id, @list_name)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="29">
           <span class="hits">1</span>
           
-          <code class="ruby">    assign(:cards, @cards)</code>
+          <code class="ruby">    @lists = [ @list ]</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="30">
           <span class="hits">1</span>
           
-          <code class="ruby">    render</code>
+          <code class="ruby">    @board.lists = @lists</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="31">
           <span class="hits">1</span>
           
-          <code class="ruby">    rendered.should match /Michael/</code>
+          <code class="ruby">    @action = Action.new(@action_type, @action_data, @action_date)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
-          <code class="ruby">    rendered.should match /1/</code>
+          <code class="ruby">    @board.actions = [ @action ]</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="33">
           <span class="hits">1</span>
           
-          <code class="ruby">    rendered.should match /Sample List/</code>
+          <code class="ruby">    @cards = [ Card.new(@board, @card_name, @card_id, @card_list_id) ]</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="34">
           <span class="hits">1</span>
           
+          <code class="ruby">    assign(:cards, @cards)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    render</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="36">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    rendered.should match /Michael/</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="37">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    rendered.should match /1/</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="38">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    rendered.should match /Sample List/</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="39">
+          <span class="hits">1</span>
+          
           <code class="ruby">    rendered.should match /1991/</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="40">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="36">
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">end</code>

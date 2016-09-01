@@ -3,11 +3,11 @@ require 'spec_helper'
 
 describe CardsController, type: :controller do
   before do
-    @board1 = OpenStruct.new
-    @member = OpenStruct.new
-    @board1.cards = [ ]
-    @board1.lists = [ ]
-    @member.boards = [ @board1 ]
+    @board = Board.new
+    @member = Member.new
+    @board.cards = [ ]
+    @board.lists = [ ]
+    @member.boards = [ @board ]
   end
 
   describe "GET #index" do

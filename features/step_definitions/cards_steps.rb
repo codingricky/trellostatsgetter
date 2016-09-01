@@ -1,13 +1,10 @@
 Given(/^I am on the index page for cards$/) do
-  list1 = OpenStruct.new
-  list1.id = '2'
-  list1.name = 'Yay'
-  board1 = OpenStruct.new
-  board1.cards = [ ]
-  board1.lists = [ list1 ]
-  me = OpenStruct.new
-  me.boards = [ board1 ]
-  Trello::Member.should_receive(:find).and_return(me)
+  board = Board.new
+  board.cards = [ ]
+  board.lists = [ ]
+  member = Member.new
+  member.boards = [ board ]
+  Trello::Member.should_receive(:find).and_return(member)
   visit('/')
 end
 
@@ -17,27 +14,26 @@ end
 
 ##
 
+card_name = 'Michael'
+card_id = '1'
+card_list_id = '2'
+action_type = 'createCard'
+action_card_id = '1'
+action_date = '1/1/1991'
+list_id = '2'
+list_name = 'Yay'
+
 Given(/^I have a card named Michael$/) do
-  card1 = OpenStruct.new
-  card1.name = 'Michael'
-  card1.id = '1'
-  card1.list_id = '2'
-  list1 = OpenStruct.new
-  list1.id = '2'
-  list1.name = 'Yay'
-  action1 = OpenStruct.new
-  action1.type = 'createCard'
-  action1.data = {"list"=>{"name"=>"Resumes to be Screened"},
-                   "card"=>
-                       {"id"=>"1"}}
-  action1.date = '1/1/1991'
-  board1 = OpenStruct.new
-  board1.cards = [ card1 ]
-  board1.lists = [ list1 ]
-  board1.actions = [ action1 ]
-  me = OpenStruct.new
-  me.boards = [ board1 ]
-  Trello::Member.should_receive(:find).and_return(me)
+  board = Board.new
+  list = List.new(list_id, list_name)
+  action = Action.new(action_type, action_card_id, action_date)
+  board.lists = [ list ]
+  board.actions = [ action ]
+  card = Card.new(board, card_name, card_id, card_list_id)
+  board.cards = [ card ]
+  member = Member.new
+  member.boards = [ board ]
+  Trello::Member.should_receive(:find).and_return(member)
 end
 
 When(/^I update the index of cards/) do
@@ -45,8 +41,7 @@ When(/^I update the index of cards/) do
 end
 
 Then(/^I should see a card named Michael$/) do
-  page.should have_content 'Michael'
-  page.should have_content '1'
-  page.should have_content 'Yay'
-  page.should have_content '1/1/1991'
+  page.should have_content card_name
+  page.should have_content list_name
+  page.should have_content action_date
 end
