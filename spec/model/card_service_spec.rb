@@ -51,7 +51,7 @@ describe CardService do
     it "puts the card's creation dates into an array" do
       cards = CardService.all
       cards.count.should eq(1)
-      cards.first.start_date.should eq(@action_create_alpha.date)
+      cards.first.start_date.should eq(@action_create_alpha.date.to_datetime.strftime('%d %b %Y'))
       cards.first.end_date.should eq('This card is not placed in the success lane.')
     end
   end
@@ -81,7 +81,7 @@ describe CardService do
     it "puts the card's date of its latest movement into the Resumes swimlane into an array" do
       cards = CardService.all
       cards.count.should eq(1)
-      cards.first.start_date.should eq(@action_update_bravo_latest.date)
+      cards.first.start_date.should eq(@action_update_bravo_latest.date.to_datetime.strftime('%d %b %Y'))
     end
   end
 
@@ -130,8 +130,8 @@ describe CardService do
     it "puts the cards' startdate into an array" do
       cards = CardService.all
       cards.count.should eq(2)
-      cards.first.start_date.should eq(@action_create_alpha.date)
-      cards.last.start_date.should eq(@action_create_bravo.date)
+      cards.first.start_date.should eq(@action_create_alpha.date.to_datetime.strftime('%d %b %Y'))
+      cards.last.start_date.should eq(@action_create_bravo.date.to_datetime.strftime('%d %b %Y'))
     end
   end
 
@@ -163,8 +163,8 @@ describe CardService do
     it "puts the cards' startdates into an array, using the latest movement into the Resumes swimlane as the start date for alpha, and the creation date of the card for bravo" do
       cards = CardService.all
       cards.count.should eq(2)
-      cards.first.start_date.should eq(@action_update_alpha_latest.date)
-      cards.last.start_date.should eq(@action_create_bravo.date)
+      cards.first.start_date.should eq(@action_update_alpha_latest.date.to_datetime.strftime('%d %b %Y'))
+      cards.last.start_date.should eq(@action_create_bravo.date.to_datetime.strftime('%d %b %Y'))
     end
   end
 

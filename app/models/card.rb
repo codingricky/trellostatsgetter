@@ -16,7 +16,12 @@ class Card
     @list_name = list.name
     @start_date = get_start_date(board, id)
     @end_date = get_end_date(board, id, @list_name)
-
+    if @start_date != 'This card has never been placed in the Resumes to be Screened lane.'
+      @start_date = @start_date.to_datetime.strftime('%d %b %Y')
+    end
+    if @end_date != 'This card is not placed in the success lane.'
+      @end_date = @end_date.to_datetime.strftime('%d %b %Y')
+    end
   end
 
   #TODO truncate date field (this will also involve changing the fake dates in the specs to adhere to trello format)
