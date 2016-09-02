@@ -36,6 +36,6 @@ describe 'cards/index', type: :view do
     rendered.should match /Michael/
     rendered.should match /Sample List/
     rendered.should match /1991/
-    rendered.should match /This card is not placed in the success lane/
+    rendered.should match /This card is not placed in an end lane/
   end
 end

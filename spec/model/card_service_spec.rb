@@ -52,7 +52,7 @@ describe CardService do
       cards = CardService.all
       cards.count.should eq(1)
       cards.first.start_date.should eq(@action_create_alpha.date.to_datetime.strftime('%d %b %Y'))
-      cards.first.end_date.should eq('This card is not placed in the success lane.')
+      cards.first.end_date.should eq('This card is not placed in an end lane.')
     end
   end
 

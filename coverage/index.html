@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-02T10:56:56+10:00">2016-09-02T10:56:56+10:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-02T11:28:35+10:00">2016-09-02T11:28:35+10:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -113,7 +113,7 @@
       <tr>
         <td class="strong"><a href="#28b56e603a3020be42ab361c5ccef4572391ee10" class="src_link" title="app/models/card.rb">app/models/card.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>47</td>
+        <td>46</td>
         <td>30</td>
         <td>30</td>
         <td>0</td>
@@ -949,7 +949,7 @@
         <li class="covered" data-hits="47" data-linenumber="22">
           <span class="hits">47</span>
           
-          <code class="ruby">    if @end_date != &#39;This card is not placed in the success lane.&#39;</code>
+          <code class="ruby">    if @end_date != &#39;This card is not placed in an end lane.&#39;</code>
         </li>
       
         <li class="covered" data-hits="6" data-linenumber="23">
@@ -979,124 +979,118 @@
         <li class="never" data-hits="" data-linenumber="27">
           
           
-          <code class="ruby">  #TODO truncate date field (this will also involve changing the fake dates in the specs to adhere to trello format)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="28">
-          
-          
           <code class="ruby">  #TODO first implement new column for success (AND SHOW RICKY BEFORE PROGRESSING), then success + unsucc, then all (individual columns)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="29">
+        <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
           <code class="ruby">  def get_start_date(board, id)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">    # Was the card created in the Resumes to be Screened lane? If so, use that date.</code>
         </li>
       
-        <li class="covered" data-hits="143" data-linenumber="31">
+        <li class="covered" data-hits="143" data-linenumber="30">
           <span class="hits">143</span>
           
           <code class="ruby">    action = board.actions.find { |action| (action.type == &#39;createCard&#39;) &amp;&amp; (action.data[&#39;list&#39;][&#39;name&#39;].include?(&#39;Resumes to be Screened&#39;)) &amp;&amp; (action.data[&#39;card&#39;][&#39;id&#39;] == id) }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">    # If not; was the card moved into the Resumes to be Screened lane? If so, use the date of the latest time this occurred.</code>
         </li>
       
-        <li class="covered" data-hits="61" data-linenumber="33">
+        <li class="covered" data-hits="61" data-linenumber="32">
           <span class="hits">61</span>
           
           <code class="ruby">    action ||= board.actions.find { |action| (action.type == &#39;updateCard&#39;) &amp;&amp; (action.data[&#39;listAfter&#39;][&#39;name&#39;].include?(&#39;Resumes to be Screened&#39;)) &amp;&amp; (action.data[&#39;card&#39;][&#39;id&#39;] == id) }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="34">
+        <li class="never" data-hits="" data-linenumber="33">
           
           
           <code class="ruby">    # If not; tell the user that the card had not been initialized properly, and return action.</code>
         </li>
       
-        <li class="covered" data-hits="47" data-linenumber="35">
+        <li class="covered" data-hits="47" data-linenumber="34">
           <span class="hits">47</span>
           
           <code class="ruby">    action ||= OpenStruct.new(:date =&gt; &#39;This card has never been placed in the Resumes to be Screened lane.&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="47" data-linenumber="36">
+        <li class="covered" data-hits="47" data-linenumber="35">
           <span class="hits">47</span>
           
           <code class="ruby">    action.date</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="37">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="38">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="39">
+        <li class="covered" data-hits="1" data-linenumber="38">
           <span class="hits">1</span>
           
           <code class="ruby">  def get_end_date(board, id, list_name)</code>
         </li>
       
-        <li class="covered" data-hits="47" data-linenumber="40">
+        <li class="covered" data-hits="47" data-linenumber="39">
           <span class="hits">47</span>
           
-          <code class="ruby">    if list_name.include?(&#39;Success&#39;)</code>
+          <code class="ruby">    if list_name.include?(&#39;Success&#39; || &#39;Unsuccessful&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="41">
+        <li class="covered" data-hits="18" data-linenumber="40">
           <span class="hits">18</span>
           
-          <code class="ruby">      action ||= board.actions.find { |action| (action.type == &#39;updateCard&#39;) &amp;&amp; (action.data[&#39;listAfter&#39;][&#39;name&#39;].include?(&#39;Success&#39;)) &amp;&amp; (action.data[&#39;card&#39;][&#39;id&#39;] == id) }</code>
+          <code class="ruby">      action ||= board.actions.find { |action| (action.type == &#39;updateCard&#39;) &amp;&amp; (action.data[&#39;listAfter&#39;][&#39;name&#39;].include?(&#39;Success&#39; || &#39;Unsuccessful&#39;)) &amp;&amp; (action.data[&#39;card&#39;][&#39;id&#39;] == id) }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="41" data-linenumber="43">
+        <li class="covered" data-hits="41" data-linenumber="42">
           <span class="hits">41</span>
           
-          <code class="ruby">      action ||= OpenStruct.new(:date =&gt; &#39;This card is not placed in the success lane.&#39;)</code>
+          <code class="ruby">      action ||= OpenStruct.new(:date =&gt; &#39;This card is not placed in an end lane.&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="44">
+        <li class="never" data-hits="" data-linenumber="43">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="47" data-linenumber="45">
+        <li class="covered" data-hits="47" data-linenumber="44">
           <span class="hits">47</span>
           
           <code class="ruby">    action.date</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="46">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="47">
+        <li class="never" data-hits="" data-linenumber="46">
           
           
           <code class="ruby">end</code>
@@ -3205,7 +3199,7 @@
         <li class="covered" data-hits="1" data-linenumber="55">
           <span class="hits">1</span>
           
-          <code class="ruby">      cards.first.end_date.should eq(&#39;This card is not placed in the success lane.&#39;)</code>
+          <code class="ruby">      cards.first.end_date.should eq(&#39;This card is not placed in an end lane.&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="56">
@@ -5839,7 +5833,7 @@
         <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
-          <code class="ruby">    rendered.should match /This card is not placed in the success lane/</code>
+          <code class="ruby">    rendered.should match /This card is not placed in an end lane/</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">

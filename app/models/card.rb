@@ -19,12 +19,11 @@ class Card
     if @start_date != 'This card has never been placed in the Resumes to be Screened lane.'
       @start_date = @start_date.to_datetime.strftime('%d %b %Y')
     end
-    if @end_date != 'This card is not placed in the success lane.'
+    if @end_date != 'This card is not placed in an end lane.'
       @end_date = @end_date.to_datetime.strftime('%d %b %Y')
     end
   end
 
-  #TODO truncate date field (this will also involve changing the fake dates in the specs to adhere to trello format)
   #TODO first implement new column for success (AND SHOW RICKY BEFORE PROGRESSING), then success + unsucc, then all (individual columns)
   def get_start_date(board, id)
     # Was the card created in the Resumes to be Screened lane? If so, use that date.
@@ -37,10 +36,10 @@ class Card
   end
 
   def get_end_date(board, id, list_name)
-    if list_name.include?('Success')
-      action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('Success')) && (action.data['card']['id'] == id) }
+    if list_name.include?('Success' || 'Unsuccessful')
+      action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('Success' || 'Unsuccessful')) && (action.data['card']['id'] == id) }
     else
-      action ||= OpenStruct.new(:date => 'This card is not placed in the success lane.')
+      action ||= OpenStruct.new(:date => 'This card is not placed in an end lane.')
     end
     action.date
   end
