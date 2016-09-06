@@ -15,7 +15,6 @@ describe Card do
       @card_name = 'Bob'
       card_id = '1'
       card_list_id = '1'
-  #TODO local variable scope
       list = List.new(list_id, @list_name)
       action = Action.new(action_type, action_card_id, @action_date)
       action2 = Action.new(action_type_finish, action_card_id, @action_date_finish)

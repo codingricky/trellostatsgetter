@@ -23,21 +23,12 @@ class Card
       @end_date = @end_date.to_datetime.strftime('%d %b %Y')
     end
   end
-  #TODO make appropriate functions private
+
   #TODO first implement new column for success (AND SHOW RICKY BEFORE PROGRESSING), then success + unsucc, then all (individual columns)
+  #TODO add difference in time column
   def get_create_card_start_date(board, id)
     action = board.actions.find { |action| (action.type == 'createCard') && (action.data['list']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
     get_update_card_start_date(action, board, id)
-  end
-
-  def get_update_card_start_date(selected_action, board, id)
-    selected_action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
-    set_nil_start_date(selected_action)
-  end
-
-  def set_nil_start_date(selected_action)
-    selected_action ||= OpenStruct.new(:date => nil)
-    selected_action.date
   end
 
   def get_update_card_end_date(board, id, list_name)
@@ -47,9 +38,25 @@ class Card
     set_nil_end_date(action)
   end
 
-  def set_nil_end_date(selected_action)
-    selected_action ||= OpenStruct.new(:date => nil)
-    selected_action.date#TODO change to nil
+  private
+  def get_update_card_start_date(selected_action, board, id)
+    selected_action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
+    set_nil_start_date(selected_action)
   end
-  #TODO add difference in time
+
+  def set_nil_start_date(selected_action)
+    if selected_action.present?
+      selected_action.date
+    else
+      nil
+    end
+  end
+
+  def set_nil_end_date(selected_action)
+    if selected_action.present?
+      selected_action.date
+    else
+      nil
+    end
+  end
 end
