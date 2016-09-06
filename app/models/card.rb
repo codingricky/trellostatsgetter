@@ -33,8 +33,8 @@ class Card
   end
 
   def get_update_card_end_date(board, id, list_name)
-    if list_name.include?('Success' || 'Unsuccessful')
-      action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('Success' || 'Unsuccessful')) && (action.data['card']['id'] == id) }
+    if list_name.include?('uccess')
+      action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('uccess')) && (action.data['card']['id'] == id) }
     end
     set_nil_end_date(action)
   end
