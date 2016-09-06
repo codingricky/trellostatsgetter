@@ -8,6 +8,8 @@ describe 'cards/index', type: :view do
   end
 
   it "should display to the user 'No cards.' when @cards is nil" do
+    @cards = [  ]
+    assign(:cards, @cards)
     render
     rendered.should match /No cards/
   end
