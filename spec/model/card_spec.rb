@@ -7,14 +7,11 @@ describe Card do
     before do
       @list_name = 'Success - This is a sample end lane'
       @list_id = '1'
-
       @action_type = 'createCard'
       @action_card_id = '1'
       @action_date = '1/1/1991'
-
       @action_type_finish = 'updateCard_finish'
       @action_date_finish = '1/1/1992'
-
       @card_name = 'Bob'
       @card_id = '1'
       @card_list_id = '1'
@@ -67,6 +64,7 @@ describe Card do
       @card_name = 'Bob'
       @card_id = '1'
       @card_list_id = '2'
+
       @list = List.new(@list_id, @list_name)
       @dudlist = List.new(@dudlist_id, @dudlist_name)
       @dudlist2 = List.new(@dudlist2_id, @dudlist2_name)

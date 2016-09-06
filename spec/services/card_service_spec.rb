@@ -52,7 +52,7 @@ describe CardService do
       cards = CardService.all
       cards.count.should eq(1)
       cards.first.start_date.should eq(@action_create_alpha.date.to_datetime.strftime('%d %b %Y'))
-      cards.first.end_date.should eq('This card is not placed in an end lane.')
+      cards.first.end_date.should eq(nil)
     end
   end
 
@@ -64,18 +64,6 @@ describe CardService do
       @first_board.cards = [ @card_bravo ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
-    end
-
-    it "puts the card's name into an array" do
-      cards = CardService.all
-      cards.count.should eq(1)
-      cards.first.name.should eq(@card_bravo_name)
-    end
-
-    it "puts the card's swimlane into an array" do
-      cards = CardService.all
-      cards.count.should eq(1)
-      cards.first.list_name.should eq(@list_bravo.name)
     end
 
     it "puts the card's date of its latest movement into the Resumes swimlane into an array" do
@@ -98,7 +86,7 @@ describe CardService do
     it "puts a warning to the user in place of the startdate" do
       cards = CardService.all
       cards.count.should eq(1)
-      cards.first.start_date.should eq('This card has never been placed in the Resumes to be Screened lane.')
+      cards.first.start_date.should eq(nil)
     end
   end
 
@@ -144,20 +132,6 @@ describe CardService do
       @first_board.cards = [ @card_alpha, @card_bravo ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
-    end
-
-    it "puts the cards' names into an array" do
-      cards = CardService.all
-      cards.count.should eq(2)
-      cards.first.name.should eq(@card_alpha_name)
-      cards.last.name.should eq(@card_bravo_name)
-    end
-
-    it "puts the cards' swimlanes into an array" do
-      cards = CardService.all
-      cards.count.should eq(2)
-      cards.first.list_name.should eq(@list_alpha.name)
-      cards.last.list_name.should eq(@list_bravo.name)
     end
 
     it "puts the cards' startdates into an array, using the latest movement into the Resumes swimlane as the start date for alpha, and the creation date of the card for bravo" do

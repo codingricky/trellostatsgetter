@@ -44,4 +44,5 @@ Then(/^I should see a card named Michael$/) do
   page.should have_content card_name
   page.should have_content list_name
   page.should have_content action_date.to_datetime.strftime('%d %b %Y')
+  page.should have_content 'This card is not placed in an end lane.'
 end
