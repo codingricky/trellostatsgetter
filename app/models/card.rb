@@ -6,7 +6,9 @@ class Card
   attr_reader :name
   attr_reader :list_name
   attr_reader :start_date
+  attr_reader :raw_start_date
   attr_reader :end_date
+  attr_reader :raw_end_date
 
   def initialize(board, name, id, list_id)
     @name = name
@@ -14,13 +16,13 @@ class Card
     @list_id = list_id
     list = board.lists.find { |list| list.id == list_id }
     @list_name = list.name
-    @start_date = get_create_card_start_date(board, id)
-    @end_date = get_update_card_end_date(board, id, @list_name)
-    if @start_date.present?
-      @start_date = @start_date.to_datetime.strftime('%d %b %Y')
+    @raw_start_date = get_create_card_start_date(board, id)
+    @raw_end_date = get_update_card_end_date(board, id, @list_name)
+    if @raw_start_date.present?
+      @start_date = @raw_start_date.to_datetime.strftime('%d %b %Y')
     end
-    if @end_date.present?
-      @end_date = @end_date.to_datetime.strftime('%d %b %Y')
+    if @raw_end_date.present?
+      @end_date = @raw_end_date.to_datetime.strftime('%d %b %Y')
     end
   end
 

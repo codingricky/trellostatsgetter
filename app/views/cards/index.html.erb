@@ -4,10 +4,11 @@
 <div class="panel-default">
   <table class="table-striped custom-stripe table-bordered custom-border sortable" width="80%" align="center">
     <tr>
-      <th width="25%">Card Name</th>
-      <th width="25%">Current Swimlane Name</th>
-      <th width="25%">Date Placed in Resumes Lane</th>
-      <th width="25%">Date Placed in End Lane (Successful & Unsuccessful)</th>
+      <th width="20%">Card Name</th>
+      <th width="20%">Current Swimlane Name</th>
+      <th width="20%">Date Placed in Resumes Lane</th>
+      <th width="20%">Date Placed in End Lane (Successful or Unsuccessful)</th>
+      <th width="20%">Duration of Card</th>
     </tr>
 
     <% if @cards.present? %>
@@ -23,10 +24,19 @@
                 card.end_date
                 else 'This card is not placed in an end lane.'
                 end %></td>
+          <td><%= if card.raw_start_date.present? && card.raw_end_date.present?
+                    duration = (distance_of_time_in_words card.raw_end_date, card.raw_start_date)
+                    end
+                  if card.raw_start_date.present? && duration.nil?
+                    duration = (distance_of_time_in_words Time.now, card.raw_start_date)
+                    end
+                  if duration.nil?
+                    duration = 'This card duration cannot be calculated.'
+                    end
+          duration %></td>
         </tr>
         <% end %>
-    <% else %>
-      <p> No cards. </p>
+      <% else %> <p> No cards. </p>
     <% end %>
   </table>
   <br>

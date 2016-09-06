@@ -32,6 +32,8 @@ describe 'cards/index', type: :view do
     @cards = [ Card.new(@board, @card_name, @card_id, @card_list_id) ]
   end
 
+  #add proper view tests/bdd for time duration
+
   it "displays card stats upon loading" do
     assign(:cards, @cards)
     render
@@ -39,5 +41,6 @@ describe 'cards/index', type: :view do
     rendered.should match /Sample List/
     rendered.should match /1991/
     rendered.should match /This card is not placed in an end lane/
+    rendered.should match /over 25 years/ #make this a dynamic value
   end
 end
