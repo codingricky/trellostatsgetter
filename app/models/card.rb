@@ -27,7 +27,6 @@ class Card
   end
 
   #TODO first implement new column for success (AND SHOW RICKY BEFORE PROGRESSING), then success + unsucc, then all (individual columns)
-  #TODO add difference in time column
   def get_create_card_start_date(board, id)
     action = board.actions.find { |action| (action.type == 'createCard') && (action.data['list']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
     get_update_card_start_date(action, board, id)

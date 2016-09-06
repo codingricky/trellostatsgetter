@@ -32,7 +32,7 @@ describe 'cards/index', type: :view do
     @cards = [ Card.new(@board, @card_name, @card_id, @card_list_id) ]
   end
 
-  #add proper view tests/bdd for time duration
+  # TODO add proper view tests/bdd for time duration
 
   it "displays card stats upon loading" do
     assign(:cards, @cards)
