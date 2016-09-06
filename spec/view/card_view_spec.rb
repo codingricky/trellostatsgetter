@@ -21,9 +21,6 @@ describe 'cards/index', type: :view do
     @card_name = 'Michael'
     @card_id = '1'
     @card_list_id = '1'
-  end
-
-  it "displays card stats upon loading" do
     @board = Board.new
     @list = List.new(@list_id, @list_name)
     @lists = [ @list ]
@@ -31,6 +28,9 @@ describe 'cards/index', type: :view do
     @action = Action.new(@action_type, @action_data, @action_date)
     @board.actions = [ @action ]
     @cards = [ Card.new(@board, @card_name, @card_id, @card_list_id) ]
+  end
+
+  it "displays card stats upon loading" do
     assign(:cards, @cards)
     render
     rendered.should match /Michael/

@@ -14,8 +14,8 @@ class Card
     @list_id = list_id
     list = board.lists.find { |list| list.id == list_id }
     @list_name = list.name
-    @start_date = get_createCard_start_date(board, id)
-    @end_date = get_updateCard_end_date(board, id, @list_name)
+    @start_date = get_create_card_start_date(board, id)
+    @end_date = get_update_card_end_date(board, id, @list_name)
     if @start_date.present?
       @start_date = @start_date.to_datetime.strftime('%d %b %Y')
     end
@@ -23,14 +23,14 @@ class Card
       @end_date = @end_date.to_datetime.strftime('%d %b %Y')
     end
   end
-
+  #TODO make appropriate functions private
   #TODO first implement new column for success (AND SHOW RICKY BEFORE PROGRESSING), then success + unsucc, then all (individual columns)
-  def get_createCard_start_date(board, id)
+  def get_create_card_start_date(board, id)
     action = board.actions.find { |action| (action.type == 'createCard') && (action.data['list']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
-    get_updateCard_start_date(action, board, id)
+    get_update_card_start_date(action, board, id)
   end
 
-  def get_updateCard_start_date(selected_action, board, id)
+  def get_update_card_start_date(selected_action, board, id)
     selected_action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
     set_nil_start_date(selected_action)
   end
@@ -40,7 +40,7 @@ class Card
     selected_action.date
   end
 
-  def get_updateCard_end_date(board, id, list_name)
+  def get_update_card_end_date(board, id, list_name)
     if list_name.include?('Success' || 'Unsuccessful')
       action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('Success' || 'Unsuccessful')) && (action.data['card']['id'] == id) }
     end
@@ -49,6 +49,7 @@ class Card
 
   def set_nil_end_date(selected_action)
     selected_action ||= OpenStruct.new(:date => nil)
-    selected_action.date
+    selected_action.date#TODO change to nil
   end
+  #TODO add difference in time
 end
