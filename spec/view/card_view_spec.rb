@@ -15,21 +15,22 @@ describe 'cards/index', type: :view do
   end
 
   before do
-    @list_id = '1'
-    @list_name = 'Sample List'
-    @action_type = 'createCard'
-    @action_data = '1'
-    @action_date = '1/1/1991'
-    @card_name = 'Michael'
-    @card_id = '1'
-    @card_list_id = '1'
-    @board = Board.new
-    @list = List.new(@list_id, @list_name)
-    @lists = [ @list ]
-    @board.lists = @lists
-    @action = Action.new(@action_type, @action_data, @action_date)
-    @board.actions = [ @action ]
-    @cards = [ Card.new(@board, @card_name, @card_id, @card_list_id) ]
+    list_id = '1'
+    list_name = 'Sample List'
+    action_type = 'createCard'
+    action_data = '1'
+    action_date = '1/1/1991'
+    card_name = 'Michael'
+    card_id = '1'
+    card_list_id = '1'
+
+    board = Board.new
+    list = List.new(list_id, list_name)
+    lists = [ list ]
+    board.lists = lists
+    action = Action.new(action_type, action_data, action_date)
+    board.actions = [ action ]
+    @cards = [ Card.new(board, card_name, card_id, card_list_id) ]
   end
 
   # TODO add proper view tests/bdd for time duration

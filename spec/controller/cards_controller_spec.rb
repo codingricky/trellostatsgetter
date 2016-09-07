@@ -3,10 +3,10 @@ require 'spec_helper'
 
 describe CardsController, type: :controller do
   before do
-    @board = Board.new
+    board = Board.new
     @member = Member.new
-    @board.cards = [ ]
-    @board.lists = [ ]
+    board.cards = [ ]
+    board.lists = [ ]
     @member.boards = [ @board ]
   end
 

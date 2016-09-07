@@ -30,8 +30,8 @@ describe CardService do
     before do
       @first_board.lists = [ @list_alpha ]
       @first_board.actions = [ @action_create_alpha ]
-      @card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
-      @first_board.cards = [ @card_alpha ]
+      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
+      @first_board.cards = [ card_alpha ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
@@ -60,8 +60,8 @@ describe CardService do
     before do
       @first_board.lists = [ @list_bravo ]
       @first_board.actions = [ @action_update_bravo_latest, @action_update_bravo ]
-      @card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
-      @first_board.cards = [ @card_bravo ]
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
+      @first_board.cards = [ card_bravo ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
@@ -77,8 +77,8 @@ describe CardService do
     before do
       @first_board.lists = [ @list_bravo ]
       @first_board.actions = [ ]
-      @card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
-      @first_board.cards = [ @card_bravo ]
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
+      @first_board.cards = [ card_bravo ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
@@ -95,9 +95,9 @@ describe CardService do
       @member.boards = [ @first_board ]
       @first_board.lists = [ @list_alpha, @list_bravo ]
       @first_board.actions = [ @action_create_alpha, @action_create_bravo ]
-      @card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
-      @card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
-      @first_board.cards = [ @card_alpha, @card_bravo ]
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
+      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
+      @first_board.cards = [ card_alpha, card_bravo ]
       Trello::Member.should_receive(:find).and_return(@member)
     end
 
@@ -127,9 +127,9 @@ describe CardService do
     before do
       @first_board.lists = [ @list_alpha, @list_bravo ]
       @first_board.actions = [ @action_update_alpha_latest, @action_update_alpha, @action_update_bravo, @action_create_bravo ]
-      @card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
-      @card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
-      @first_board.cards = [ @card_alpha, @card_bravo ]
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
+      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
+      @first_board.cards = [ card_alpha, card_bravo ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).and_return(@member)
     end

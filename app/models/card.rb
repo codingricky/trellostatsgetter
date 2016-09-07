@@ -34,14 +34,13 @@ class Card
 
   def get_update_card_end_date(board, id, list_name)
     if list_name.include?('uccess')
-      action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('uccess')) && (action.data['card']['id'] == id) }
+      action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter'].present?) && (action.data['listAfter']['name'].include?('uccess')) && (action.data['card']['id'] == id) }
     end
     set_nil_end_date(action)
   end
 
-  private
   def get_update_card_start_date(selected_action, board, id)
-    selected_action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
+    selected_action ||= board.actions.find { |action| (action.type == 'updateCard') && (action.data['listAfter'].present?) && (action.data['listAfter']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
     set_nil_start_date(selected_action)
   end
 
