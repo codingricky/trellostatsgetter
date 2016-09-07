@@ -16,12 +16,12 @@
         <tr>
           <td><%= card.name %></td>
           <td><%= card.list_name %></td>
-          <td><%= if card.start_date.present?
-                card.start_date
+          <td><%= if card.raw_start_date.present?
+                    card.raw_start_date.to_datetime.strftime('%d %b %Y')
                 else 'This card has never been placed in the Resumes to be Screened lane.'
                 end %></td>
-          <td><%= if card.end_date.present?
-                card.end_date
+          <td><%= if card.raw_end_date.present?
+                    card.raw_end_date.to_datetime.strftime('%d %b %Y')
                 else 'This card is not placed in an end lane.'
                 end %></td>
           <td><%= if card.raw_start_date.present? && card.raw_end_date.present?

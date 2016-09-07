@@ -7,7 +7,7 @@ describe CardsController, type: :controller do
     @member = Member.new
     board.cards = [ ]
     board.lists = [ ]
-    @member.boards = [ @board ]
+    @member.boards = [ board ]
   end
 
   describe "GET #index" do

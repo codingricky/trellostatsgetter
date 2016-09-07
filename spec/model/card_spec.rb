@@ -33,11 +33,11 @@ describe Card do
     end
 
     it "gets the card's start date" do
-      @card.start_date.should eq(@action_date.to_datetime.strftime('%d %b %Y'))
+      @card.raw_start_date.should eq(@action_date)
     end
 
     it "gets the card's end date" do
-      @card.end_date.should eq(@action_date_finish.to_datetime.strftime('%d %b %Y'))
+      @card.raw_end_date.should eq(@action_date_finish)
     end
   end
 
@@ -102,7 +102,7 @@ describe Card do
 
     it "finds the right action and gets the card's start date" do
       @card = Card.new(@board, @card_name, @card_id, @card_list_id)
-      @card.start_date.should eq(@action_date.to_datetime.strftime('%d %b %Y'))
+      @card.raw_start_date.should eq(@action_date)
     end
   end
 end

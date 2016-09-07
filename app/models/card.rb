@@ -5,9 +5,7 @@ class Card
   attr_reader :list_id
   attr_reader :name
   attr_reader :list_name
-  attr_reader :start_date
   attr_reader :raw_start_date
-  attr_reader :end_date
   attr_reader :raw_end_date
 
   def initialize(board, name, id, list_id)
@@ -18,15 +16,9 @@ class Card
     @list_name = list.name
     @raw_start_date = get_create_card_start_date(board, id)
     @raw_end_date = get_update_card_end_date(board, id, @list_name)
-    if @raw_start_date.present?
-      @start_date = @raw_start_date.to_datetime.strftime('%d %b %Y')
-    end
-    if @raw_end_date.present?
-      @end_date = @raw_end_date.to_datetime.strftime('%d %b %Y')
-    end
   end
 
-  #TODO first implement new column for success (AND SHOW RICKY BEFORE PROGRESSING), then success + unsucc, then all (individual columns)
+  private
   def get_create_card_start_date(board, id)
     action = board.actions.find { |action| (action.type == 'createCard') && (action.data['list']['name'].include?('Resumes to be Screened')) && (action.data['card']['id'] == id) }
     get_update_card_start_date(action, board, id)

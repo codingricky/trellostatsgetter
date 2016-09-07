@@ -9,6 +9,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.resultset.json" afterPath="$PROJECT_DIR$/coverage/.resultset.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/index.html" afterPath="$PROJECT_DIR$/coverage/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controller/cards_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controller/cards_controller_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/model/card_spec.rb" afterPath="$PROJECT_DIR$/spec/model/card_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/services/card_service_spec.rb" afterPath="$PROJECT_DIR$/spec/services/card_service_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/view/card_view_spec.rb" afterPath="$PROJECT_DIR$/spec/view/card_view_spec.rb" />
     </list>
@@ -39,81 +40,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="card_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/model/card_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="card_service_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/services/card_service_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2358">
-              <caret line="131" column="41" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="action_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/model/action_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cards_controller_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/controller/cards_controller_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cards_steps.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/step_definitions/cards_steps.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="card_view_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/view/card_view_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+            <state relative-caret-position="771">
+              <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="card.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cards_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/cards_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="action.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/action.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application_record.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="board.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/board.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="card.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/card.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="882">
+              <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/model/list_spec.rb">
+      <file leaf-file-name="list.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/list.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="member.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/member.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="card_service.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/services/card_service.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
-              <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -122,18 +133,8 @@
       <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/cards/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="92" selection-start-line="4" selection-start-column="92" selection-end-line="4" selection-end-column="92" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="board_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/model/board_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+            <state relative-caret-position="594">
+              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -182,11 +183,11 @@
         <option value="$PROJECT_DIR$/spec/test_models/board_spec.rb" />
         <option value="$PROJECT_DIR$/spec/test_models/test_constructors_spec.rb" />
         <option value="$PROJECT_DIR$/spec/test_models/list_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/controller/cards_controller_spec.rb" />
+        <option value="$PROJECT_DIR$/app/views/cards/index.html.erb" />
         <option value="$PROJECT_DIR$/spec/model/card_spec.rb" />
         <option value="$PROJECT_DIR$/spec/services/card_service_spec.rb" />
         <option value="$PROJECT_DIR$/spec/view/card_view_spec.rb" />
-        <option value="$PROJECT_DIR$/spec/controller/cards_controller_spec.rb" />
-        <option value="$PROJECT_DIR$/app/views/cards/index.html.erb" />
         <option value="$PROJECT_DIR$/app/models/card.rb" />
       </list>
     </option>
@@ -228,9 +229,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="RailsProjectView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -463,28 +463,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cards" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="***REMOVED***" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="***REMOVED***" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -541,6 +519,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -853,35 +832,37 @@
       <workItem from="1473205373426" duration="1830000" />
       <workItem from="1473207255754" duration="1617000" />
       <workItem from="1473209091147" duration="1149000" />
-      <workItem from="1473214838269" duration="344000" />
+      <workItem from="1473214838269" duration="1257000" />
+      <workItem from="1473221665031" duration="1844000" />
+      <workItem from="1473223541892" duration="613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197840000" />
+    <option name="totallyTimeSpent" value="201210000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1425" y="24" width="2495" height="1416" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16713427" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16713427" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25710014" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998565" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25710014" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23266219" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1043,13 +1024,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/test_constructors/fakecard.rb" />
-    <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/manage_cards.feature">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1085,34 +1059,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/board.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/member.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/action.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/cards_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/test_models/test_constructors_spec.rb" />
     <entry file="file://$PROJECT_DIR$/coverage/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1128,32 +1074,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/list.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/card_service.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/model/member_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/model/list_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1173,14 +1097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controller/cards_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/step_definitions/cards_steps.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
@@ -1189,42 +1105,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/cards/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/spec/controller/cards_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="92" selection-start-line="4" selection-start-column="92" selection-end-line="4" selection-end-column="92" />
+        <state relative-caret-position="522">
+          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/model/card_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+        <state relative-caret-position="1890">
+          <caret line="105" column="7" selection-start-line="105" selection-start-column="7" selection-end-line="105" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/services/card_service_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2358">
-          <caret line="131" column="41" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
+        <state relative-caret-position="2682">
+          <caret line="149" column="7" selection-start-line="149" selection-start-column="7" selection-end-line="149" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/model/list_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/cards/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/view/card_view_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+        <state relative-caret-position="771">
+          <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/cards_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/action.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/board.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/card.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="882">
+          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/list.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/member.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/card_service.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
           <folding />
         </state>
       </provider>
