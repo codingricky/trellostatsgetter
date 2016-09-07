@@ -4,11 +4,12 @@
 <div class="panel-default">
   <table class="table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
     <tr>
-      <th width="20%">Card Name</th>
-      <th width="20%">Current Swimlane Name</th>
-      <th width="20%">Date Placed in Resumes Lane</th>
-      <th width="20%">Date Placed in End Lane ("Success - " or any "Unsuccessful - ")</th>
-      <th width="20%">Duration of Card</th>
+      <th width="19%">Card Name</th>
+      <th width="19%">Current Swimlane Name</th>
+      <th width="19%">Date Placed in Resumes Lane</th>
+      <th width="19%">Date Placed in End Lane ("Success - " or any "Unsuccessful - ")</th>
+      <th width="19%">Duration of Card</th>
+      <th width="5%">Status</th>
     </tr>
 
     <% if @cards.present? %>
@@ -34,6 +35,10 @@
                     duration = 'This card duration cannot be calculated.'
                     end
           duration %></td>
+          <td><%= if card.finished_cycle == true
+                    'Done'
+                  else 'In progress'
+          end %></td>
         </tr>
         <% end %>
       <% else %> <p> No cards. </p>

@@ -7,6 +7,7 @@ class Card
   attr_reader :list_name
   attr_reader :raw_start_date
   attr_reader :raw_end_date
+  attr_reader :finished_cycle
 
   def initialize(board, name, id, list_id)
     @name = name
@@ -16,6 +17,7 @@ class Card
     @list_name = list.name
     @raw_start_date = get_create_card_start_date(board, id)
     @raw_end_date = get_update_card_end_date(board, id, @list_name)
+    @finished_cycle = set_if_done(@raw_start_date, @raw_end_date)
   end
 
   private
@@ -49,6 +51,14 @@ class Card
       selected_action.date
     else
       nil
+    end
+  end
+
+  def set_if_done(start_date, finish_date)
+    if start_date.present? && finish_date.present?
+      return true
+    else
+      return false
     end
   end
 end
