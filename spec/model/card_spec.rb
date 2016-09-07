@@ -41,6 +41,7 @@ describe Card do
     end
   end
 
+  #TODO use betterspec
   context "Trello api returns data with three lists" do
     before do
       @list_name = 'The List'

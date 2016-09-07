@@ -25,20 +25,16 @@
                     card.raw_end_date.to_datetime.strftime('%d %b %Y')
                 else 'This card is not placed in an end lane.'
                 end %></td>
-          <td><%= if card.raw_start_date.present? && card.raw_end_date.present?
+          <td><%= if card.raw_start_date.present? && card.raw_end_date.present? #TODO redundant check, would eval anyway
                     duration = (distance_of_time_in_words card.raw_end_date, card.raw_start_date)
                     end
                   if card.raw_start_date.present? && duration.nil?
-                    duration = (distance_of_time_in_words Time.now, card.raw_start_date)
+                    duration = (distance_of_time_in_words Time.now, card.raw_start_date) #TODO change colour + asterisk, meaning in column
                     end
                   if duration.nil?
-                    duration = 'This card duration cannot be calculated.'
+                    duration = 'This card duration cannot be calculated.' #TODO tell user in progress
                     end
           duration %></td>
-          <td><%= if card.finished_cycle == true
-                    'Done'
-                  else 'In progress'
-          end %></td>
         </tr>
         <% end %>
       <% else %> <p> No cards. </p>
