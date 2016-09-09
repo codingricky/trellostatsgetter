@@ -17,7 +17,7 @@ class Action
     end
 
     if type == "updateCard_finish"
-      @data = {"listAfter"=>{"name"=>"Success - This is an end lane"},
+      @data = {"listAfter"=>{"name"=>"Success - Hired"},
        "card"=>
            {"id"=>card_id}}
     end

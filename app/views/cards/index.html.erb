@@ -4,37 +4,24 @@
 <div class="panel-default">
   <table class="table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
     <tr>
-      <th width="19%">Card Name</th>
-      <th width="19%">Current Swimlane Name</th>
-      <th width="19%">Date Placed in Resumes Lane</th>
-      <th width="19%">Date Placed in End Lane ("Success - " or any "Unsuccessful - ")</th>
-      <th width="19%">Duration of Card</th>
-      <th width="5%">Status</th>
+      <th width="20%">Card Name</th>
+      <th width="20%">Current Swimlane Name</th>
+      <th width="20%">Date Placed in Resumes Lane</th>
+      <th width="20%">Date Placed in End Lane ("Success - " or any "Unsuccessful - ")</th>
+      <th width="20%">Duration of Card, <font color="#ff0000">* means the card is not yet complete</font></th>
     </tr>
-
     <% if @cards.present? %>
         <% @cards.each do |card| %>
         <tr>
           <td><%= card.name %></td>
           <td><%= card.list_name %></td>
-          <td><%= if card.raw_start_date.present?
-                    card.raw_start_date.to_datetime.strftime('%d %b %Y')
-                else 'This card has never been placed in the Resumes to be Screened lane.'
-                end %></td>
-          <td><%= if card.raw_end_date.present?
-                    card.raw_end_date.to_datetime.strftime('%d %b %Y')
-                else 'This card is not placed in an end lane.'
-                end %></td>
-          <td><%= if card.raw_start_date.present? && card.raw_end_date.present? #TODO redundant check, would eval anyway
-                    duration = (distance_of_time_in_words card.raw_end_date, card.raw_start_date)
-                    end
-                  if card.raw_start_date.present? && duration.nil?
-                    duration = (distance_of_time_in_words Time.now, card.raw_start_date) #TODO change colour + asterisk, meaning in column
-                    end
-                  if duration.nil?
-                    duration = 'This card duration cannot be calculated.' #TODO tell user in progress
-                    end
-          duration %></td>
+          <td><%= CardsHelper.show_start_date(card) %></td>
+          <td><%= CardsHelper.show_end_date(card) %></td>
+          <td><% if CardsHelper.show_difference_in_time(card).include?('*') %>
+                <font color="#ff0000"> <%= CardsHelper.show_difference_in_time(card) %> </font>
+            <% else %>
+                <%= CardsHelper.show_difference_in_time(card) %>
+          <% end %></td>
         </tr>
         <% end %>
       <% else %> <p> No cards. </p>

@@ -43,7 +43,6 @@ describe 'cards/index', type: :view do
     rendered.should match /This card has never been placed in the Resumes to be Screened lane/
     rendered.should match /This card is not placed in an end lane/
     rendered.should match /This card duration cannot be calculated/
-    rendered.should match /In progress/
   end
 
   it "displays multiple card stats upon loading" do
@@ -55,12 +54,11 @@ describe 'cards/index', type: :view do
     rendered.should match /This card is not placed in an end lane/
     rendered.should match /This card duration cannot be calculated/
     rendered.should match /Ricky/
-    rendered.should match /In progress/
   end
 
   it "displays card stats (with dates and duration) upon loading" do
     list_id = '1'
-    list_name = 'Success List'
+    list_name = 'Success - Hired'
     create_type = 'createCard'
     create_data = '1'
     create_date = '1/1/1990'
@@ -82,10 +80,9 @@ describe 'cards/index', type: :view do
     assign(:cards, cards)
     render
     rendered.should match /Michael/
-    rendered.should match /Success List/
+    rendered.should match /Success - Hired/
     rendered.should match /1990/
     rendered.should match /1991/
     rendered.should match /about 1 year/
-    rendered.should match /Done/
   end
 end

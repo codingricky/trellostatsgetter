@@ -3,12 +3,11 @@ source 'https://rubygems.org'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'jquery-turbolinks'
+gem 'dotenv-rails'
 gem 'ruby-trello'
 gem 'travis'
 gem 'rails-controller-testing'
 gem 'pg'
-#gem 'yymmdd'
-#gem 'time_diff'
 
 group :development, :test do
 gem 'rspec-rails'
@@ -18,7 +17,8 @@ gem 'pry'
 gem 'capybara'
 gem 'shoulda-matchers'
 gem 'cucumber-rails', :require => false
-gem 'dotenv-rails'
+gem 'factory_girl'
+gem 'factory_girl_rails'
 gem 'database_cleaner'
 end
 

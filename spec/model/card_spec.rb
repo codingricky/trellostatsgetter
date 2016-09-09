@@ -5,7 +5,7 @@ require 'trello'
 describe Card do
   context "Trello api returns data with one card" do
     before do
-      @list_name = 'Success - This is a sample end lane'
+      @list_name = 'Success - Hired'
       list_id = '1'
       action_type = 'createCard'
       action_card_id = '1'
@@ -33,15 +33,14 @@ describe Card do
     end
 
     it "gets the card's start date" do
-      @card.raw_start_date.should eq(@action_date)
+      @card.start_date.should eq(@action_date)
     end
 
     it "gets the card's end date" do
-      @card.raw_end_date.should eq(@action_date_finish)
+      @card.end_date.should eq(@action_date_finish)
     end
   end
 
-  #TODO use betterspec
   context "Trello api returns data with three lists" do
     before do
       @list_name = 'The List'
@@ -103,7 +102,7 @@ describe Card do
 
     it "finds the right action and gets the card's start date" do
       @card = Card.new(@board, @card_name, @card_id, @card_list_id)
-      @card.raw_start_date.should eq(@action_date)
+      @card.start_date.should eq(@action_date)
     end
   end
 end
