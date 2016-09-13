@@ -1,10 +1,5 @@
 require 'trello'
 
-TYPE_UPDATE = 'updateCard'
-TYPE_CREATE = 'createCard'
-STARTING_LANE = 'Resumes to be Screened'
-FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen']
-
 class Card
   attr_reader :id
   attr_reader :list_id
@@ -12,6 +7,11 @@ class Card
   attr_reader :list_name
   attr_reader :start_date
   attr_reader :end_date
+
+  TYPE_UPDATE = 'updateCard'
+  TYPE_CREATE = 'createCard'
+  STARTING_LANE = 'Resumes to be Screened'
+  FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen']
 
   def initialize(board, name, id, list_id)
     @name = name
@@ -35,7 +35,7 @@ class Card
   end
 
   def check_if_start_date_nil(selected_action)
-    if selected_action then selected_action.date else nil end
+    selected_action ? selected_action.date : nil
   end
 
   def check_update_type_end_date(board, id, list_name)
@@ -46,6 +46,6 @@ class Card
   end
 
   def check_if_end_date_nil(selected_action)
-    if selected_action then selected_action.date else nil end
+    selected_action ? selected_action.date : nil
   end
 end

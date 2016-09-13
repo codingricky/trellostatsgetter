@@ -8,6 +8,10 @@ gem 'ruby-trello'
 gem 'travis'
 gem 'rails-controller-testing'
 gem 'pg'
+gem 'therubyracer'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google'
 
 group :development, :test do
 gem 'rspec-rails'

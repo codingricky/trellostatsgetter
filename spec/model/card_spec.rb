@@ -1,8 +1,11 @@
 require 'rspec'
 require 'spec_helper'
 require 'trello'
-
-#consider using 'let'
+# TODO oauth
+# TODO Beanstalk
+# TODO better styling
+# can use include SpecsHelper?
+# consider using 'let'
 
 describe Card do
   context "Trello api returns data with one card" do
