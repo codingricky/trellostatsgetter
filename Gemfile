@@ -11,7 +11,7 @@ gem 'pg'
 gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
-gem 'omniauth-google'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
 gem 'rspec-rails'
