@@ -2,33 +2,4 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-html body { background: #FFFFFF; color: #ffffff }
-
-
-.custom-stripe.table-striped > tbody > tr:nth-child(2n+1) > th,
-.custom-stripe.table-striped > tbody > tr:nth-child(2n+1) > td {
-  background-color: #000000;
-}
-
-
-.custom-stripe.table-striped > tbody > tr:nth-child(2n) > th,
-.custom-stripe.table-striped > tbody > tr:nth-child(2n) > td {
-  background-color: #1C1F24;
-}
-
-.custom-border.table-bordered > thead > tr > th,
-.custom-border.table-bordered > thead > tr > td,
-.custom-border.table-bordered > tbody > tr > th,
-.custom-border.table-bordered > tbody > tr > td,
-.custom-border.table-bordered > tfoot > tr > th,
-.custom-border.table-bordered > tfoot > tr > td {
-  border: 1px solid #eee;
-  padding: 3px;
-}
-
-.rcorners2 {
-  border-radius: 20px;
-  border: 2px solid #B7B7B6;
-  padding: 20px;
-  background-color: #1C1F24;
-}
+html body { background: #ffffff; color: #000000;}

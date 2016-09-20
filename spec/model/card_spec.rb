@@ -2,7 +2,6 @@ require 'rspec'
 require 'spec_helper'
 require 'trello'
 
-# TODO autodeploy to heroku from passing travis build
 # TODO better styling
 # TODO Beanstalk
 # TODO oauth alerts
