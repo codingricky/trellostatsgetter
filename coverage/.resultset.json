@@ -453,6 +453,7 @@
         null,
         null,
         1,
+        null,
         null
       ],
       "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/filter_parameter_logging.rb": [
@@ -688,13 +689,6 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/factories/users.rb": [
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
       "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/routes.rb": [
         1,
         null,
@@ -720,6 +714,31 @@
         null,
         null,
         null,
+        null
+      ],
+      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/controller/callbacks_controller_spec.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/controllers/callbacks_controller.rb": [
+        1,
+        1,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
         null
       ],
       "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/controller/cards_controller_spec.rb": [
@@ -763,12 +782,6 @@
         1,
         1,
         null,
-        null
-      ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/controllers/application_controller.rb": [
-        1,
-        1,
-        1,
         null
       ],
       "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/model/action_spec.rb": [
@@ -883,6 +896,9 @@
         1,
         1,
         1,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -1045,13 +1061,6 @@
         1,
         null,
         null,
-        null
-      ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/models/user_spec.rb": [
-        1,
-        null,
-        1,
-        1,
         null
       ],
       "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/services/card_service_spec.rb": [
@@ -1347,6 +1356,6 @@
         null
       ]
     },
-    "timestamp": 1474332649
+    "timestamp": 1474336408
   }
 }

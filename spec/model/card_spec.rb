@@ -1,11 +1,14 @@
 require 'rspec'
 require 'spec_helper'
 require 'trello'
-# TODO oauth
-# TODO Beanstalk
+
+# TODO autodeploy to heroku from passing travis build
 # TODO better styling
-# can use include SpecsHelper?
-# consider using 'let'
+# TODO Beanstalk
+# TODO oauth alerts
+
+# can use "include SpecsHelper" so that I won't have to use "SpecsHelper."?
+# consider using 'let' (see Better specs)
 
 describe Card do
   context "Trello api returns data with one card" do
