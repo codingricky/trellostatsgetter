@@ -24,10 +24,6 @@ addons:
 env:
   matrix:
     secure: juIsNf02jt+yVuz0Y31UH0fcQoAW0vI4H9x0UEsAWSogsOBUUjDBevfQvSV9Z12jgvY5R0MnpWx8wbcVzbbEQ32tF+wDkv931Ja0kYQjN97dPiD3VRSTnKf7Zf5xsb2d66BI2nGgtQTor4V1UdI/topc+++VI1LncVJTsKdP8yPgYie0gxvvnfy+a2N/4e/Rae7uWO5u+l/Hdl0n1bTQO06b3m3ghBRA7XdPGPNuOq3lMZTEfx76MZBUQlm+cc7OpFJmWHuxT0eY9gOhrGFAM0Ssj/m95qKL1cC6GuzWwIQtlCIQoJS1tGK1po4/j6y6Oi0ks4JWePI9HTGuFaz1S1TcBFVFoTVSDD0z0VYIBmqrZhrcV699gRQCMuRRSd9K6A2F995dHNJCY1UAQ9IIsrBkEiXcZQV8h80ekH8tgJjzf1SkE3I+e2VLJji0jP56yni+34mOOFjiHYlgpDj81lX0XJK/6rEH7bK+BtlUpfrMfRN+7GN9U/3ZE8LLQFmv8daJgdLnmov2dfPl4+fYkuOe/SpsCsye/0NSf1iTNmUQek+a33fSiu2aBvGHy5RgpBF6DYLOzWrg6PTIwqo+UYzFoY8JBJWUbqZB12YYTU8JoKzyS+S6rPLqY0JIsSr7ohUQm9Z5Bk89FMu+f4eRubyZt3PgrHksaabgIxz0XAk=
-before_deploy:
-  run:
-    - "git add . "
-    - "git commit -m 'latest changes from travis for heroku'"
 deploy:
   provider: heroku
   api_key:
