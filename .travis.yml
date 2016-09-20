@@ -1,34 +1,29 @@
 sudo: required
-
 language: ruby
-
 rvm:
-  - 2.3.0
-
+- 2.3.0
 rails:
-  - 5.0.0
-
+- 5.0.0
 before_install:
-  - bundle update
-  - bundle install
-
+- bundle update
+- bundle install
 before_script:
-  - cp config/database.travis.yml config/database.yml
-  - rake db:create
-  - rake db:migrate
-
+- cp config/database.travis.yml config/database.yml
+- rake db:create
+- rake db:migrate
 script:
-  - bin/rails db:environment:set RAILS_ENV=test
-  - bundle exec rake --trace
-
+- bin/rails db:environment:set RAILS_ENV=test
+- bundle exec rake --trace
 dist: trusty
 addons:
   apt:
     packages:
-      - mysql-server-5.6
-      - mysql-client-core-5.6
-      - mysql-client-5.6
-
+    - mysql-server-5.6
+    - mysql-client-core-5.6
+    - mysql-client-5.6
 env:
   matrix:
     secure: juIsNf02jt+yVuz0Y31UH0fcQoAW0vI4H9x0UEsAWSogsOBUUjDBevfQvSV9Z12jgvY5R0MnpWx8wbcVzbbEQ32tF+wDkv931Ja0kYQjN97dPiD3VRSTnKf7Zf5xsb2d66BI2nGgtQTor4V1UdI/topc+++VI1LncVJTsKdP8yPgYie0gxvvnfy+a2N/4e/Rae7uWO5u+l/Hdl0n1bTQO06b3m3ghBRA7XdPGPNuOq3lMZTEfx76MZBUQlm+cc7OpFJmWHuxT0eY9gOhrGFAM0Ssj/m95qKL1cC6GuzWwIQtlCIQoJS1tGK1po4/j6y6Oi0ks4JWePI9HTGuFaz1S1TcBFVFoTVSDD0z0VYIBmqrZhrcV699gRQCMuRRSd9K6A2F995dHNJCY1UAQ9IIsrBkEiXcZQV8h80ekH8tgJjzf1SkE3I+e2VLJji0jP56yni+34mOOFjiHYlgpDj81lX0XJK/6rEH7bK+BtlUpfrMfRN+7GN9U/3ZE8LLQFmv8daJgdLnmov2dfPl4+fYkuOe/SpsCsye/0NSf1iTNmUQek+a33fSiu2aBvGHy5RgpBF6DYLOzWrg6PTIwqo+UYzFoY8JBJWUbqZB12YYTU8JoKzyS+S6rPLqY0JIsSr7ohUQm9Z5Bk89FMu+f4eRubyZt3PgrHksaabgIxz0XAk=
+deploy:
+  api_key:
+    secure: W8lsU9ACB7magwn+RP6eWc7miB9WKg4aTlQdEeAHH0SvUz9u8T3JZaSOZcAmROdrA6uBRdCtKoxzk735bvcYL/+FOs2wrepie6NgETzDvBdBrDPClGleW413OUK0wBhxfPStynZ9EqIYl9lrXonpGIAS69rddHOfsvm418c/X0RMyjETer83tfuTv1XCoxISFTZYsLZP8p6LkSI5bzfBpkxb/VpUVOTKZPtYI1Y/znMM+NmjeHJKEZr2ft67ZhiiNXKY+5YuyCwvmCuYNFglfIbo2qHJ+gYwGo27AYSe9jPFRzf/ogF1TrPeLjCTkgWxYwViAPAE8Ts/r/0oBaUChqLwjLTeWbRL0FHZ1bJx4Xr/FAGI+SAnP7Ahlb5Gv7DtWlGnvucgM5ypxmUR6bq6nz0A0zQPNB3O3Yn0MVnAFnqJ3thTWUUVBQTAQLUcwyUz0zOIx7MHiMlvXvaJ6VZ0KKmMavDDbkCLcexkAskFt1wf7R2zuQbiPNzQOA9DHsd2o4eckncuMsGUDazkpWESFXpt0RZHMNtab8u+A75rFLP5ra3lgBY11JM4p2KGfy1oJ8QQWV825Idc6NDy+tpRZx40jebPuzrEyNPbkDeoUKaTjl9uzAuF+QEGFTWWow1lVayn1iiCVyZSxb2UnOj//U4ndbc8g/v/zLqa8tQyV3s=
