@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97b8117c-e468-469f-bdc2-f67c32e98ce9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/cards/index.html.erb" afterPath="$PROJECT_DIR$/app/views/cards/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
     </list>
     <ignored path="***REMOVED***.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -976,12 +977,12 @@
       <workItem from="1473379108399" duration="11676000" />
       <workItem from="1473642759917" duration="20529000" />
       <workItem from="1474009633631" duration="5378000" />
-      <workItem from="1474334476107" duration="4235000" />
+      <workItem from="1474334476107" duration="5294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254372000" />
+    <option name="totallyTimeSpent" value="255431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2672" y="52" width="1238" height="1388" extended-state="4" />
