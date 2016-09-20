@@ -18,9 +18,13 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'simplecov'
 require 'database_cleaner'
+require 'devise'
 SimpleCov.start
 require "capybara/rspec"
 RSpec.configure do |config|
+  ### Getting around authentication in tests
+  config.include(Warden::Test::Helpers)
+  Warden.test_mode!
   ### For database_cleaner...
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
@@ -35,6 +39,7 @@ RSpec.configure do |config|
   config.after(:each) do
     # other teardown ...
     DatabaseCleaner.clean # cleans tracked records
+    Warden.test_reset! # for authentication with Warden
   end
   ###
 
