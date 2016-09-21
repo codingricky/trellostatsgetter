@@ -28,9 +28,6 @@ deploy:
     - provider: heroku
       api_key:
       secure: W8lsU9ACB7magwn+RP6eWc7miB9WKg4aTlQdEeAHH0SvUz9u8T3JZaSOZcAmROdrA6uBRdCtKoxzk735bvcYL/+FOs2wrepie6NgETzDvBdBrDPClGleW413OUK0wBhxfPStynZ9EqIYl9lrXonpGIAS69rddHOfsvm418c/X0RMyjETer83tfuTv1XCoxISFTZYsLZP8p6LkSI5bzfBpkxb/VpUVOTKZPtYI1Y/znMM+NmjeHJKEZr2ft67ZhiiNXKY+5YuyCwvmCuYNFglfIbo2qHJ+gYwGo27AYSe9jPFRzf/ogF1TrPeLjCTkgWxYwViAPAE8Ts/r/0oBaUChqLwjLTeWbRL0FHZ1bJx4Xr/FAGI+SAnP7Ahlb5Gv7DtWlGnvucgM5ypxmUR6bq6nz0A0zQPNB3O3Yn0MVnAFnqJ3thTWUUVBQTAQLUcwyUz0zOIx7MHiMlvXvaJ6VZ0KKmMavDDbkCLcexkAskFt1wf7R2zuQbiPNzQOA9DHsd2o4eckncuMsGUDazkpWESFXpt0RZHMNtab8u+A75rFLP5ra3lgBY11JM4p2KGfy1oJ8QQWV825Idc6NDy+tpRZx40jebPuzrEyNPbkDeoUKaTjl9uzAuF+QEGFTWWow1lVayn1iiCVyZSxb2UnOj//U4ndbc8g/v/zLqa8tQyV3s=
-       run:
-         - "rake db:migrate"
-         - restart
     - provider: elasticbeanstalk
       app: trello-stats-getter # Elastic Beanstalk app name
       env: trello-stats-getter-dev # Elastic Beanstalk env name
