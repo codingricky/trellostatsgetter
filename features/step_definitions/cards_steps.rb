@@ -15,7 +15,7 @@ And(/^I navigate to the index page for cards$/) do
 end
 
 Then(/^I should see the index for cards$/) do
-  page.should have_content 'current Trello cards'
+  page.should have_content 'Listing cards'
   logout
 end
 

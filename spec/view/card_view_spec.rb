@@ -4,7 +4,9 @@ require 'spec_helper'
 describe 'cards/index', type: :view do
   it "should display the correct page" do
     render
-    rendered.should match /current Trello cards/
+    rendered.should match /Trello/
+    rendered.should match /Listing/
+    rendered.should match /cards/
   end
 
   it "should display to the user 'No cards.' when @cards is nil" do
