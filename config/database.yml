@@ -12,7 +12,7 @@
 default: &default
   adapter: mysql2
   #Use the below line for local and travis usage.
-  encoding: utf8mb4
+  #encoding: utf8mb4
   #Use the below line for heroku usage.
   encoding: utf8
   pool: 5
