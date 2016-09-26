@@ -2,13 +2,6 @@ require 'rspec'
 require 'spec_helper'
 require 'trello'
 
-# TODO better styling
-# TODO Beanstalk
-# TODO oauth alerts
-
-# can use "include SpecsHelper" so that I won't have to use "SpecsHelper."?
-# consider using 'let' (see Better specs)
-
 describe Card do
   context "Trello api returns data with one card" do
     before do

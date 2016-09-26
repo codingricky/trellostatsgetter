@@ -4,4 +4,4 @@ test:
   pool: 5
   username: root
   password:
-  database: ***REMOVED***_test
+  database: trellostatsgetter_test

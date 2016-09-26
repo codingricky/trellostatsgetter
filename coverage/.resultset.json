@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/rails_helper.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -27,6 +27,8 @@
         null,
         null,
         null,
+        null,
+        1,
         null,
         1,
         null,
@@ -60,14 +62,14 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/environment.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/application.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/application.rb": [
         1,
         null,
         1,
@@ -84,12 +86,12 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/boot.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/spring.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/spring.rb": [
         null,
         null,
         null,
@@ -97,7 +99,7 @@
         null,
         5
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/environments/test.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/environments/test.rb": [
         1,
         null,
         null,
@@ -141,7 +143,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/application_controller_renderer.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/application_controller_renderer.rb": [
         null,
         null,
         null,
@@ -149,7 +151,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/assets.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -162,7 +164,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/backtrace_silencers.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -171,14 +173,14 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/cookies_serializer.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/cookies_serializer.rb": [
         null,
         null,
         null,
         null,
         1
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/devise.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/devise.rb": [
         null,
         null,
         1,
@@ -454,16 +456,15 @@
         null,
         null,
         1,
-        null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/filter_parameter_logging.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/inflections.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -481,13 +482,13 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/mime_types.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/new_framework_defaults.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/new_framework_defaults.rb": [
         null,
         null,
         null,
@@ -513,12 +514,12 @@
         null,
         1
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/session_store.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/initializers/wrap_parameters.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -534,11 +535,11 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/helpers/application_helper.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/helpers/cards_helper.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/helpers/cards_helper.rb": [
         1,
         null,
         1,
@@ -571,7 +572,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/helpers/specs_helper.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/helpers/specs_helper.rb": [
         1,
         1,
         4,
@@ -690,7 +691,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/config/routes.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/config/routes.rb": [
         1,
         null,
         1,
@@ -700,70 +701,9 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/models/user.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/models/user.rb": [
         1,
         1,
-        null,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/controller/callbacks_controller_spec.rb": [
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/controllers/callbacks_controller.rb": [
-        1,
-        1,
-        0,
-        0,
-        null,
-        null
-      ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/controllers/application_controller.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/controller/cards_controller_spec.rb": [
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         null,
         null,
         null,
@@ -778,14 +718,83 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/controllers/cards_controller.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/controller/callbacks_controller_spec.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         1,
         1,
         1,
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/model/action_spec.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/controllers/callbacks_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/controller/cards_controller_spec.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/controllers/cards_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/model/action_spec.rb": [
         1,
         1,
         null,
@@ -817,7 +826,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/models/action.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/models/action.rb": [
         1,
         1,
         1,
@@ -852,7 +861,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/model/board_spec.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/model/board_spec.rb": [
         1,
         1,
         null,
@@ -880,7 +889,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/models/board.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/models/board.rb": [
         1,
         1,
         1,
@@ -893,17 +902,10 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/model/card_spec.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/model/card_spec.rb": [
         1,
         1,
         1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         null,
         1,
         1,
@@ -955,7 +957,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/models/card.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/models/card.rb": [
         1,
         null,
         1,
@@ -1008,7 +1010,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/model/list_spec.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/model/list_spec.rb": [
         1,
         1,
         null,
@@ -1025,7 +1027,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/models/list.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/models/list.rb": [
         1,
         1,
         1,
@@ -1036,7 +1038,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/model/member_spec.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/model/member_spec.rb": [
         1,
         1,
         null,
@@ -1056,14 +1058,14 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/models/member.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/models/member.rb": [
         1,
         1,
         null,
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/services/card_service_spec.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/services/card_service_spec.rb": [
         1,
         1,
         1,
@@ -1222,7 +1224,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/app/services/card_service.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/app/services/card_service.rb": [
         1,
         null,
         1,
@@ -1241,7 +1243,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/view/card_view_help_spec.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/view/card_view_help_spec.rb": [
         1,
         null,
         1,
@@ -1289,7 +1291,7 @@
         null,
         null
       ],
-      "/home/michael/Dius/Projects/***REMOVED***/***REMOVED***/spec/view/card_view_spec.rb": [
+      "/home/michael/Dius/Projects/trellostatsgetter/trellostatsgetter/spec/view/card_view_spec.rb": [
         1,
         1,
         null,
@@ -1358,6 +1360,6 @@
         null
       ]
     },
-    "timestamp": 1474442331
+    "timestamp": 1474867554
   }
 }
