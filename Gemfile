@@ -6,12 +6,12 @@ gem 'jquery-turbolinks'
 gem 'dotenv-rails'
 gem 'ruby-trello'
 gem 'travis'
-gem 'rails-controller-testing'
 gem 'pg'
 gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'aws-healthcheck'
 
 group :development, :test do
 gem 'rspec-rails'
@@ -22,6 +22,7 @@ gem 'capybara'
 gem 'shoulda-matchers'
 gem 'cucumber-rails', :require => false
 gem 'database_cleaner'
+gem 'rails-controller-testing'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
