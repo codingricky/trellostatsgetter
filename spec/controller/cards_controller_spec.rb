@@ -19,6 +19,13 @@ describe CardsController, type: :controller do
       response.should have_http_status(:success)
       response.should render_template(:index)
     end
+
+    describe "AWS health checks" do
+      it "returns 200" do
+        visit '/healthcheck'
+        response.should have_http_status(200)
+      end
+    end
   end
 end
 
