@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'omniauth'
 
 describe CallbacksController, type: :controller do
-  it "redirects a dius employee to the trello page" do
+  it "saves and redirects a dius employee to the trello page" do
     request.env["devise.mapping"] = Devise.mappings[:user]
     user = OpenStruct.new
     user.info = OpenStruct.new
