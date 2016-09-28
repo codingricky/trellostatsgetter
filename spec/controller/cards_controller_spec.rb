@@ -27,5 +27,13 @@ describe CardsController, type: :controller do
       end
     end
   end
+
+  describe "Handling errors" do
+    it "gives the error as a string to @cards" do
+      CardService.should_receive(:all).at_least(:once).and_raise('Board name is invalid/not found.')
+      visit '/'
+      response.should have_http_status(200)
+    end
+  end
 end
 

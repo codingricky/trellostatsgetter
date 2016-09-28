@@ -16,8 +16,6 @@ This app gets data from the Trello API and breaks it down into useful card stati
 
 3. Define the following environment variables in a .env file (or equivalent):
 
-	- DEVELOPER_PUBLIC_KEY=27dbf126a87c20a0a1a6c9f81fcc2e98
-
 	- TRELLO_MEMBER_TOKEN=(Follow this URL: "https://trello.com/1/authorize?key=27dbf126a87c20a0a1a6c9f81fcc2e98&scope=read%2Cwrite&name=Dius+Trello+Stats+Getter&expiration=never&response_type=token", and put the token provided to you in this location)
 
 	- TRELLO_MEMBER_ID=(Navigate to "Trello", then to your "Profile". Look at the URL; it will be in the format of https://trello.com/sampleid12345. Put your ID in this location. E.g. In this case, "sampleid12345")

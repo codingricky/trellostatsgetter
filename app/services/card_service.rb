@@ -13,9 +13,6 @@ class CardService
   end
 
   def self.find_member
-    if Trello::Member.find(ENV['TRELLO_MEMBER_ID']).nil?
-      raise 'Member ID is invalid/not found.'
-    end
     Trello::Member.find(ENV['TRELLO_MEMBER_ID'])
   end
 end

@@ -9,13 +9,6 @@ describe 'cards/index', type: :view do
     rendered.should match /cards/
   end
 
-  it "should display to the user 'No cards.' when @cards is nil" do
-    @cards = [  ]
-    assign(:cards, @cards)
-    render
-    rendered.should match /No cards/
-  end
-
   before do
     card_name = 'Michael'
     another_card_name = 'Ricky'
@@ -62,5 +55,24 @@ describe 'cards/index', type: :view do
     rendered.should match /1990/
     rendered.should match /1991/
     rendered.should match /about 1 year/
+  end
+
+  it "displays the error messages" do
+    @cards = 'No cards.'
+    assign(:cards, @cards)
+    render
+    rendered.should match /No cards/
+    @cards = 'Error: Board name is invalid/not found.'
+    assign(:cards, @cards)
+    render
+    rendered.should match /Error: Board name/
+    @cards = 'Error: Member ID is invalid/not found.'
+    assign(:cards, @cards)
+    render
+    rendered.should match /Error: Member ID/
+    @cards = 'Error: Member Token is invalid/not found.'
+    assign(:cards, @cards)
+    render
+    rendered.should match /Error: Member Token/
   end
 end
