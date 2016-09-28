@@ -6,6 +6,6 @@ class Board
   #always parse into these with an array
   #e.g. Board.actions = [ action1, action2 ]
   def initialize
-    @name = ENV['BOARD_NAME']
+    @name = ENV['TRELLO_BOARD_NAME']
   end
 end

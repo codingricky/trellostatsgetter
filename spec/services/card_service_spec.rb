@@ -26,6 +26,20 @@ describe CardService do
     @member = Member.new
   end
 
+  context "receives an invalid user ID" do
+    it "raises an error" do
+      Trello::Member.should_receive(:find).at_least(:once).and_return(nil)
+      expect { CardService.all }.to raise_error
+    end
+  end
+
+  context "receives no boards" do
+    it "raises an error" do
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
+      expect { CardService.all }.to raise_error
+    end
+  end
+
   context "receives a card from trello that was created in the Resumes swimlane" do
     before do
       @first_board.lists = [ @list_alpha ]
@@ -33,7 +47,7 @@ describe CardService do
       card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
       @first_board.cards = [ card_alpha ]
       @member.boards = [ @first_board ]
-      Trello::Member.should_receive(:find).and_return(@member)
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
     end
 
     it "puts the card's names into an array" do
@@ -63,7 +77,7 @@ describe CardService do
       card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
       @first_board.cards = [ card_bravo ]
       @member.boards = [ @first_board ]
-      Trello::Member.should_receive(:find).and_return(@member)
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
     end
 
     it "puts the card's date of its latest movement into the Resumes swimlane into an array" do
@@ -80,7 +94,7 @@ describe CardService do
       card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
       @first_board.cards = [ card_bravo ]
       @member.boards = [ @first_board ]
-      Trello::Member.should_receive(:find).and_return(@member)
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
     end
 
     it "puts a warning to the user in place of the startdate" do
@@ -98,7 +112,7 @@ describe CardService do
       card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
       card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
       @first_board.cards = [ card_alpha, card_bravo ]
-      Trello::Member.should_receive(:find).and_return(@member)
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
     end
 
     it "puts the cards' name into an array" do
@@ -131,7 +145,7 @@ describe CardService do
       card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
       @first_board.cards = [ card_alpha, card_bravo ]
       @member.boards = [ @first_board ]
-      Trello::Member.should_receive(:find).and_return(@member)
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
     end
 
     it "puts the cards' startdates into an array, using the latest movement into the Resumes swimlane as the start date for alpha, and the creation date of the card for bravo" do
@@ -146,7 +160,7 @@ describe CardService do
     before do
       @first_board.cards = [ ]
       @member.boards = [ @first_board ]
-      Trello::Member.should_receive(:find).and_return(@member)
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
     end
 
   it "puts nothing into an array" do

@@ -14,7 +14,7 @@ describe CardsController, type: :controller do
 
   describe "Routing" do
     it "routes / to cards#index" do
-      Trello::Member.should_receive(:find).and_return(@member)
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
       visit '/'
       response.should have_http_status(:success)
       response.should render_template(:index)

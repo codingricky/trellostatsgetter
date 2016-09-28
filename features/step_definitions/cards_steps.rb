@@ -7,7 +7,7 @@ When(/^My Trello board is empty$/) do
   board = SpecsHelper.create_empty_board
   member = Member.new
   member.boards = [ board ]
-  Trello::Member.should_receive(:find).and_return(member)
+  Trello::Member.should_receive(:find).at_least(:once).and_return(member)
 end
 
 And(/^I navigate to the index page for cards$/) do
@@ -26,7 +26,7 @@ When(/^I have a card named Michael$/) do
   board = SpecsHelper.create_board_with_card(@card_name, @list_name, @action_date)
   member = Member.new
   member.boards = [ board ]
-  Trello::Member.should_receive(:find).and_return(member)
+  Trello::Member.should_receive(:find).at_least(:once).and_return(member)
 end
 
 And(/^I update the index of cards/) do

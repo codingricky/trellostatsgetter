@@ -45,13 +45,11 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
   # config.expect_with(:rspec) { |c|  c.syntax = [:should, :expect] }
-  RSpec.configure do |config|
-    config.expect_with :rspec do |c|
-      c.syntax = :should
-    end
-    config.mock_with :rspec do |c|
-      c.syntax = :should
-    end
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+  config.mock_with :rspec do |c|
+    c.syntax = [:should, :expect]
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
