@@ -14,3 +14,9 @@ Feature: Manage cards.
     When I have a card named Michael
     And I update the index of cards
     Then I should see a card named Michael
+
+  Scenario: Seeing new cards in the index list with a bad card.
+    Given I am logged in as a DiUS employee
+    When I have a card named Michael and a bad card
+    And I update the index of cards
+    Then I should see a card named Michael but not the bad card

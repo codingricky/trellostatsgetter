@@ -40,3 +40,23 @@ Then(/^I should see a card named Michael$/) do
   page.should have_content 'This card is not placed in an end lane.'
   logout
 end
+
+When(/^I have a card named Michael and a bad card$/) do
+  @card_name = 'Michael'
+  @list_name = 'Yay'
+  @action_date = '1/1/1991'
+  @bad_card_name = 'Bad Card'
+  board = SpecsHelper.create_board_with_bad_card(@card_name, @list_name, @action_date, @bad_card_name)
+  member = Member.new
+  member.boards = [ board ]
+  Trello::Member.should_receive(:find).at_least(:once).and_return(member)
+end
+
+Then(/^I should see a card named Michael but not the bad card$/) do
+  page.should have_content @card_name
+  page.should have_content @list_name
+  page.should have_content @action_date.to_datetime.strftime('%d %b %Y')
+  page.should have_content 'This card is not placed in an end lane.'
+  page.should_not have_content @bad_card_name
+  logout
+end

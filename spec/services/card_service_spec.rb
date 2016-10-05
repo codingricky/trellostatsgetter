@@ -6,6 +6,7 @@ describe CardService do
   before do
     @list_alpha = List.new('1', 'Alphas List')
     @list_bravo = List.new('2', 'Bravos List')
+    @list_foreign = List.new('9', 'Foreign List')
 
     @card_alpha_name = 'Alpha'
     @card_alpha_id = '1'
@@ -15,12 +16,17 @@ describe CardService do
     @card_bravo_id = '2'
     @card_bravo_list_id = '2'
 
+    @card_foreign_name = 'Foreign'
+    @card_foreign_id = '9'
+    @card_foreign_list_id = '9'
+
     @action_create_alpha = Action.new('createCard', '1', '1/1/1991')
     @action_update_alpha = Action.new('updateCard', '1', '1/1/2001')
     @action_update_alpha_latest = Action.new('updateCard', '1', '1/1/2011')
     @action_create_bravo = Action.new('createCard', '2', '1/1/1992')
     @action_update_bravo = Action.new('updateCard', '2', '1/1/2002')
     @action_update_bravo_latest = Action.new('updateCard', '2', '1/1/2012')
+    @action_create_foreign = Action.new('movedCard', '9', '1/1/2999')
 
     @first_board = Board.new
     @member = Member.new
@@ -134,6 +140,44 @@ describe CardService do
       cards.count.should eq(2)
       cards.first.start_date.should eq(@action_create_alpha.date)
       cards.last.start_date.should eq(@action_create_bravo.date)
+    end
+  end
+
+  context "receives multiple cards from trello, one unhandleable" do
+    before do
+      @member.boards = [ @first_board ]
+      @first_board.lists = [ @list_alpha, @list_bravo ]
+      @first_board.actions = [ @action_create_alpha, @action_create_bravo, @action_create_foreign ]
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
+      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
+      card_foreign = Card.new(@first_board, @card_foreign_name, @card_foreign_id, @card_foreign_list_id)
+      @first_board.cards = [ card_alpha, card_bravo, card_foreign ]
+      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
+    end
+
+    it "puts the cards' name into an array, discarding the errored card" do
+      cards = CardService.all
+      cards.count.should eq(2)
+      cards.first.name.should eq(@card_alpha_name)
+      cards.last.name.should eq(@card_bravo_name)
+      cards.should_not include(@card_foreign_name)
+    end
+
+    it "puts the cards' swimlane into an array, discarding the errored card" do
+      cards = CardService.all
+      cards.count.should eq(2)
+      cards.first.list_name.should eq(@list_alpha.name)
+      cards.last.list_name.should eq(@list_bravo.name)
+      cards.should_not include(@list_foreign.name)
+    end
+
+    it "puts the cards' startdate into an array, discarding the errored card" do
+      cards = CardService.all
+      cards.count.should eq(2)
+      cards.first.start_date.should eq(@action_create_alpha.date)
+      cards.last.start_date.should eq(@action_create_bravo.date)
+      cards.should_not include(@action_create_foreign.date)
+      cards.should_not include('Error')
     end
   end
 

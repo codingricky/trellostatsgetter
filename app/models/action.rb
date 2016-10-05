@@ -16,6 +16,11 @@ class Action
                    {"id"=>card_id}}
     end
 
+    if type == "movedCard"
+      @data = {"card"=>
+                   {"id"=>card_id}}
+    end
+
     if type == "updateCard_finish"
       @data = {"listAfter"=>{"name"=>"Success - Hired"},
        "card"=>

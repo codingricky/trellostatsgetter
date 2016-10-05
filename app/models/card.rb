@@ -20,13 +20,23 @@ class Card
     list = board.lists.find { |list| list.id == list_id }
     @list_name = list.name
     @start_date = check_create_type_start_date(board, id)
-    @end_date = check_update_type_end_date(board, id, @list_name)
+    if @start_date == 'Error'
+      @end_date = 'Error'
+    else
+      @end_date = check_update_type_end_date(board, id, @list_name)
+    end
+  rescue
+    @list_name = 'Error'
+    @start_date = 'Error'
+    @end_date = 'Error'
   end
 
   private
   def check_create_type_start_date(board, id)
     action = board.actions.find { |action| (action.type == TYPE_CREATE) && (action.data['list']['name'].include?(STARTING_LANE)) && (action.data['card']['id'] == id) }
     check_update_type_start_date(action, board, id)
+  rescue
+    return 'Error'
   end
 
   def check_update_type_start_date(selected_action, board, id)

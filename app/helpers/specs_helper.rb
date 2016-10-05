@@ -114,4 +114,24 @@ module SpecsHelper
     board.cards = [ card ]
     board
   end
+
+  def self.create_board_with_bad_card(card_name, list_name, action_date, bad_card_name)
+    card_id = '1'
+    card_list_id = '2'
+    action_type = 'createCard'
+    action_card_id = '1'
+    bad_action_type = 'movedCard'
+    bad_action_card_id = '999999'
+    list_id = '2'
+    board = Board.new
+    list = List.new(list_id, list_name)
+    action = Action.new(action_type, action_card_id, action_date)
+    bad_action = Action.new(bad_action_type, bad_action_card_id, action_date)
+    board.lists = [ list ]
+    board.actions = [ action, bad_action ]
+    card = Card.new(board, card_name, card_id, card_list_id)
+    bad_card = Card.new(board, bad_card_name, '999999', '999999')
+    board.cards = [ card, bad_card ]
+    board
+  end
 end
