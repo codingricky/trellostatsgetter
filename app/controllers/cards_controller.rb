@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   def index
     @cards = CardService.all
+    @cards.sort! { |a, b| b.start_date.to_i <=> a.start_date.to_i }
     if @cards == [ ]
       @cards = 'No cards.'
     end
