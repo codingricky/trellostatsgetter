@@ -15,8 +15,11 @@ describe 'cards/index', type: :view do
     card_id = '1'
     card_list_id = '1'
     board = SpecsHelper.populate_a_board(card_id, card_list_id)
-    @cards = [ Card.new(board, card_name, card_id, card_list_id)]
-    @two_cards = [ Card.new(board, card_name, card_id, card_list_id), Card.new(board, another_card_name, card_id, card_list_id)]
+    dud_action = Action.new('updateCard_finish', '9999923454234', '1/1/1990')
+    action_cache = Array.new
+    action_cache << [ dud_action ]
+    @cards = [ Card.new(board, card_name, card_id, card_list_id, action_cache)]
+    @two_cards = [ Card.new(board, card_name, card_id, card_list_id, action_cache), Card.new(board, another_card_name, card_id, card_list_id, action_cache)]
   end
 
   it "displays card stats upon loading" do
@@ -47,7 +50,13 @@ describe 'cards/index', type: :view do
     create_date = '1/1/1990'
     update_date = '1/1/1991'
     board = SpecsHelper.populate_a_board_with_stats(card_id, card_list_id, create_date, update_date)
-    cards = [ Card.new(board, card_name, card_id, card_list_id) ]
+    create_type = 'createCard'
+    update_type = 'updateCard_finish'
+    create = Action.new(create_type, card_id, create_date)
+    update = Action.new(update_type, card_id, update_date)
+    action_cache = Array.new
+    action_cache << [ create, update ]
+    cards = [ Card.new(board, card_name, card_id, card_list_id, action_cache) ]
     assign(:cards, cards)
     render
     rendered.should match /Michael/
@@ -58,20 +67,20 @@ describe 'cards/index', type: :view do
   end
 
   it "displays the error messages" do
-    @cards = 'No cards.'
-    assign(:cards, @cards)
+    @error = 'No cards.'
+    assign(:cards, @error)
     render
     rendered.should match /No cards/
-    @cards = 'Error: Board name is invalid/not found.'
-    assign(:cards, @cards)
+    @error = 'Error: Board name is invalid/not found.'
+    assign(:cards, @error)
     render
     rendered.should match /Error: Board name/
-    @cards = 'Error: Member ID is invalid/not found.'
-    assign(:cards, @cards)
+    @error = 'Error: Member ID is invalid/not found.'
+    assign(:cards, @error)
     render
     rendered.should match /Error: Member ID/
-    @cards = 'Error: Member Token is invalid/not found.'
-    assign(:cards, @cards)
+    @error = 'Error: Member Token is invalid/not found.'
+    assign(:cards, @error)
     render
     rendered.should match /Error: Member Token/
   end

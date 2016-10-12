@@ -9,7 +9,7 @@
       <th width="20%"> Date Placed in End Lane ("Success - " or any "Unsuccessful - " lanes)</th>
       <th width="20%"> Duration of Card, <font color="#ff0000">* means the card is not yet complete</font></th>
     </tr>
-    <% if @cards.instance_of?(String) %> <h1><font color="#ff0000"><b><%= @cards %></b></font></h1>
+    <% if @error.present? %> <h1><font color="#ff0000"><b><%= @error %></b></font></h1>
         <% else @cards.each do |card| %>
         <tr>
           <td><%= card.name %></td>

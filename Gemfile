@@ -12,6 +12,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'aws-healthcheck'
+gem 'logger'
 
 group :development, :test do
 gem 'rspec-rails'

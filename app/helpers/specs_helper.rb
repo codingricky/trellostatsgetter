@@ -5,7 +5,6 @@ module SpecsHelper
     list_id = card_list_id
     action_type = 'createCard'
     action_card_id = card_id
-    action_date = action_date
     action_type_finish = 'updateCard_finish'
     list = List.new(list_id, list_name)
     action = Action.new(action_type, action_card_id, action_date)
@@ -13,7 +12,9 @@ module SpecsHelper
     board = Board.new
     board.lists = [ list ]
     board.actions = [ action, action2 ]
-    Card.new(board, card_name, card_id, card_list_id)
+    action_cache = Array.new
+    action_cache << board.actions
+    Card.new(board, card_name, card_id, card_list_id, action_cache)
   end
 
   def self.create_a_card_multiple_lists (list_name)
@@ -34,7 +35,9 @@ module SpecsHelper
     board = Board.new
     board.lists = [ list, dudlist, dudlist2 ]
     board.actions = [ action ]
-    Card.new(board, card_name, card_id, card_list_id)
+    action_cache = Array.new
+    action_cache << board.actions
+    Card.new(board, card_name, card_id, card_list_id, action_cache)
   end
 
   def self.create_a_card_multiple_actions (action_date)
@@ -62,7 +65,9 @@ module SpecsHelper
     board = Board.new
     board.lists = [ list ]
     board.actions = [ action, oldaction, wrongaction, wrongaction2 ]
-    Card.new(board, card_name, card_id, card_list_id)
+    action_cache = Array.new
+    action_cache << board.actions
+    Card.new(board, card_name, card_id, card_list_id, action_cache)
   end
 
   def self.populate_a_board(card_id, card_list_id)
@@ -110,7 +115,9 @@ module SpecsHelper
     action = Action.new(action_type, action_card_id, action_date)
     board.lists = [ list ]
     board.actions = [ action ]
-    card = Card.new(board, card_name, card_id, card_list_id)
+    action_cache = Array.new
+    action_cache << board.actions
+    card = Card.new(board, card_name, card_id, card_list_id, action_cache)
     board.cards = [ card ]
     board
   end
@@ -129,8 +136,10 @@ module SpecsHelper
     bad_action = Action.new(bad_action_type, bad_action_card_id, action_date)
     board.lists = [ list ]
     board.actions = [ action, bad_action ]
-    card = Card.new(board, card_name, card_id, card_list_id)
-    bad_card = Card.new(board, bad_card_name, '999999', '999999')
+    action_cache = Array.new
+    action_cache << board.actions
+    card = Card.new(board, card_name, card_id, card_list_id, action_cache)
+    bad_card = Card.new(board, bad_card_name, '999999', '999999', action_cache)
     board.cards = [ card, bad_card ]
     board
   end

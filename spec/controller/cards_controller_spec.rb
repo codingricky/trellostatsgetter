@@ -7,6 +7,7 @@ describe CardsController, type: :controller do
     @member = Member.new
     board.cards = [ ]
     board.lists = [ ]
+    board.actions = [ ]
     @member.boards = [ board ]
     @current_user = User.create!(:email => 'user@dius.com.au', :password => 'password')
     login_as(@current_user, :scope => :user)
@@ -15,6 +16,7 @@ describe CardsController, type: :controller do
   describe "Routing" do
     it "routes / to cards#index" do
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
+      ActionCache.should_receive(:new).at_least(:once).and_return([[]])
       visit '/'
       response.should have_http_status(:success)
       response.should render_template(:index)

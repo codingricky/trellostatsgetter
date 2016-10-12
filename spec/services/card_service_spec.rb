@@ -35,14 +35,14 @@ describe CardService do
   context "receives an invalid user ID" do
     it "raises an error" do
       Trello::Member.should_receive(:find).at_least(:once).and_return(nil)
-      expect { CardService.all }.to raise_error
+      expect { CardService.all }.to raise_error(NoMethodError)
     end
   end
 
   context "receives no boards" do
     it "raises an error" do
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
-      expect { CardService.all }.to raise_error
+      expect { CardService.all }.to raise_error(NoMethodError)
     end
   end
 
@@ -50,7 +50,10 @@ describe CardService do
     before do
       @first_board.lists = [ @list_alpha ]
       @first_board.actions = [ @action_create_alpha ]
-      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
+      action_cache = Array.new
+      action_cache << @first_board.actions
+      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache)
+      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
       @first_board.cards = [ card_alpha ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
@@ -80,7 +83,10 @@ describe CardService do
     before do
       @first_board.lists = [ @list_bravo ]
       @first_board.actions = [ @action_update_bravo_latest, @action_update_bravo ]
-      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
+      action_cache = Array.new
+      action_cache << @first_board.actions
+      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache)
       @first_board.cards = [ card_bravo ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
@@ -96,8 +102,12 @@ describe CardService do
   context "receives a card from trello that has never existed in the Resumes to be Screened swimlane" do
     before do
       @first_board.lists = [ @list_bravo ]
-      @first_board.actions = [ ]
-      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
+      bad_action = Action.new('updateCard_finish', @card_bravo_id, '1/1/1990')
+      @first_board.actions = [ bad_action ]
+      action_cache = Array.new
+      action_cache << @first_board.actions
+      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache)
       @first_board.cards = [ card_bravo ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
@@ -115,8 +125,11 @@ describe CardService do
       @member.boards = [ @first_board ]
       @first_board.lists = [ @list_alpha, @list_bravo ]
       @first_board.actions = [ @action_create_alpha, @action_create_bravo ]
-      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
-      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
+      action_cache = Array.new
+      action_cache << @first_board.actions
+      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache)
+      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache)
       @first_board.cards = [ card_alpha, card_bravo ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
     end
@@ -148,9 +161,12 @@ describe CardService do
       @member.boards = [ @first_board ]
       @first_board.lists = [ @list_alpha, @list_bravo ]
       @first_board.actions = [ @action_create_alpha, @action_create_bravo, @action_create_foreign ]
-      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
-      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
-      card_foreign = Card.new(@first_board, @card_foreign_name, @card_foreign_id, @card_foreign_list_id)
+      action_cache = Array.new
+      action_cache << @first_board.actions
+      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache)
+      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache)
+      card_foreign = Card.new(@first_board, @card_foreign_name, @card_foreign_id, @card_foreign_list_id, action_cache)
       @first_board.cards = [ card_alpha, card_bravo, card_foreign ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
     end
@@ -185,8 +201,11 @@ describe CardService do
     before do
       @first_board.lists = [ @list_alpha, @list_bravo ]
       @first_board.actions = [ @action_update_alpha_latest, @action_update_alpha, @action_update_bravo, @action_create_bravo ]
-      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id)
-      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id)
+      action_cache = Array.new
+      action_cache << @first_board.actions
+      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
+      card_bravo = Card.new(@first_board, @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache)
+      card_alpha = Card.new(@first_board, @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache)
       @first_board.cards = [ card_alpha, card_bravo ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
@@ -205,6 +224,9 @@ describe CardService do
       @first_board.cards = [ ]
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
+      action_cache = Array.new
+      action_cache << []
+      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
     end
 
   it "puts nothing into an array" do

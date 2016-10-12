@@ -19,7 +19,9 @@
 require 'simplecov'
 require 'database_cleaner'
 require 'devise'
-SimpleCov.start
+SimpleCov.start do
+  maximum_coverage_drop 0
+end
 require "capybara/rspec"
 RSpec.configure do |config|
   ### Getting around authentication in tests

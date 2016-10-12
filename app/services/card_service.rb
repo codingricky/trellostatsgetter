@@ -8,9 +8,9 @@ class CardService
     end
     member = find_member
     board = member.boards.find { |board| (board.name == ENV['TRELLO_BOARD_NAME']) }
-    if board.nil? then raise 'Board name is invalid/not found.' end
+    raise 'Board name is invalid/not found.' unless board.present?
     action_cache = ActionCache.new(board)
-    all_cards = board.cards.collect{|card| Card.new(board, card.name, card.id, card.list_id, action_cache.actions)}
+    all_cards = board.cards.collect{|card| Card.new(board, card.name, card.id, card.list_id, action_cache)}
     all_cards.find_all{ |card| card.start_date != 'Error' }
   end
 
