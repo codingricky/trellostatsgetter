@@ -20,11 +20,11 @@ class Card
     @list_id = list_id
     list = board.lists.find { |list| list.id == list_id }
     @list_name = list.name
-    @start_date = check_create_type_start_date(id, action_cache)
+    @start_date = check_create_type_start_date(id, action_cache.actions)
     if @start_date == 'Error'
       @end_date = 'Error'
     else
-      @end_date = check_update_type_end_date(id, @list_name, action_cache)
+      @end_date = check_update_type_end_date(id, @list_name, action_cache.actions)
     end
   rescue
     @list_name = 'Error'
@@ -34,15 +34,17 @@ class Card
 
   private
   def check_create_type_start_date(id, action_cache)
-    if action_cache.nil? then return nil end
-    matching_actions = nil
-    incrementing_value = 0
-    while incrementing_value < action_cache.count
-      matching_actions ||= action_cache[incrementing_value].find_all { |action| (action.type == TYPE_CREATE) && (action.data['list']['name'].present?) && (action.data['card']['id'] == id) }
-      incrementing_value = incrementing_value + 1
+    if action_cache.nil? then return nil
+    else
+      matching_actions = nil
+      incrementing_value = 0
+      while incrementing_value < action_cache.count
+        matching_actions ||= action_cache[incrementing_value].find_all { |action| (action.type == TYPE_CREATE) && (action.data['list']['name'].present?) && (action.data['card']['id'] == id) }
+        incrementing_value = incrementing_value + 1
+      end
+      selected_action = matching_actions.find { |action| (action.data['list']['name'].include?(STARTING_LANE)) }
+      check_update_type_start_date(selected_action, id, action_cache)
     end
-    selected_action = matching_actions.find { |action| (action.data['list']['name'].include?(STARTING_LANE)) }
-    check_update_type_start_date(selected_action, id, action_cache)
   rescue
     return 'Error'
   end
