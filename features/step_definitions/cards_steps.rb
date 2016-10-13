@@ -8,8 +8,9 @@ When(/^My Trello board is empty$/) do
   member = Member.new
   member.boards = [ board ]
   Trello::Member.should_receive(:find).at_least(:once).and_return(member)
-  action_cache = Array.new
-  action_cache << [[]]
+  action_cache = OpenStruct.new
+  action_cache.actions = Array.new
+  action_cache.actions << []
   ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
 end
 
@@ -28,8 +29,9 @@ When(/^I have a card named Michael$/) do
   @action_date = '1/1/1991'
   board = SpecsHelper.create_board_with_card(@card_name, @list_name, @action_date)
   test_action = Action.new('createCard', '1', @action_date)
-  action_cache = Array.new
-  action_cache << [ test_action ]
+  action_cache = OpenStruct.new
+  action_cache.actions = Array.new
+  action_cache.actions << [ test_action ]
   ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
   member = Member.new
   member.boards = [ board ]
@@ -56,8 +58,9 @@ When(/^I have a card named Michael and a bad card$/) do
   board = SpecsHelper.create_board_with_bad_card(@card_name, @list_name, @action_date, @bad_card_name)
   action = Action.new('createCard', '1', @action_date)
   bad_action = Action.new('movedCard', '999999', @action_date)
-  action_cache = Array.new
-  action_cache << [ action, bad_action ]
+  action_cache = OpenStruct.new
+  action_cache.actions = Array.new
+  action_cache.actions << [ action, bad_action ]
   ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
   member = Member.new
   member.boards = [ board ]

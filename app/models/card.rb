@@ -20,11 +20,11 @@ class Card
     @list_id = list_id
     list = board.lists.find { |list| list.id == list_id }
     @list_name = list.name
-    @start_date = check_create_type_start_date(id, action_cache.actions)
+    @start_date = check_create_type_start_date(id, action_cache)
     if @start_date == 'Error'
       @end_date = 'Error'
     else
-      @end_date = check_update_type_end_date(id, @list_name, action_cache.actions)
+      @end_date = check_update_type_end_date(id, @list_name, action_cache)
     end
   rescue
     @list_name = 'Error'
