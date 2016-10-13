@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-10-13T13:51:14+11:00">2016-10-13T13:51:14+11:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-10-13T14:29:56+11:00">2016-10-13T14:29:56+11:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">93.0%</span></span>
+    (<span class="covered_percent"><span class="green">94.72%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         5.88
+         11.57
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>43</b> files in total.
-    <b>814</b> relevant lines. 
-    <span class="green"><b>757</b> lines covered</span> and
-    <span class="red"><b>57</b> lines missed </span>
+    <b>44</b> files in total.
+    <b>852</b> relevant lines. 
+    <span class="green"><b>807</b> lines covered</span> and
+    <span class="red"><b>45</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -122,12 +122,12 @@
       
       <tr>
         <td class="strong"><a href="#04f1af1eaf550411ef9f2c16b68656fa1c45a6f0" class="src_link" title="app/models/action_cache.rb">app/models/action_cache.rb</a></td>
-        <td class="red strong">22.22 %</td>
-        <td>23</td>
-        <td>18</td>
-        <td>4</td>
-        <td>14</td>
-        <td>0.2</td>
+        <td class="green strong">90.91 %</td>
+        <td>31</td>
+        <td>22</td>
+        <td>20</td>
+        <td>2</td>
+        <td>0.9</td>
       </tr>
       
       <tr>
@@ -137,7 +137,7 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>5.4</td>
+        <td>5.6</td>
       </tr>
       
       <tr>
@@ -378,6 +378,16 @@
         <td>28</td>
         <td>0</td>
         <td>1.6</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#3bb7ace0bfaa4f39542deafc188d0b8a78ba54f4" class="src_link" title="spec/model/action_cache_spec.rb">spec/model/action_cache_spec.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>41</td>
+        <td>34</td>
+        <td>34</td>
+        <td>0</td>
+        <td>148.5</td>
       </tr>
       
       <tr>
@@ -2155,11 +2165,11 @@
         <div class="source_table" id="04f1af1eaf550411ef9f2c16b68656fa1c45a6f0">
   <div class="header">
     <h3>app/models/action_cache.rb</h3>
-    <h4><span class="red">22.22 %</span> covered</h4>
+    <h4><span class="green">90.91 %</span> covered</h4>
     <div>
-      <b>18</b> relevant lines. 
-      <span class="green"><b>4</b> lines covered</span> and
-      <span class="red"><b>14</b> lines missed.</span>
+      <b>22</b> relevant lines. 
+      <span class="green"><b>20</b> lines covered</span> and
+      <span class="red"><b>2</b> lines missed.</span>
     </div>
   </div>
   
@@ -2202,62 +2212,62 @@
           <code class="ruby">  def initialize(board)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="7">
-          
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
           
           <code class="ruby">    last_page = nil</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="8">
-          
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
           
           <code class="ruby">    action_cache = Array.new</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="9">
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    action_cache &lt;&lt; board.actions(limit:1000)</code>
+          <code class="ruby">    action_cache &lt;&lt; get_actions_from_board(board)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="10">
-          
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
           
           <code class="ruby">    last_id = action_cache.last.last.id</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="11">
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    if board.actions(limit:1000).count &lt; 1000 then last_page = true end</code>
+          <code class="ruby">    if get_actions_from_board(board).count &lt; 1000 then last_page = true end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="12">
-          
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
           
           <code class="ruby">    while last_page.nil?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="13">
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      current_page = board.actions(limit:1000, before:last_id)</code>
+          <code class="ruby">      current_page = get_actions_from_board_before(board, last_id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="14">
-          
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
           
           <code class="ruby">      action_cache &lt;&lt; current_page</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="15">
-          
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
           
           <code class="ruby">      last_id = action_cache.last.last.id</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="16">
-          
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
           
           <code class="ruby">      if current_page.count &lt; 1000 then last_page = true end</code>
         </li>
@@ -2268,26 +2278,26 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="18">
-          
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
           
           <code class="ruby">    puts &#39;Total amount of actions is &#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="19">
-          
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
           
           <code class="ruby">    total = ((action_cache.count - 1) * 1000 + action_cache.last.count)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="20">
-          
+        <li class="covered" data-hits="1" data-linenumber="20">
+          <span class="hits">1</span>
           
           <code class="ruby">    puts total</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="21">
-          
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
           
           <code class="ruby">    @actions = action_cache</code>
         </li>
@@ -2299,6 +2309,54 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_actions_from_board(board)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
+          
+          <code class="ruby">    board.actions(limit:1000)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_actions_from_board_before(board, last_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="29">
+          
+          
+          <code class="ruby">    board.actions(limit:1000, before:last_id)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">end</code>
@@ -2370,8 +2428,8 @@
           <code class="ruby">  def initialize</code>
         </li>
       
-        <li class="covered" data-hits="32" data-linenumber="9">
-          <span class="hits">32</span>
+        <li class="covered" data-hits="33" data-linenumber="9">
+          <span class="hits">33</span>
           
           <code class="ruby">    @name = ENV[&#39;TRELLO_BOARD_NAME&#39;]</code>
         </li>
@@ -6694,6 +6752,270 @@
           
           
           <code class="ruby"></code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="3bb7ace0bfaa4f39542deafc188d0b8a78ba54f4">
+  <div class="header">
+    <h3>spec/model/action_cache_spec.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>34</b> relevant lines. 
+      <span class="green"><b>34</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;rspec&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;spec_helper&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;trello&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">describe ActionCache do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  before &quot;receives all actions from a board&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @board = Board.new</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @actions1 = [ ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @actions2 = [ ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @board.actions = [ ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    i = 1005</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    while i &gt; 5</code>
+        </li>
+      
+        <li class="covered" data-hits="1000" data-linenumber="13">
+          <span class="hits">1000</span>
+          
+          <code class="ruby">      sample_action = OpenStruct.new</code>
+        </li>
+      
+        <li class="covered" data-hits="1000" data-linenumber="14">
+          <span class="hits">1000</span>
+          
+          <code class="ruby">      sample_action.id = i</code>
+        </li>
+      
+        <li class="covered" data-hits="1000" data-linenumber="15">
+          <span class="hits">1000</span>
+          
+          <code class="ruby">      @actions1 &lt;&lt; sample_action</code>
+        </li>
+      
+        <li class="covered" data-hits="1000" data-linenumber="16">
+          <span class="hits">1000</span>
+          
+          <code class="ruby">      @board.actions &lt;&lt; sample_action</code>
+        </li>
+      
+        <li class="covered" data-hits="1000" data-linenumber="17">
+          <span class="hits">1000</span>
+          
+          <code class="ruby">      i = i - 1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    while i &gt; 0</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="20">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      sample_action = OpenStruct.new</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="21">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      sample_action.id = i</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="22">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      @actions2&lt;&lt; sample_action</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="23">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      @board.actions &lt;&lt; sample_action</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="24">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      i = i - 1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="26">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @board.cards = [ ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @board.lists = [ ]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @board.name = &#39;Test Board&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="31">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;paginates them into an array, and returns the array&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="32">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    ActionCache.any_instance.should_receive(:get_actions_from_board).at_least(:once).and_return(@actions1)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    ActionCache.any_instance.should_receive(:get_actions_from_board_before).at_least(:once).and_return(@actions2)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="34">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    test_cache = ActionCache.new(@board)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    test_cache.actions.count.should eq(2)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="36">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    test_cache.actions.first.count.should eq(1000)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="37">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    test_cache.actions.last.count.should eq(5)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="38">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    total = ((test_cache.actions.count - 1) * 1000 + test_cache.actions.last.count)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="39">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    total.should eq(1005)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">end</code>
         </li>
       
     </ol>
