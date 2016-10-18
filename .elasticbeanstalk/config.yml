@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: trelloStatsGetter-env
+    environment: trello-stats-getter-prod
     group_suffix: null
 global:
   application_name: trello-stats-getter

@@ -14,7 +14,6 @@ class Card
   FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen']
 
   def initialize(board, name, id, list_id, action_cache)
-    puts name
     @name = name
     @id = id
     @list_id = list_id

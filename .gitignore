@@ -23,14 +23,15 @@
 # Ignore secrets/tokens
 .env
 
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
 .idea/*
 coverage/*
 .idea/workspace.xml
 coverage/.last_run.json
 coverage/.resultset.json
 coverage/index.html
-(limit:1000, before:last_id)
-(limit:1000, before:last_id.id)
-t_id = actioncache.last
-t_id = actioncache.last.last.id
 

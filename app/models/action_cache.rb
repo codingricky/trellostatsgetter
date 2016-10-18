@@ -15,9 +15,6 @@ class ActionCache
       last_id = action_cache.last.last.id
       if current_page.count < 1000 then last_page = true end
     end
-    puts 'Total amount of actions is '
-    total = ((action_cache.count - 1) * 1000 + action_cache.last.count)
-    puts total
     @actions = action_cache
   end
 
