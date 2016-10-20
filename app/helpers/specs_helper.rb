@@ -14,7 +14,7 @@ module SpecsHelper
     board.actions = [ action, action2 ]
     action_cache = Array.new
     action_cache << board.actions
-    Card.new(board, card_name, card_id, card_list_id, action_cache)
+    Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache)
   end
 
   def self.create_a_card_multiple_lists (list_name)
@@ -37,7 +37,7 @@ module SpecsHelper
     board.actions = [ action ]
     action_cache = Array.new
     action_cache << board.actions
-    Card.new(board, card_name, card_id, card_list_id, action_cache)
+    Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache)
   end
 
   def self.create_a_card_multiple_actions (action_date)
@@ -67,7 +67,7 @@ module SpecsHelper
     board.actions = [ action, oldaction, wrongaction, wrongaction2 ]
     action_cache = Array.new
     action_cache << board.actions
-    Card.new(board, card_name, card_id, card_list_id, action_cache)
+    Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache)
   end
 
   def self.populate_a_board(card_id, card_list_id)

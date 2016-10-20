@@ -2,12 +2,6 @@ require 'rspec'
 require 'spec_helper'
 
 describe 'cards/index', type: :view do
-  it "should display the correct page" do
-    render
-    rendered.should match /Trello/
-    rendered.should match /Listing/
-    rendered.should match /cards/
-  end
 
   before do
     card_name = 'Michael'
@@ -18,8 +12,16 @@ describe 'cards/index', type: :view do
     dud_action = Action.new('updateCard_finish', '9999923454234', '1/1/1990')
     action_cache = Array.new
     action_cache << [ dud_action ]
-    @cards = [ Card.new(board, card_name, card_id, card_list_id, action_cache)]
-    @two_cards = [ Card.new(board, card_name, card_id, card_list_id, action_cache), Card.new(board, another_card_name, card_id, card_list_id, action_cache)]
+    @cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache)]
+    @two_cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache),
+                   Card.new(CardService.create_list_id_to_name(board), another_card_name, card_id, card_list_id, action_cache)]
+  end
+
+  it "should display the correct page" do
+    render
+    rendered.should match /Trello/
+    rendered.should match /Listing/
+    rendered.should match /cards/
   end
 
   it "displays card stats upon loading" do
@@ -56,7 +58,7 @@ describe 'cards/index', type: :view do
     update = Action.new(update_type, card_id, update_date)
     action_cache = Array.new
     action_cache << [ create, update ]
-    cards = [ Card.new(board, card_name, card_id, card_list_id, action_cache) ]
+    cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache) ]
     assign(:cards, cards)
     render
     rendered.should match /Michael/
