@@ -42,32 +42,19 @@ class Card
     if actions.nil?
       return nil
     else
-      selected_action = find_create_action_in_starting_lane(actions)
+      selected_action = actions.find { |action| is_create_action_in_starting_lane?(action) }
       selected_action ||= find_update_action_with_destination_of_starting_lane(actions)
       selected_action ? selected_action.date : nil
     end
   rescue Exception => e
     return 'Error'
   end
-
-  def find_create_action_in_starting_lane(actions)
-    matching_action = nil
-    incrementing_value = 0
-    while incrementing_value < actions.count
-      if !matching_action && is_create_action_in_starting_lane?(actions[incrementing_value])
-        matching_action = actions[incrementing_value]
-      end
-      incrementing_value = incrementing_value + 1
-    end
-    selected_action = nil
-    if matching_action
-      selected_action = matching_action.data['list']['name'] == STARTING_LANE ? matching_action : nil
-    end
-    selected_action
-  end
-
+  
   def is_create_action_in_starting_lane?(action)
-    (action.type == TYPE_CREATE) && (action.data['list']['name'].present?) && (action.data['card']['id'] == @id)
+    (action.type == TYPE_CREATE) &&
+        action.data['list']['name'] == STARTING_LANE &&
+        action.data['list']['name'].present? &&
+        (action.data['card']['id'] == @id)
   end
 
   def find_update_action_with_destination_of_starting_lane(actions)
