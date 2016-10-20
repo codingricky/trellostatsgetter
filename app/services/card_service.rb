@@ -13,8 +13,9 @@ class CardService
 
     action_cache = ActionCache.new(board)
 
+    list_id_name = create_list_id_to_name(board)
     Rails.logger.info("calling board.cards")
-    all_cards = board.cards.collect{|card| Card.new(create_list_id_to_name(board), card.name, card.id, card.list_id, action_cache.actions)}
+    all_cards = board.cards.collect{|card| Card.new(list_id_name, card.name, card.id, card.list_id, action_cache.actions)}
     Rails.logger.info("calling all_cards.find_all")
     all_cards.find_all{ |card| card.start_date != 'Error' }
   end
@@ -26,6 +27,8 @@ class CardService
 
   def self.create_list_id_to_name(board)
     lists = board.lists
+    return nil if lists.nil?
+
     list_id_to_name = {}
     lists.each do |list|
       list_id_to_name[list.id] = list.name

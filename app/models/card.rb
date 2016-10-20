@@ -19,11 +19,17 @@ class Card
     @id = id
     @list_id = list_id
     @list_name = list_id_to_name[@list_id]
-    @start_date = find_start_date(id, actions)
+    Rails.logger.info("finding start date #{id}")
+    @start_date = find_start_date(actions)
+    Rails.logger.info("finished finding start date #{id}")
+
     if @start_date == 'Error'
       @end_date = 'Error'
     else
-      @end_date = find_end_date(id, @list_name, actions)
+      Rails.logger.info("finding end date #{id}")
+      @end_date = find_end_date(actions)
+      Rails.logger.info("finished finding end date #{id}")
+
     end
   rescue
     @list_name = 'Error'
@@ -32,23 +38,23 @@ class Card
   end
 
   private
-  def find_start_date(card_id, actions)
+  def find_start_date(actions)
     if actions.nil?
       return nil
     else
-      selected_action = find_create_action_in_starting_lane(card_id, actions)
-      selected_action ||= find_update_action_with_destination_of_starting_lane(card_id, actions)
+      selected_action = find_create_action_in_starting_lane(actions)
+      selected_action ||= find_update_action_with_destination_of_starting_lane(actions)
       selected_action ? selected_action.date : nil
     end
-  rescue
+  rescue Exception => e
     return 'Error'
   end
 
-  def find_create_action_in_starting_lane(card_id, actions)
+  def find_create_action_in_starting_lane(actions)
     matching_actions = nil
     incrementing_value = 0
     while incrementing_value < actions.count
-      matching_actions ||= actions[incrementing_value].find_all { |action| (action.type == TYPE_CREATE) && (action.data['list']['name'].present?) && (action.data['card']['id'] == card_id) }
+      matching_actions ||= actions[incrementing_value].find_all { |action| is_create_action_in_starting_lane?(action) }
       incrementing_value = incrementing_value + 1
     end
     matched_action = matching_actions.first
@@ -59,27 +65,30 @@ class Card
     selected_action
   end
 
+  def is_create_action_in_starting_lane?(action)
+    (action.type == TYPE_CREATE) && (action.data['list']['name'].present?) && (action.data['card']['id'] == @id)
+  end
 
-  def find_update_action_with_destination_of_starting_lane(card_id, actions)
+  def find_update_action_with_destination_of_starting_lane(actions)
     selected_action = nil
     incrementing_value = 0
     while incrementing_value < actions.count
-      selected_action ||= actions[incrementing_value].find { |action| (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].include?(STARTING_LANE)) && (action.data['card']['id'] == card_id) }
+      selected_action ||= actions[incrementing_value].find { |action| (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].include?(STARTING_LANE)) && (action.data['card']['id'] == @id) }
       incrementing_value = incrementing_value + 1
     end
     selected_action
   end
 
-  def find_end_date(id, list_name, actions)
+  def find_end_date(actions)
     if actions.nil?
       return nil
     end
 
-    if list_name.in?(FINISHING_LANES)
+    if @list_name.in?(FINISHING_LANES)
       selected_action = nil
       incrementing_value = 0
       while incrementing_value < actions.count
-        selected_action ||= actions[incrementing_value].find { |action| (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].in?(FINISHING_LANES)) && (action.data['card']['id'] == id) }
+        selected_action ||= actions[incrementing_value].find { |action| (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].in?(FINISHING_LANES)) && (action.data['card']['id'] == @id) }
         incrementing_value = incrementing_value + 1
       end
     end
