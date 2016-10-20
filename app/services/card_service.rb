@@ -25,6 +25,14 @@ class CardService
     Trello::Member.find(ENV['TRELLO_MEMBER_ID'])
   end
 
+  def self.find_start_date(card)
+
+  end
+
+  def self.find_end_date(card)
+
+  end
+
   def self.create_list_id_to_name(board)
     lists = board.lists
     return nil if lists.nil?

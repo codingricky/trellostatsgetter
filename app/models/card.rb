@@ -49,7 +49,7 @@ class Card
   rescue Exception => e
     return 'Error'
   end
-  
+
   def is_create_action_in_starting_lane?(action)
     (action.type == TYPE_CREATE) &&
         action.data['list']['name'] == STARTING_LANE &&
