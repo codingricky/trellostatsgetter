@@ -1,9 +1,21 @@
+require 'logging'
+
+logger = Logging.logger(STDOUT)
+logger.level = :warn
+logger.warn "Only log messages that are warnings or higher will be logged."
+
 class CardsController < ApplicationController
   def index
-    #TODO fix tests
+    #TODO add logging [x]
+    #TODO add active caching
+    #TODO Configure ruby time such that it says exact amount of days instead of "about a month."
     #TODO assert @errors (and @cards) have become set
     #TODO Get code coverage to 100%
-    #TODO get rid of unnec. puts to the console
+    #TODO rewrite old tests to be efficient
+
+    # Potential caching solution, speak to Ricky...
+    # Rails.cache.fetch("trello_data_cache", expires_in:1.hour ) { ((CardService.all).sort! { |a, b| b.start_date.to_i <=> a.start_date.to_i }) }
+    # @cards = Rails.cache.fetch("trello_data_cache")
 
     @cards = CardService.all
     @cards.sort! { |a, b| b.start_date.to_i <=> a.start_date.to_i }
