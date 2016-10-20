@@ -6,7 +6,6 @@ gem 'jquery-turbolinks'
 gem 'dotenv-rails'
 gem 'ruby-trello'
 gem 'travis'
-gem 'pg'
 gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
@@ -14,22 +13,9 @@ gem 'omniauth-google-oauth2'
 gem 'aws-healthcheck'
 gem 'logging'
 
-group :development, :test do
-gem 'rspec-rails'
-gem 'rspec'
-gem 'simplecov', :require => false, :group => :test
-gem 'pry'
-gem 'capybara'
-gem 'shoulda-matchers'
-gem 'cucumber-rails', :require => false
-gem 'database_cleaner'
-gem 'rails-controller-testing'
-end
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-# Use mysql2 as the database for Active Record
-gem 'mysql2'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -58,6 +44,16 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'rspec'
+  gem 'simplecov', :require => false, :group => :test
+  gem 'pry'
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -69,5 +65,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :production do
+  # Use mysql2 as the database for Active Record
+  gem 'mysql2'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
