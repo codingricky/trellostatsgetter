@@ -51,16 +51,17 @@ class Card
   end
 
   def find_create_action_in_starting_lane(actions)
-    matching_actions = nil
+    matching_action = nil
     incrementing_value = 0
     while incrementing_value < actions.count
-      matching_actions ||= actions[incrementing_value].find_all { |action| is_create_action_in_starting_lane?(action) }
+      if !matching_action && is_create_action_in_starting_lane?(actions[incrementing_value])
+        matching_action = actions[incrementing_value]
+      end
       incrementing_value = incrementing_value + 1
     end
-    matched_action = matching_actions.first
     selected_action = nil
-    if matched_action
-      selected_action = matched_action.data['list']['name'] == STARTING_LANE ? matched_action : nil
+    if matching_action
+      selected_action = matching_action.data['list']['name'] == STARTING_LANE ? matching_action : nil
     end
     selected_action
   end
@@ -73,10 +74,16 @@ class Card
     selected_action = nil
     incrementing_value = 0
     while incrementing_value < actions.count
-      selected_action ||= actions[incrementing_value].find { |action| (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].include?(STARTING_LANE)) && (action.data['card']['id'] == @id) }
+      if !selected_action && did_update_action_end_in_starting_lane?(actions[incrementing_value])
+        selected_action = actions[incrementing_value]
+      end
       incrementing_value = incrementing_value + 1
     end
     selected_action
+  end
+
+  def did_update_action_end_in_starting_lane?(action)
+    (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].include?(STARTING_LANE)) && (action.data['card']['id'] == @id)
   end
 
   def find_end_date(actions)
@@ -88,11 +95,17 @@ class Card
       selected_action = nil
       incrementing_value = 0
       while incrementing_value < actions.count
-        selected_action ||= actions[incrementing_value].find { |action| (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].in?(FINISHING_LANES)) && (action.data['card']['id'] == @id) }
+        if !selected_action && did_update_action_end_in_finishing_lane?(actions[incrementing_value])
+          selected_action = actions[incrementing_value]
+        end
         incrementing_value = incrementing_value + 1
       end
     end
     selected_action ? selected_action.date : nil
+  end
+
+  def did_update_action_end_in_finishing_lane?(action)
+    (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].in?(FINISHING_LANES)) && (action.data['card']['id'] == @id)
   end
 
 end

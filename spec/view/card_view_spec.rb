@@ -10,8 +10,7 @@ describe 'cards/index', type: :view do
     card_list_id = '1'
     board = SpecsHelper.populate_a_board(card_id, card_list_id)
     dud_action = Action.new('updateCard_finish', '9999923454234', '1/1/1990')
-    action_cache = Array.new
-    action_cache << [ dud_action ]
+    action_cache = [ dud_action ]
     @cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache)]
     @two_cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache),
                    Card.new(CardService.create_list_id_to_name(board), another_card_name, card_id, card_list_id, action_cache)]
@@ -56,8 +55,7 @@ describe 'cards/index', type: :view do
     update_type = 'updateCard_finish'
     create = Action.new(create_type, card_id, create_date)
     update = Action.new(update_type, card_id, update_date)
-    action_cache = Array.new
-    action_cache << [ create, update ]
+    action_cache = [ create, update ]
     cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache) ]
     assign(:cards, cards)
     render

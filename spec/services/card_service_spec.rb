@@ -50,8 +50,7 @@ describe CardService do
       @first_board.lists = [ @list_alpha ]
       @first_board.actions = [ @action_create_alpha ]
       action_cache = OpenStruct.new
-      action_cache.actions = Array.new
-      action_cache.actions << @first_board.actions
+      action_cache.actions = @first_board.actions
       card_alpha = Card.new(CardService.create_list_id_to_name(@first_board), @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache.actions)
       ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
       @first_board.cards = [ card_alpha ]
@@ -84,8 +83,7 @@ describe CardService do
       @first_board.lists = [ @list_bravo ]
       @first_board.actions = [ @action_update_bravo_latest, @action_update_bravo ]
       action_cache = OpenStruct.new
-      action_cache.actions = Array.new
-      action_cache.actions << @first_board.actions
+      action_cache.actions = @first_board.actions
       ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
       card_bravo = Card.new(CardService.create_list_id_to_name(@first_board), @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache.actions)
       @first_board.cards = [ card_bravo ]
@@ -106,8 +104,7 @@ describe CardService do
       bad_action = Action.new('updateCard_finish', @card_bravo_id, '1/1/1990')
       @first_board.actions = [ bad_action ]
       action_cache = OpenStruct.new
-      action_cache.actions = Array.new
-      action_cache.actions << @first_board.actions
+      action_cache.actions = @first_board.actions
       ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
       card_bravo = Card.new(CardService.create_list_id_to_name(@first_board), @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache.actions)
       @first_board.cards = [ card_bravo ]
@@ -128,8 +125,7 @@ describe CardService do
       @first_board.lists = [ @list_alpha, @list_bravo ]
       @first_board.actions = [ @action_create_alpha, @action_create_bravo ]
       action_cache = OpenStruct.new
-      action_cache.actions = Array.new
-      action_cache.actions << @first_board.actions
+      action_cache.actions = @first_board.actions
       ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
       card_bravo = Card.new(CardService.create_list_id_to_name(@first_board), @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache.actions)
       card_alpha = Card.new(CardService.create_list_id_to_name(@first_board), @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache.actions)
@@ -167,7 +163,7 @@ describe CardService do
       action_cache = double('action cache')
       actions_that_throws_exception = double('actions throwing exception')
       allow(actions_that_throws_exception).to receive(:count).and_raise('testing exception')
-      allow(action_cache).to receive(:actions).and_return([@first_board.actions], [@first_board.actions], actions_that_throws_exception)
+      allow(action_cache).to receive(:actions).and_return(@first_board.actions, @first_board.actions, actions_that_throws_exception)
       ActionCache.stub(:new).and_return(action_cache)
       card_alpha = create_card(@card_alpha_id, @card_alpha_name, @card_alpha_list_id)
       card_bravo = create_card(@card_bravo_id, @card_bravo_name, @card_bravo_list_id)
@@ -215,8 +211,7 @@ describe CardService do
       @first_board.lists = [ @list_alpha, @list_bravo ]
       @first_board.actions = [ @action_update_alpha_latest, @action_update_alpha, @action_update_bravo, @action_create_bravo ]
       action_cache = OpenStruct.new
-      action_cache.actions = Array.new
-      action_cache.actions << @first_board.actions
+      action_cache.actions = @first_board.actions
       ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
       card_bravo = Card.new(CardService.create_list_id_to_name(@first_board), @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache.actions)
       card_alpha = Card.new(CardService.create_list_id_to_name(@first_board), @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache.actions)
@@ -239,8 +234,7 @@ describe CardService do
       @member.boards = [ @first_board ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
       action_cache = OpenStruct.new
-      action_cache.actions = Array.new
-      action_cache.actions << []
+      action_cache.actions = []
       ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
     end
 
