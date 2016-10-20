@@ -40,7 +40,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (7.1.4)
-    autoprefixer-rails (6.5.0.2)
+    autoprefixer-rails (6.5.1)
       execjs
     aws-healthcheck (1.0.1)
       rails (>= 3.0)
@@ -142,7 +142,10 @@ GEM
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    logger (1.2.8)
+    little-plugger (1.1.4)
+    logging (2.1.0)
+      little-plugger (~> 1.1)
+      multi_json (~> 1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -345,7 +348,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   listen (~> 3.0.5)
-  logger
+  logging
   mysql2
   omniauth
   omniauth-google-oauth2
