@@ -13,18 +13,6 @@ gem 'omniauth-google-oauth2'
 gem 'aws-healthcheck'
 gem 'logger'
 
-group :development, :test do
-gem 'rspec-rails'
-gem 'rspec'
-gem 'simplecov', :require => false, :group => :test
-gem 'pry'
-gem 'capybara'
-gem 'shoulda-matchers'
-gem 'cucumber-rails', :require => false
-gem 'database_cleaner'
-gem 'rails-controller-testing'
-end
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
@@ -57,6 +45,15 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'rspec'
+  gem 'simplecov', :require => false, :group => :test
+  gem 'pry'
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 group :development do
