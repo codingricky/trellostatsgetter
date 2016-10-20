@@ -14,6 +14,8 @@ class Card
   FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen']
 
   def initialize(board, name, id, list_id, action_cache)
+    Rails.logger.info("creating card with id #{id}")
+
     @name = name
     @id = id
     @list_id = list_id
