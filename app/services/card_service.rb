@@ -12,6 +12,7 @@ class CardService
     raise 'Board name is invalid/not found.' unless board.present?
 
     action_cache = ActionCache.new(board)
+
     Rails.logger.info("calling board.cards")
     all_cards = board.cards.collect{|card| Card.new(create_list_id_to_name(board), card.name, card.id, card.list_id, action_cache.actions)}
     Rails.logger.info("calling all_cards.find_all")

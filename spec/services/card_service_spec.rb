@@ -27,8 +27,6 @@ describe CardService do
     @action_update_bravo = Action.new('updateCard', '2', '1/1/2002')
     @action_update_bravo_latest = Action.new('updateCard', '2', '1/1/2012')
     @action_create_foreign = Action.new('movedCard', '9', '1/1/2999')
-    allow(@action_create_foreign).to receive(:date).and_raise("boom")
-
     @first_board = Board.new
     @member = Member.new
   end
@@ -166,15 +164,24 @@ describe CardService do
       @member.boards = [ @first_board ]
       @first_board.lists = [ @list_alpha, @list_bravo ]
       @first_board.actions = [ @action_create_alpha, @action_create_bravo, @action_create_foreign ]
-      action_cache = OpenStruct.new
-      action_cache.actions = Array.new
-      action_cache.actions << @first_board.actions
-      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
-      card_bravo = Card.new(CardService.create_list_id_to_name(@first_board), @card_bravo_name, @card_bravo_id, @card_bravo_list_id, action_cache.actions)
-      card_alpha = Card.new(CardService.create_list_id_to_name(@first_board), @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache.actions)
-      card_foreign = Card.new(CardService.create_list_id_to_name(@first_board), @card_foreign_name, @card_foreign_id, @card_foreign_list_id, action_cache.actions)
+      action_cache = double('action cache')
+      actions_that_throws_exception = double('actions throwing exception')
+      allow(actions_that_throws_exception).to receive(:count).and_raise('testing exception')
+      allow(action_cache).to receive(:actions).and_return([@first_board.actions], [@first_board.actions], actions_that_throws_exception)
+      ActionCache.stub(:new).and_return(action_cache)
+      card_alpha = create_card(@card_alpha_id, @card_alpha_name, @card_alpha_list_id)
+      card_bravo = create_card(@card_bravo_id, @card_bravo_name, @card_bravo_list_id)
+      card_foreign = create_card(@card_foreign_id, @card_foreign_name, @card_foreign_list_id)
       @first_board.cards = [ card_alpha, card_bravo, card_foreign ]
       Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
+    end
+
+    def create_card(id, name, list_id)
+      card = OpenStruct.new
+      card.id = id
+      card.name = name
+      card.list_id = list_id
+      card
     end
 
     it "puts the cards' name into an array, discarding the errored card" do
