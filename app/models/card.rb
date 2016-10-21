@@ -39,13 +39,9 @@ class Card
 
   private
   def find_start_date(actions)
-    if actions.nil?
-      return nil
-    else
       selected_action = actions.find { |action| is_create_action_in_starting_lane?(action) }
       selected_action ||= find_update_action_with_destination_of_starting_lane(actions)
       selected_action ? selected_action.date : nil
-    end
   rescue Exception => e
     return 'Error'
   end
@@ -66,9 +62,6 @@ class Card
   end
 
   def find_end_date(actions)
-    if actions.nil?
-      return nil
-    end
     if @list_name.in?(FINISHING_LANES)
       selected_action = actions.find { |action| did_update_action_end_in_finishing_lane?(action) }
     end
