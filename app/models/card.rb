@@ -35,8 +35,8 @@ class Card
   private
   def find_start_date(actions)
       selected_action = actions.find { |action| is_create_action_in_starting_lane?(action) }
-      selected_action ||= find_update_action_with_destination_of_starting_lane(actions)
-      selected_action ? selected_action.date : nil
+      selected_action ||= actions.find { |action| did_update_action_end_in_starting_lane?(action) }
+      selected_action.try(:date)
   end
 
   def is_create_action_in_starting_lane?(action)
@@ -46,9 +46,6 @@ class Card
         (action.data['card']['id'] == @id)
   end
 
-  def find_update_action_with_destination_of_starting_lane(actions)
-    actions.find { |action| did_update_action_end_in_starting_lane?(action) }
-  end
 
   def did_update_action_end_in_starting_lane?(action)
     (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].include?(STARTING_LANE)) && (action.data['card']['id'] == @id)
@@ -58,7 +55,7 @@ class Card
     if @list_name.in?(FINISHING_LANES)
       selected_action = actions.find { |action| did_update_action_end_in_finishing_lane?(action) }
     end
-    selected_action ? selected_action.date : nil
+    selected_action.try(:date)
   end
 
   def did_update_action_end_in_finishing_lane?(action)
