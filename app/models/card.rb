@@ -30,11 +30,6 @@ class Card
       @end_date = find_end_date(actions)
       Rails.logger.info("finished finding end date #{id}")
     end
-
-  rescue NoMethodError => e
-    @list_name = 'Error'
-    @start_date = 'Error'
-    @end_date = 'Error'
   end
 
   private
@@ -42,8 +37,6 @@ class Card
       selected_action = actions.find { |action| is_create_action_in_starting_lane?(action) }
       selected_action ||= find_update_action_with_destination_of_starting_lane(actions)
       selected_action ? selected_action.date : nil
-  rescue NoMethodError => e
-    return 'Error'
   end
 
   def is_create_action_in_starting_lane?(action)

@@ -155,57 +155,6 @@ describe CardService do
     end
   end
 
-  context "receives multiple cards from trello, one unhandleable" do
-    before do
-      @member.boards = [ @first_board ]
-      @first_board.lists = [ @list_alpha, @list_bravo ]
-      action_that_throws_exception = double('actions throwing exception')
-      allow(action_that_throws_exception).to receive(:type).and_raise(NoMethodError)
-      @first_board.actions = [ @action_create_alpha, @action_create_bravo, action_that_throws_exception ]
-      action_cache = OpenStruct.new
-      action_cache.actions = @first_board.actions
-      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
-      card_alpha = create_card(@card_alpha_id, @card_alpha_name, @card_alpha_list_id)
-      card_bravo = create_card(@card_bravo_id, @card_bravo_name, @card_bravo_list_id)
-      card_foreign = create_card(@card_foreign_id, @card_foreign_name, @card_foreign_list_id)
-      @first_board.cards = [ card_alpha, card_bravo, card_foreign ]
-      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
-    end
-
-    def create_card(id, name, list_id)
-      card = OpenStruct.new
-      card.id = id
-      card.name = name
-      card.list_id = list_id
-      card
-    end
-
-    it "puts the cards' name into an array, discarding the errored card" do
-      cards = CardService.all
-      cards.count.should eq(2)
-      cards.first.name.should eq(@card_alpha_name)
-      cards.last.name.should eq(@card_bravo_name)
-      cards.should_not include(@card_foreign_name)
-    end
-
-    it "puts the cards' swimlane into an array, discarding the errored card" do
-      cards = CardService.all
-      cards.count.should eq(2)
-      cards.first.list_name.should eq(@list_alpha.name)
-      cards.last.list_name.should eq(@list_bravo.name)
-      cards.should_not include(@list_foreign.name)
-    end
-
-    it "puts the cards' startdate into an array, discarding the errored card" do
-      cards = CardService.all
-      cards.count.should eq(2)
-      cards.first.start_date.should eq(@action_create_alpha.date)
-      cards.last.start_date.should eq(@action_create_bravo.date)
-      cards.should_not include(@action_create_foreign.date)
-      cards.should_not include('Error')
-    end
-  end
-
   context "receives multiple cards from trello that have multiple actions such as being both created and later moved into the Resumes swimlane" do
     before do
       @first_board.lists = [ @list_alpha, @list_bravo ]

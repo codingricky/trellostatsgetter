@@ -104,6 +104,8 @@ module SpecsHelper
   def self.create_board_with_card(card_name, list_name, action_date)
     card_id = '1'
     card_list_id = '2'
+    list_id_to_name = {}
+    list_id_to_name[card_list_id] = list_name
     action_type = 'createCard'
     action_card_id = '1'
     list_id = '2'
@@ -113,7 +115,7 @@ module SpecsHelper
     board.lists = [ list ]
     board.actions = [ action ]
     action_cache = board.actions
-    card = Card.new(board, card_name, card_id, card_list_id, action_cache)
+    card = Card.new(list_id_to_name, card_name, card_id, card_list_id, action_cache)
     board.cards = [ card ]
     board
   end
