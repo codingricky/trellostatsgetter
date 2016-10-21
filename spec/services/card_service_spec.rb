@@ -159,12 +159,12 @@ describe CardService do
     before do
       @member.boards = [ @first_board ]
       @first_board.lists = [ @list_alpha, @list_bravo ]
-      @first_board.actions = [ @action_create_alpha, @action_create_bravo, @action_create_foreign ]
-      action_cache = double('action cache')
-      actions_that_throws_exception = double('actions throwing exception')
-      allow(actions_that_throws_exception).to receive(:count).and_raise('testing exception')
-      allow(action_cache).to receive(:actions).and_return(@first_board.actions, @first_board.actions, actions_that_throws_exception)
-      ActionCache.stub(:new).and_return(action_cache)
+      action_that_throws_exception = double('actions throwing exception')
+      allow(action_that_throws_exception).to receive(:type).and_raise(NoMethodError)
+      @first_board.actions = [ @action_create_alpha, @action_create_bravo, action_that_throws_exception ]
+      action_cache = OpenStruct.new
+      action_cache.actions = @first_board.actions
+      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
       card_alpha = create_card(@card_alpha_id, @card_alpha_name, @card_alpha_list_id)
       card_bravo = create_card(@card_bravo_id, @card_bravo_name, @card_bravo_list_id)
       card_foreign = create_card(@card_foreign_id, @card_foreign_name, @card_foreign_list_id)

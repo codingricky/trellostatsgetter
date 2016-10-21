@@ -10,6 +10,10 @@ class Action
       @type = 'updateCard'
     end
 
+    if @type == 'movedCard'
+      @type = 'updateCard'
+    end
+
     if type == "createCard"
       @data = {"list"=>{"name"=>"Resumes to be Screened"},
                "card"=>
