@@ -29,8 +29,8 @@ class Card
       Rails.logger.info("finding end date #{id}")
       @end_date = find_end_date(actions)
       Rails.logger.info("finished finding end date #{id}")
-
     end
+
   rescue
     @list_name = 'Error'
     @start_date = 'Error'
@@ -58,15 +58,7 @@ class Card
   end
 
   def find_update_action_with_destination_of_starting_lane(actions)
-    selected_action = nil
-    incrementing_value = 0
-    while incrementing_value < actions.count
-      if !selected_action && did_update_action_end_in_starting_lane?(actions[incrementing_value])
-        selected_action = actions[incrementing_value]
-      end
-      incrementing_value = incrementing_value + 1
-    end
-    selected_action
+    actions.find { |action| did_update_action_end_in_starting_lane?(action) }
   end
 
   def did_update_action_end_in_starting_lane?(action)
@@ -77,16 +69,8 @@ class Card
     if actions.nil?
       return nil
     end
-
     if @list_name.in?(FINISHING_LANES)
-      selected_action = nil
-      incrementing_value = 0
-      while incrementing_value < actions.count
-        if !selected_action && did_update_action_end_in_finishing_lane?(actions[incrementing_value])
-          selected_action = actions[incrementing_value]
-        end
-        incrementing_value = incrementing_value + 1
-      end
+      selected_action = actions.find { |action| did_update_action_end_in_finishing_lane?(action) }
     end
     selected_action ? selected_action.date : nil
   end
