@@ -31,7 +31,6 @@ describe User do
     duplicate_first_user = User.from_omniauth(@user)
     duplicate_first_user.email.should eq(unique_first_user.email)
     duplicate_first_user.id.should eq(unique_first_user.id)
-    duplicate_first_user.created_at.should eq(unique_first_user.created_at)
     User.count.should eq(1)
     unique_second_user = User.from_omniauth(@user2)
     unique_second_user.email.should eq(@user2.info.email)
