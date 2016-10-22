@@ -50,4 +50,5 @@ describe Card do
       @card.start_date.should eq(@action_date)
     end
   end
+
 end

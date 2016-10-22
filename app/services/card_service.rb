@@ -7,6 +7,8 @@ class CardService
       config.member_token = ENV['TRELLO_MEMBER_TOKEN']
     end
     member = find_member
+    raise 'Member is invalid/not found.' unless member.present?
+
     Rails.logger.info("calling member.boards")
     board = member.boards.find { |board| (board.name == ENV['TRELLO_BOARD_NAME']) }
     raise 'Board name is invalid/not found.' unless board.present?

@@ -32,6 +32,14 @@ class Card
     end
   end
 
+  def duration_in_days
+    return nil if @start_date.nil?
+
+    start_date = @start_date
+    end_date = @end_date.nil? ? DateTime.now : @end_date
+    (end_date.to_date - start_date.to_date).to_i
+  end
+
   private
   def find_start_date(actions)
       selected_action = actions.find { |action| is_create_action_in_starting_lane?(action) }

@@ -30,7 +30,6 @@ describe 'cards/index', type: :view do
     rendered.should match /Sample List/
     rendered.should match /This card has never been placed in the Resumes to be Screened lane/
     rendered.should match /This card is not placed in an end lane/
-    rendered.should match /This card duration cannot be calculated/
   end
 
   it "displays multiple card stats upon loading" do
@@ -40,7 +39,6 @@ describe 'cards/index', type: :view do
     rendered.should match /Sample List/
     rendered.should match /This card has never been placed in the Resumes to be Screened lane/
     rendered.should match /This card is not placed in an end lane/
-    rendered.should match /This card duration cannot be calculated/
     rendered.should match /Ricky/
   end
 
@@ -63,7 +61,7 @@ describe 'cards/index', type: :view do
     rendered.should match /Success - Hired/
     rendered.should match /1990/
     rendered.should match /1991/
-    rendered.should match /about 1 year/
+    rendered.should match /365/
   end
 
   it "displays the error messages" do

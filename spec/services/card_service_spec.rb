@@ -31,51 +31,61 @@ describe CardService do
     @member = Member.new
   end
 
-  context "receives an invalid user ID" do
-    it "raises an error" do
+  subject { CardService.all }
+
+
+
+  context 'invalid config' do
+    it 'raises an error when the member is not found' do
       Trello::Member.should_receive(:find).at_least(:once).and_return(nil)
-      expect { CardService.all }.to raise_error(NoMethodError)
+      expect{ subject }.to raise_error(RuntimeError)
+    end
+
+    it 'raises an error when the board is not found' do
+      member = Member.new
+      member.boards = []
+      Trello::Member.should_receive(:find).at_least(:once).and_return(member)
+      expect{ subject }.to raise_error(RuntimeError)
     end
   end
 
-  context "receives no boards" do
-    it "raises an error" do
-      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
-      expect { CardService.all }.to raise_error(NoMethodError)
-    end
-  end
-
-  context "receives a card from trello that was created in the Resumes swimlane" do
+  context 'a card that has been created but has not finished' do
     before do
-      @first_board.lists = [ @list_alpha ]
-      @first_board.actions = [ @action_create_alpha ]
-      action_cache = OpenStruct.new
-      action_cache.actions = @first_board.actions
-      card_alpha = Card.new(CardService.create_list_id_to_name(@first_board), @card_alpha_name, @card_alpha_id, @card_alpha_list_id, action_cache.actions)
-      ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
-      @first_board.cards = [ card_alpha ]
-      @member.boards = [ @first_board ]
-      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
+      member = Member.new
+      @list = List.new(100, 'Alphas List')
+      @card = OpenStruct.new(id: 1, name: 'test card', list_id: @list.id)
+      @create_action = Action.new('createCard', @card.id, '1/1/1991')
+
+      Trello::Member.stub(:find).and_return(member)
+
+      board = Board.new
+      member.boards = [board]
+      board.lists = [@list]
+      board.cards = [@card]
+
+      ActionCache.stub(:new).and_return(OpenStruct.new(actions: [@create_action]))
     end
 
-    it "puts the card's names into an array" do
-      cards = CardService.all
-      cards.count.should eq(1)
-      cards.first.name.should eq(@card_alpha_name)
+    it 'should return the correct name' do
+      subject.first.name.should eq(@card.name)
     end
 
-    it "puts the card's swimlanes into an array" do
-      cards = CardService.all
-      cards.count.should eq(1)
-      cards.first.list_name.should eq(@list_alpha.name)
+    it 'should return the correct number of cards' do
+      subject.count.should eql(1)
     end
 
-    it "puts the card's creation dates into an array" do
-      cards = CardService.all
-      cards.count.should eq(1)
-      cards.first.start_date.should eq(@action_create_alpha.date)
-      cards.first.end_date.should eq(nil)
+    it 'should return the correct list name' do
+      subject.first.list_name.should eql(@list.name)
     end
+
+    it 'should set the start date' do
+      subject.first.start_date.should eql(@create_action.date)
+    end
+
+    it 'should set the end date to nil' do
+      subject.first.end_date.should be_nil
+    end
+
   end
 
   context "receives a card from trello of a card that was moved in to the Resumes to be Screened swimlane" do

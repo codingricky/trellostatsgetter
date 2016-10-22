@@ -15,17 +15,5 @@ module CardsHelper
     end
   end
 
-  def self.show_difference_in_time(card)
-    if card.start_date && card.end_date
-      duration = (distance_of_time_in_words card.end_date, card.start_date)
-    end
-    if card.start_date && duration.nil?
-      duration = (distance_of_time_in_words Time.now, card.start_date) + '*'
-    end
-    if duration.nil?
-      duration = 'This card duration cannot be calculated as it was not set up properly.'
-    end
-    duration
-  end
 end
 
