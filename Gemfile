@@ -66,8 +66,7 @@ group :development do
 end
 
 group :production do
-  # Use mysql2 as the database for Active Record
-  gem 'mysql2'
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
