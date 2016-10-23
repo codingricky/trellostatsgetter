@@ -8,12 +8,12 @@ describe 'cards/index', type: :view do
     another_card_name = 'Ricky'
     card_id = '1'
     card_list_id = '1'
-    board = SpecsHelper.populate_a_board(card_id, card_list_id)
-    dud_action = Action.new('updateCard_finish', '9999923454234', '1/1/1990')
-    action_cache = [ dud_action ]
-    @cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache)]
-    @two_cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache),
-                   Card.new(CardService.create_list_id_to_name(board), another_card_name, card_id, card_list_id, action_cache)]
+    create_date = '1/1/1990'
+    update_date = '1/1/1991'
+
+    @cards = [ Card.new(name: card_name, id: card_id, list_id: card_list_id, list_name: "Sample List")]
+    @two_cards = [ @cards.first,
+                   Card.new(name: another_card_name, id: '2', list_id: card_list_id, list_name: "Success - Hired", start_date: create_date, end_date: update_date)]
   end
 
   it "should display the correct page" do
@@ -43,19 +43,7 @@ describe 'cards/index', type: :view do
   end
 
   it "displays card stats (with dates and duration) upon loading" do
-    card_name = 'Michael'
-    card_id = '1'
-    card_list_id = '1'
-    create_date = '1/1/1990'
-    update_date = '1/1/1991'
-    board = SpecsHelper.populate_a_board_with_stats(card_id, card_list_id, create_date, update_date)
-    create_type = 'createCard'
-    update_type = 'updateCard_finish'
-    create = Action.new(create_type, card_id, create_date)
-    update = Action.new(update_type, card_id, update_date)
-    action_cache = [ create, update ]
-    cards = [ Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache) ]
-    assign(:cards, cards)
+    assign(:cards, @two_cards)
     render
     rendered.should match /Michael/
     rendered.should match /Success - Hired/

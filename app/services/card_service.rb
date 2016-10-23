@@ -1,6 +1,12 @@
 require 'trello'
 
 class CardService
+
+  TYPE_UPDATE = 'updateCard'
+  TYPE_CREATE = 'createCard'
+  STARTING_LANE = 'Resumes to be Screened'
+  FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen']
+
   def self.all
     Trello.configure do |config|
       config.developer_public_key = "27dbf126a87c20a0a1a6c9f81fcc2e98"
@@ -16,9 +22,43 @@ class CardService
     action_cache = ActionCache.new(board)
     list_id_name = create_list_id_to_name(board)
     Rails.logger.info("calling board.cards")
-    all_cards = board.cards.collect{|card| Card.new(list_id_name, card.name, card.id, card.list_id, action_cache.actions)}
+    all_cards = board.cards.collect{|card| Card.new(id: card.id,
+                                                    name: card.name,
+                                                    list_id: card.list_id,
+                                                    list_name: list_id_name[card.list_id],
+                                                    start_date: find_start_date(card.id, action_cache.actions),
+                                                    end_date: find_end_date(card.id, list_id_name[card.list_id], action_cache.actions))}
     Rails.logger.info("calling all_cards.find_all")
-    all_cards.find_all{ |card| card.start_date != 'Error' }
+
+    return all_cards
+  end
+
+  def self.find_start_date(card_id, actions)
+    selected_action = actions.find { |action| is_create_action_in_starting_lane?(card_id, action) }
+    selected_action ||= actions.find { |action| did_update_action_end_in_starting_lane?(card_id, action) }
+    selected_action.try(:date)
+  end
+
+  def self.is_create_action_in_starting_lane?(card_id, action)
+    (action.type == TYPE_CREATE) &&
+        action.data['list']['name'] == STARTING_LANE &&
+        action.data['list']['name'].present? &&
+        (action.data['card']['id'] == card_id)
+  end
+
+  def self.did_update_action_end_in_starting_lane?(card_id, action)
+    (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].include?(STARTING_LANE)) && (action.data['card']['id'] == card_id)
+  end
+
+  def self.find_end_date(card_id, list_name, actions)
+    if list_name.in?(FINISHING_LANES)
+      selected_action = actions.find { |action| did_update_action_end_in_finishing_lane?(card_id, action) }
+    end
+    selected_action.try(:date)
+  end
+
+  def self.did_update_action_end_in_finishing_lane?(card_id, action)
+    (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].in?(FINISHING_LANES)) && (action.data['card']['id'] == card_id)
   end
 
   def self.find_member

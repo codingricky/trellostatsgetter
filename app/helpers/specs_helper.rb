@@ -64,7 +64,7 @@ module SpecsHelper
     board.lists = [ list ]
     board.actions = [ action, oldaction, wrongaction, wrongaction2 ]
     action_cache = board.actions
-    Card.new(CardService.create_list_id_to_name(board), card_name, card_id, card_list_id, action_cache)
+    Card.new(name: card_name, id: card_id, list_id: card_list_id, list_name: list_name)
   end
 
   def self.populate_a_board(card_id, card_list_id)
@@ -115,7 +115,7 @@ module SpecsHelper
     board.lists = [ list ]
     board.actions = [ action ]
     action_cache = board.actions
-    card = Card.new(list_id_to_name, card_name, card_id, card_list_id, action_cache)
+    card = Card.new(name: card_name, id: card_id, list_id: card_list_id, list_name: list_name)
     board.cards = [ card ]
     board
   end

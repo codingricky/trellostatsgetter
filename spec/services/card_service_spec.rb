@@ -5,8 +5,8 @@ require 'trello'
 describe CardService do
   before do
     @member = Member.new
-    @starting_list = List.new(101, Card::STARTING_LANE)
-    @finished_list = List.new(100, Card::FINISHING_LANES.first)
+    @starting_list = List.new(101, CardService::STARTING_LANE)
+    @finished_list = List.new(100, CardService::FINISHING_LANES.first)
     @finished_card = OpenStruct.new(id: 1, name: 'test card', list_id: @finished_list.id)
 
     @finished_card_create_action = Action.new('createCard', @finished_card.id, '1/1/1991')
@@ -66,8 +66,7 @@ describe CardService do
     end
   end
 
-  context 'a card from trello of a card that was moved in to the Resumes to be Screened swimlane' do
-
+  context 'a card from trello of a card that was moved in to the finishing swimlane' do
     it 'should set the end date' do
       subject.last.end_date.should eql(@finished_card_end_action.date)
     end
