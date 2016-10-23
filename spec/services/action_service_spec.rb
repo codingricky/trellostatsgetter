@@ -2,7 +2,7 @@ require 'rspec'
 require 'spec_helper'
 require 'trello'
 
-describe ActionCache do
+describe ActionService do
   before "receives all actions from a board" do
     @board = double("board")
     @actions1 = 0.upto(999).collect{|i| OpenStruct.new(id: i)}
@@ -13,7 +13,7 @@ describe ActionCache do
     @board.stub(:actions).with(limit: 1000).and_return(@actions1)
     @board.stub(:actions).with(limit: 1000, before: 999).and_return(@actions2)
 
-    test_cache = ActionCache.new(@board)
-    test_cache.actions.count.should eq(@actions1.count + @actions2.count)
+    test_cache = ActionService.get_actions(@board)
+    test_cache.count.should eq(@actions1.count + @actions2.count)
   end
 end

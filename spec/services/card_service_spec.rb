@@ -22,7 +22,7 @@ describe CardService do
     @board.lists = [@starting_list, @finished_list]
     @board.cards = [@card_still_in_progress, @finished_card]
 
-    ActionCache.stub(:new).and_return(OpenStruct.new(actions: [@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action]))
+    ActionService.stub(:get_actions).and_return([@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action])
   end
 
   subject { CardService.all }
@@ -77,7 +77,7 @@ describe CardService do
       @card = OpenStruct.new(id: 1, name: 'test card', list_id: @starting_list.id)
       @create_action = Action.new('updateCard_finish', @card.id, '1/1/1991')
       @board.cards = [@card]
-      ActionCache.stub(:new).and_return(OpenStruct.new(actions: [@create_action]))
+      ActionService.stub(:get_actions).and_return([@create_action])
     end
 
     it 'start date should be nil' do

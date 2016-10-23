@@ -8,9 +8,8 @@ When(/^My Trello board is empty$/) do
   member = Member.new
   member.boards = [ board ]
   Trello::Member.should_receive(:find).at_least(:once).and_return(member)
-  action_cache = OpenStruct.new
-  action_cache.actions = []
-  ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
+  action_cache = []
+  ActionService.should_receive(:get_actions).at_least(:once).and_return(action_cache)
 end
 
 And(/^I navigate to the index page for cards$/) do
@@ -28,9 +27,8 @@ When(/^I have a card named Michael$/) do
   @action_date = '1/1/1991'
   board = SpecsHelper.create_board_with_card(@card_name, @list_name, @action_date)
   test_action = Action.new('createCard', '1', @action_date)
-  action_cache = OpenStruct.new
-  action_cache.actions = [ test_action ]
-  ActionCache.should_receive(:new).at_least(:once).and_return(action_cache)
+  action_cache = [ test_action ]
+  ActionService.should_receive(:get_actions).at_least(:once).and_return(action_cache)
   member = Member.new
   member.boards = [ board ]
   Trello::Member.should_receive(:find).at_least(:once).and_return(member)
