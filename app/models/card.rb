@@ -23,13 +23,10 @@ class Card
     @start_date = find_start_date(actions)
     Rails.logger.info("finished finding start date #{id}")
 
-    if @start_date == 'Error'
-      @end_date = 'Error'
-    else
-      Rails.logger.info("finding end date #{id}")
-      @end_date = find_end_date(actions)
-      Rails.logger.info("finished finding end date #{id}")
-    end
+    Rails.logger.info("finding end date #{id}")
+    @end_date = find_end_date(actions)
+    Rails.logger.info("finished finding end date #{id}")
+
   end
 
   def duration_in_days
