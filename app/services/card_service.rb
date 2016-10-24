@@ -5,7 +5,7 @@ class CardService
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = 'createCard'
   STARTING_LANE = 'Resumes to be Screened'
-  FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen']
+  FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen', 'Unsuccessful - Code Test', 'Candidate Withdrew', 'Hired!']
 
   def self.all
     Trello.configure do |config|
