@@ -15,8 +15,8 @@ describe CardsController, type: :controller do
 
   describe "Routing" do
     it "routes / to cards#index" do
-      Trello::Member.should_receive(:find).at_least(:once).and_return(@member)
-      ActionService.should_receive(:get_actions).at_least(:once).and_return([[]])
+      Trello::Member.stub(:find).and_return(@member)
+      ActionService.stub(:get_actions).and_return([[]])
       visit '/'
       response.should have_http_status(:success)
       response.should render_template(:index)
@@ -32,7 +32,7 @@ describe CardsController, type: :controller do
 
   describe "Handling errors" do
     it "gives the error as a string to @cards" do
-      CardService.should_receive(:all).at_least(:once).and_raise('Board name is invalid/not found.')
+      CardService.stub(:all).and_raise('Board name is invalid/not found.')
       visit '/'
       response.should have_http_status(200)
     end
