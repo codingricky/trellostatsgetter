@@ -24,7 +24,7 @@ end
 When(/^I have a card named Michael$/) do
   @card_name = 'Michael'
   @list_name = 'Yay'
-  @action_date = '1/1/1991'
+  @action_date = Time.parse('1/1/1991')
   board = SpecsHelper.create_board_with_card(@card_name, @list_name, @action_date)
   test_action = Action.new('createCard', '1', @action_date)
   action_cache = [ test_action ]

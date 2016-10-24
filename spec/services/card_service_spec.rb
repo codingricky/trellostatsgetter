@@ -5,15 +5,15 @@ require 'trello'
 describe CardService do
   before do
     @member = Member.new
-    @starting_list = List.new(101, CardService::STARTING_LANE)
-    @finished_list = List.new(100, CardService::FINISHING_LANES.first)
-    @finished_card = OpenStruct.new(id: 1, name: 'test card', list_id: @finished_list.id)
+    @starting_list = List.new('101', CardService::STARTING_LANE)
+    @finished_list = List.new('100', CardService::FINISHING_LANES.first)
+    @finished_card = OpenStruct.new(id: '1', name: 'test card', list_id: @finished_list.id)
 
-    @finished_card_create_action = Action.new('createCard', @finished_card.id, '1/1/1991')
-    @finished_card_end_action = Action.new('updateCard_finish', @finished_card.id, '2/1/1991')
+    @finished_card_create_action = Action.new('createCard', @finished_card.id, Time.parse('1/1/1991'))
+    @finished_card_end_action = Action.new('updateCard_finish', @finished_card.id, Time.parse('2/1/1991'))
 
-    @card_still_in_progress = OpenStruct.new(id: 2, name: 'test card', list_id: @starting_list.id)
-    @card_still_in_progress_create_action = Action.new('createCard', @card_still_in_progress.id, '1/1/1991')
+    @card_still_in_progress = OpenStruct.new(id: '2', name: 'test card', list_id: @starting_list.id)
+    @card_still_in_progress_create_action = Action.new('createCard', @card_still_in_progress.id, Time.parse('1/1/1991'))
 
     Trello::Member.stub(:find).and_return(@member)
 
@@ -74,8 +74,8 @@ describe CardService do
 
   context 'card that has never been in the Starting swimline' do
     before do
-      @card = OpenStruct.new(id: 1, name: 'test card', list_id: @starting_list.id)
-      @create_action = Action.new('updateCard_finish', @card.id, '1/1/1991')
+      @card = OpenStruct.new(id: '1', name: 'test card', list_id: @starting_list.id)
+      @create_action = Action.new('updateCard_finish', @card.id, Time.parse('1/1/1991'))
       @board.cards = [@card]
       ActionService.stub(:get_actions).and_return([@create_action])
     end

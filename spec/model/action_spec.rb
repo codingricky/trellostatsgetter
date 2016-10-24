@@ -6,7 +6,7 @@ describe Action do
       @action_type_create = 'createCard'
       @action_type_update = 'updateCard'
       @action_id = '1'
-      @action_date = '1990'
+      @action_date = Time.parse('23/12/1990')
     end
 
     it "takes three arguments and creates a createCard action" do
