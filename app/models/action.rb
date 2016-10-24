@@ -10,6 +10,10 @@ class Action
       @type = 'updateCard'
     end
 
+    if @type == 'updateCard_finish_old'
+      @type = 'updateCard'
+    end
+
     if @type == 'movedCard'
       @type = 'updateCard'
     end
@@ -29,6 +33,12 @@ class Action
       @data = {"listAfter"=>{"name"=>"Success - Hired"},
        "card"=>
            {"id"=>card_id}}
+    end
+
+    if type == "updateCard_finish_old"
+      @data = {"listAfter"=>{"name"=>"Hired!"},
+               "card"=>
+                   {"id"=>card_id}}
     end
 
     if type == "updateCard"

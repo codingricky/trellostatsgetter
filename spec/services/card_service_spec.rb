@@ -8,9 +8,14 @@ describe CardService do
     @starting_list = List.new('101', CardService::STARTING_LANE)
     @finished_list = List.new('100', CardService::FINISHING_LANES.first)
     @finished_card = OpenStruct.new(id: '1', name: 'test card', list_id: @finished_list.id)
+    @old_finished_list = List.new('102', CardService::FINISHING_LANES.last)
+    @old_finished_card = OpenStruct.new(id: '3', name: 'old test card', list_id: @old_finished_list.id)
 
     @finished_card_create_action = Action.new('createCard', @finished_card.id, Time.parse('1/1/1991'))
     @finished_card_end_action = Action.new('updateCard_finish', @finished_card.id, Time.parse('2/1/1991'))
+
+    @old_finished_card_create_action = Action.new('createCard', @old_finished_card.id, Time.parse('3/2/1991'))
+    @old_finished_card_end_action = Action.new('updateCard_finish_old', @old_finished_card.id, Time.parse('4/2/1991'))
 
     @card_still_in_progress = OpenStruct.new(id: '2', name: 'test card', list_id: @starting_list.id)
     @card_still_in_progress_create_action = Action.new('createCard', @card_still_in_progress.id, Time.parse('1/1/1991'))
@@ -19,10 +24,10 @@ describe CardService do
 
     @board = Board.new
     @member.boards = [@board]
-    @board.lists = [@starting_list, @finished_list]
+    @board.lists = [@starting_list, @finished_list, @old_finished_list]
     @board.cards = [@card_still_in_progress, @finished_card]
 
-    ActionService.stub(:get_actions).and_return([@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action])
+    ActionService.stub(:get_actions).and_return([@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action, @old_finished_card_create_action, @old_finished_card_end_action])
   end
 
   subject { CardService.all }
@@ -66,9 +71,17 @@ describe CardService do
     end
   end
 
-  context 'a card from trello of a card that was moved in to the finishing swimlane' do
+  context 'a card from trello that was moved in to the finishing swimlane' do
     it 'should set the end date' do
       subject.last.end_date.should eql(@finished_card_end_action.date)
+    end
+  end
+
+  context 'a card from trello that was moved in to an old finishing swimlane' do
+    it 'should set the end date' do
+      binding.pry
+      @board.cards = [@old_finished_card]
+      subject.last.end_date.should eql(@old_finished_card_end_action.date)
     end
   end
 
