@@ -8,8 +8,8 @@ When(/^My Trello board is empty$/) do
   member = Member.new
   member.boards = [ board ]
   Trello::Member.stub(:find).and_return(member)
-  action_cache = []
-  ActionService.stub(:get_actions).and_return(action_cache)
+  list_of_actions = []
+  ActionService.stub(:get_actions).and_return(list_of_actions)
 end
 
 And(/^I navigate to the index page for cards$/) do
@@ -27,8 +27,8 @@ When(/^I have a card named Michael$/) do
   @action_date = Time.parse('1/1/1991')
   board = SpecsHelper.create_board_with_card(@card_name, @list_name, @action_date)
   test_action = Action.new('createCard', '1', @action_date)
-  action_cache = [ test_action ]
-  ActionService.stub(:get_actions).and_return(action_cache)
+  list_of_actions = [ test_action ]
+  ActionService.stub(:get_actions).and_return(list_of_actions)
   member = Member.new
   member.boards = [ board ]
   Trello::Member.stub(:find).and_return(member)

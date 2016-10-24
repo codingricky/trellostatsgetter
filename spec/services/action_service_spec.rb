@@ -13,7 +13,7 @@ describe ActionService do
     @board.stub(:actions).with(limit: 1000).and_return(@actions1)
     @board.stub(:actions).with(limit: 1000, before: 999).and_return(@actions2)
 
-    test_cache = ActionService.get_actions(@board)
-    test_cache.count.should eq(@actions1.count + @actions2.count)
+    list_of_actions = ActionService.get_actions(@board)
+    list_of_actions.count.should eq(@actions1.count + @actions2.count)
   end
 end

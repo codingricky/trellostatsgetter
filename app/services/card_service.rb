@@ -19,15 +19,15 @@ class CardService
     board = member.boards.find { |board| (board.name == ENV['TRELLO_BOARD_NAME']) }
     raise 'Board name is invalid/not found.' unless board.present?
 
-    action_cache = ActionService.get_actions(board)
+    list_of_actions = ActionService.get_actions(board)
     list_id_name = create_list_id_to_name(board)
     Rails.logger.info("calling board.cards")
     all_cards = board.cards.collect{|card| Card.new(id: card.id,
                                                     name: card.name,
                                                     list_id: card.list_id,
                                                     list_name: list_id_name[card.list_id],
-                                                    start_date: find_start_date(card.id, action_cache),
-                                                    end_date: find_end_date(card.id, list_id_name[card.list_id], action_cache))}
+                                                    start_date: find_start_date(card.id, list_of_actions),
+                                                    end_date: find_end_date(card.id, list_id_name[card.list_id], list_of_actions))}
     Rails.logger.info("calling all_cards.find_all")
 
     return all_cards
