@@ -1,5 +1,10 @@
 <h2>Listing cards from Trello</h2>
 <br>
+<p><%= form_tag("/cards", method: "get") do %>
+      <%= label_tag(:days_old, "Max. days old:") %>
+      <%= number_field_tag(:days_old) %>
+      <%= submit_tag("Filter") %>
+  <% end %></p>
 <div class="panel-default">
   <table id="trellotable" class="datatable table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
     <thead>

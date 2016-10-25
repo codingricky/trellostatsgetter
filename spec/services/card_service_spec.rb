@@ -79,7 +79,6 @@ describe CardService do
 
   context 'a card from trello that was moved in to an old finishing swimlane' do
     it 'should set the end date' do
-      binding.pry
       @board.cards = [@old_finished_card]
       subject.last.end_date.should eql(@old_finished_card_end_action.date)
     end

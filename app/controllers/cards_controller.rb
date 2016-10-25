@@ -8,11 +8,10 @@ class CardsController < ApplicationController
   def index
     #TODO assert @errors (and @cards) have become set
     #TODO Get code coverage to 100%
-
-    @cards = CardService.all
-    @cards.sort! { |a, b| b.start_date.to_i <=> a.start_date.to_i }
+    @cards = TimeFilterService.filter_cards(params['days_old'].to_i)
+    # @cards.sort! { |a, b| b.start_date.to_i <=> a.start_date.to_i }
     @error = nil
-    if @cards == [ ]
+    if @cards == []
       @error = 'No cards.'
     end
   rescue => error

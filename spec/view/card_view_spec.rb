@@ -1,5 +1,6 @@
 require 'rspec'
 require 'spec_helper'
+require 'capybara'
 
 describe 'cards/index', type: :view do
 
@@ -54,20 +55,27 @@ describe 'cards/index', type: :view do
 
   it "displays the error messages" do
     @error = 'No cards.'
-    assign(:cards, @error)
+    assign(:error, @error)
     render
     rendered.should match /No cards/
     @error = 'Error: Board name is invalid/not found.'
-    assign(:cards, @error)
+    assign(:error, @error)
     render
     rendered.should match /Error: Board name/
     @error = 'Error: Member ID is invalid/not found.'
-    assign(:cards, @error)
+    assign(:error, @error)
     render
     rendered.should match /Error: Member ID/
     @error = 'Error: Member Token is invalid/not found.'
-    assign(:cards, @error)
+    assign(:error, @error)
     render
     rendered.should match /Error: Member Token/
+  end
+
+  it "passes user input back to the controller" do
+    render
+    rendered.should have_content('Max. days old')
+    rendered.should have_button('Filter')
+    rendered.should have_field('days_old')
   end
 end

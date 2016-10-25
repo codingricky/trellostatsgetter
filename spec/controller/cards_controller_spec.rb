@@ -37,5 +37,13 @@ describe CardsController, type: :controller do
       response.should have_http_status(200)
     end
   end
+
+  describe "Handling params from view" do
+    it "receives days_ago parameter of 30" do
+      expect(TimeFilterService).to receive(:filter_cards).with(30)
+      visit '/cards?utf8=%E2%9C%93&days_old=30&commit=Filter'
+      response.should have_http_status(200)
+    end
+  end
 end
 
