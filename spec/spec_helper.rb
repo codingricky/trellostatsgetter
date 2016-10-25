@@ -24,6 +24,7 @@ SimpleCov.start do
 end
 require "capybara/rspec"
 RSpec.configure do |config|
+
   ### Getting around authentication in tests
   config.include(Warden::Test::Helpers)
   Warden.test_mode!
