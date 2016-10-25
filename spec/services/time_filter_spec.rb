@@ -9,7 +9,7 @@ describe TimeFilterService do
     card_to_be_filtered = OpenStruct.new
     card_to_be_filtered.start_date = (Date.today - 3).to_time
     another_card_to_be_filtered = OpenStruct.new
-    another_card_to_be_filtered.start_date = (Date.today - 5).to_time
+    another_card_to_be_filtered.start_date = nil
     @cards = [ @remaining_card, card_to_be_filtered, another_card_to_be_filtered ]
   end
 
