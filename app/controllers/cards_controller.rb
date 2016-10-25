@@ -9,6 +9,7 @@ class CardsController < ApplicationController
     #TODO assert @errors (and @cards) have become set
     #TODO Get code coverage to 100%
     @cards = CardService.all
+    # @cards = TimeFilterService.filter_cards(params['days_ago'].to_i)
     @cards.sort! { |a, b| b.start_date.to_i <=> a.start_date.to_i }
     @error = nil
     if @cards == []
