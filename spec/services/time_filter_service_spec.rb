@@ -4,15 +4,15 @@ require 'trello'
 
 describe TimeFilterService do
 
-  let(:days_ago) { 200 }
-  subject { TimeFilterService.filter_cards(days_ago) }
+  let(:days_old) { 200 }
+  subject { TimeFilterService.filter_cards(days_old) }
 
   before do
-    @old_card = OpenStruct.new(start_date: (Date.today - days_ago - 1).to_time)
-    @second_old_card = OpenStruct.new(start_date: (Date.today - days_ago - 1).to_time)
+    @old_card = OpenStruct.new(start_date: (Date.today - days_old - 1).to_time)
+    @second_old_card = OpenStruct.new(start_date: (Date.today - days_old - 1).to_time)
 
-    @young_card = OpenStruct.new(start_date: (Date.today - days_ago + 1).to_time)
-    @second_young_card = OpenStruct.new(start_date: (Date.today - days_ago + 1).to_time)
+    @young_card = OpenStruct.new(start_date: (Date.today - days_old + 1).to_time)
+    @second_young_card = OpenStruct.new(start_date: (Date.today - days_old + 1).to_time)
   end
 
   it 'should return one card that has been created recently' do
@@ -65,4 +65,11 @@ describe TimeFilterService do
     end
   end
 
+  context 'the user has not set the filter' do
+    let(:days_old) { 0 }
+    it 'skips the filtering process and returns all cards' do
+      CardService.stub(:all).and_return([@old_card, @young_card])
+      subject.count.should eq(2)
+    end
+  end
 end

@@ -46,7 +46,7 @@ end
 Given(/^I have a card that is one day old, and a card that is three days old$/) do
   now = Date.today
   yesterday = (now - 1).to_time
-  three_days_ago = (now - 3).to_time
+  three_days_old = (now - 3).to_time
 
   @list_name = 'Backlog List'
   @list_id = '100'
@@ -58,7 +58,7 @@ Given(/^I have a card that is one day old, and a card that is three days old$/) 
   @younger_create_action = Action.new('createCard', @younger_card_id, @younger_action_date)
 
   @older_card_name = 'Three Days Old Card'
-  @older_action_date = three_days_ago
+  @older_action_date = three_days_old
   @older_card_id = '2'
   @older_create_action = Action.new('createCard', @older_card_id, @older_action_date)
 
