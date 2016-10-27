@@ -89,3 +89,16 @@ Then(/^I should only see the card that is one day old$/) do
   page.should have_content @younger_card_name
   page.should_not have_content @older_card_name
 end
+
+And(/^I filter the cards with value 0$/) do
+  page.should have_content @younger_card_name
+  page.should have_content @older_card_name
+  fill_in 'days_old', :with => '-1'
+  click_button 'Filter'
+end
+
+Then(/^I am given an error message telling me to enter a valid value$/) do
+  page.should_not have_content @younger_card_name
+  page.should_not have_content @older_card_name
+  page.should have_content 'Error: Please input a valid maximum days value.'
+end

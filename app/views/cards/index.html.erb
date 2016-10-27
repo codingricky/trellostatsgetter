@@ -2,7 +2,7 @@
 <br>
 <p><%= form_tag("/cards", method: "get") do %>
       <%= label_tag(:days_old, "Max. days old:") %>
-      <%= number_field_tag(:days_old) %>
+      <%= number_field_tag(:days_old, :value => '999999999') %>
       <%= submit_tag("Filter") %>
   <% end %></p>
 <div class="panel-default">

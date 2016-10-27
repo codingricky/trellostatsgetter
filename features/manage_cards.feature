@@ -19,3 +19,9 @@ Feature: Manage cards.
     And I am logged in as a DiUS employee
     When I filter the cards that are more than two days old
     Then I should only see the card that is one day old
+
+  Scenario: Invalid filter "days_ago" value.
+    Given I have a card that is one day old, and a card that is three days old
+    And I am logged in as a DiUS employee
+    When I filter the cards with value 0
+    Then I am given an error message telling me to enter a valid value
