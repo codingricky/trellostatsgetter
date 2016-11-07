@@ -18,33 +18,33 @@ class Action
       @type = 'updateCard'
     end
 
-    if type == "createCard"
-      @data = {"list"=>{"name"=>"Resumes to be Screened"},
-               "card"=>
-                   {"id"=>card_id}}
+    if type == 'createCard'
+      @data = {'list' =>{'name' => 'Resumes to be Screened'},
+               'card' =>
+                   {'id' =>card_id}}
     end
 
-    if type == "movedCard"
-      @data = {"card"=>
-                   {"id"=>card_id}}
+    if type == 'movedCard'
+      @data = {'card' =>
+                   {'id' =>card_id}}
     end
 
-    if type == "updateCard_finish"
-      @data = {"listAfter"=>{"name"=>"Success - Hired"},
-       "card"=>
-           {"id"=>card_id}}
+    if type == 'updateCard_finish'
+      @data = {'listAfter' =>{'name' => 'Success - Hired'},
+               'card' =>
+           {'id' =>card_id}}
     end
 
-    if type == "updateCard_finish_old"
-      @data = {"listAfter"=>{"name"=>"Hired!"},
-               "card"=>
-                   {"id"=>card_id}}
+    if type == 'updateCard_finish_old'
+      @data = {'listAfter' =>{'name' => 'Hired!'},
+               'card' =>
+                   {'id' =>card_id}}
     end
 
-    if type == "updateCard"
-      @data = {"listAfter"=>{"name"=>"Resumes to be Screened"},
-               "card"=>
-                   {"id"=>card_id}}
+    if type == 'updateCard'
+      @data = {'listAfter' =>{'name' => 'Resumes to be Screened'},
+               'card' =>
+                   {'id' =>card_id}}
     end
 
     @date = date

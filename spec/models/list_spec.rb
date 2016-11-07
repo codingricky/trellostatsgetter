@@ -7,7 +7,7 @@ describe List do
     @list_id = '1'
   end
 
-  it "takes two arguments and creates the list" do
+  it 'takes two arguments and creates the list' do
     @list = List.new(@list_id, @list_name)
     @list.id.should eq(@list_id)
     @list.name.should eq(@list_name)

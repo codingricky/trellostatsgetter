@@ -64,12 +64,4 @@ describe TimeFilterService do
       subject.first.should eq(@young_card)
     end
   end
-
-  # context 'the user has not set the filter' do
-  #   let(:days_old) { 0 }
-  #   it 'skips the filtering process and returns all cards' do
-  #     CardService.stub(:all).and_return([@old_card, @young_card])
-  #     subject.count.should eq(2)
-  #   end
-  # end <-- We don't want the program to do this anymore?
 end

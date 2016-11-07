@@ -62,7 +62,7 @@ class CardService
   end
 
   def self.find_member
-    Rails.logger.info("calling Trello find")
+    Rails.logger.info('calling Trello find')
     Trello::Member.find(ENV['TRELLO_MEMBER_ID'])
   end
 

@@ -59,16 +59,9 @@ describe CardsController, type: :controller do
     end
   end
 
-  # context 'the user has not entered a value into the filter' do
-  #   it 'converts nil to an integer and parses it to TimeFilterService' do
-  #     expect(TimeFilterService).to receive(:filter_cards).with(0)
-  #     get :index
-  #   end
-  # end
-
   context 'the user has not entered a value into the filter' do
-    it 'converts nil to an integer with value 9999999 and parses it to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(9999999)
+    it 'converts nil to an integer with value 90 and parses it to TimeFilterService' do
+      expect(TimeFilterService).to receive(:filter_cards).with(90)
       get :index
     end
   end
