@@ -3,7 +3,7 @@ require 'trello'
 class CardService
 
   TYPE_UPDATE = 'updateCard'
-  TYPE_CREATE = 'createCard'
+  TYPE_CREATE = ['createCard', 'copyCard']
   STARTING_LANE = 'Resumes to be Screened'
   FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen', 'Unsuccessful - Code Test', 'Candidate Withdrew', 'Hired!']
 
@@ -40,7 +40,7 @@ class CardService
   end
 
   def self.is_create_action_in_starting_lane?(card_id, action)
-    (action.type == TYPE_CREATE) &&
+    (action.type.in? TYPE_CREATE) &&
         action.data['list']['name'] == STARTING_LANE &&
         action.data['list']['name'].present? &&
         (action.data['card']['id'] == card_id)

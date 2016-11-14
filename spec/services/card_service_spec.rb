@@ -84,7 +84,7 @@ describe CardService do
     end
   end
 
-  context 'card that has never been in the Starting swimline' do
+  context 'card that has never been in the Starting swimlane' do
     before do
       @card = OpenStruct.new(id: '1', name: 'test card', list_id: @starting_list.id)
       @create_action = Action.new('updateCard_finish', @card.id, Time.parse('1/1/1991'))
@@ -94,6 +94,19 @@ describe CardService do
 
     it 'start date should be nil' do
       subject.first.start_date.should be_nil
+    end
+  end
+
+  context 'a card from trello that was copied in to the Starting swimlane' do
+    before do
+      @card = OpenStruct.new(id: '1', name: 'test card', list_id: @starting_list.id)
+      @create_action = Action.new('copyCard', @card.id, Time.parse('1/1/1991'))
+      @board.cards = [@card]
+      ActionService.stub(:get_actions).and_return([@create_action])
+    end
+
+    it 'should set the start date' do
+      subject.first.start_date.should eq(Time.parse('1/1/1991'))
     end
   end
 

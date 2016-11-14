@@ -18,6 +18,12 @@ class Action
       @type = 'updateCard'
     end
 
+    if type == 'copyCard'
+      @data = {'list' =>{'name' => 'Resumes to be Screened'},
+               'card' =>
+                   {'id' =>card_id}}
+    end
+
     if type == 'createCard'
       @data = {'list' =>{'name' => 'Resumes to be Screened'},
                'card' =>
