@@ -86,10 +86,23 @@ describe 'cards/index', type: :view do
     rendered.should match /Error: Member Token/
   end
 
-  it 'passes user input back to the controller' do
+  it 'renders the input fields' do
     render
     rendered.should have_content('Max. days old')
-    rendered.should have_button('Filter')
+    rendered.should have_button('Submit')
     rendered.should have_field('days_old')
+    rendered.should have_field('location_sydney')
+    rendered.should have_field('location_melbourne')
+  end
+
+  it 'retains user values' do
+    @location = 'Melbourne Recruitment Pipeline'
+    @days_old = 30
+    assign(:location, @location)
+    assign(:days_old, @days_old)
+    render
+    rendered.should have_field('location_sydney', :checked => false)
+    rendered.should have_field('location_melbourne', :checked => true)
+    rendered.should have_field('days_old', :with => 30)
   end
 end

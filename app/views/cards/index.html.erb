@@ -2,10 +2,13 @@
 <br>
 <p><%= form_tag('/cards', method: 'get') do %>
       <%= label_tag(:days_old, 'Max. days old:') %>
-      <%= number_field_tag(:days_old, :value => '90') %>
-      <%= submit_tag('Filter') %>
-  <% end %></p>
-<p>Default is 90 days.</p>
+      <%= number_field_tag(:days_old, (@days_old.nil? ? 90 : @days_old)) %>
+      <%= label_tag(:location, 'Melbourne') %>
+      <%= radio_button_tag(:location_melbourne, 'Melbourne Recruitment Pipeline', (@location == 'Melbourne Recruitment Pipeline')) %>
+      <%= label_tag(:location, 'Sydney') %>
+      <%= radio_button_tag(:location_sydney, 'Sydney - Software Engineers', (@location == 'Sydney - Software Engineers')) %>
+      <%= submit_tag('Submit') %>
+  <% end %> </p>
 <div class="panel-default">
   <table id="trellotable" class="datatable table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
     <thead>
