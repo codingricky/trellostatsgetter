@@ -1,3 +1,6 @@
 $(document).ready(function(){
-    $('#trellotable').DataTable();
+    $('#trellotable').DataTable({
+       "iDisplayLength": 100,
+       "aaSorting": [[ 4, "asc" ]]
+    });
 });
