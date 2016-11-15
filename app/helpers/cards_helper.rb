@@ -16,7 +16,7 @@ module CardsHelper
   end
 
   def self.show_colour_status(card)
-    if card.end_date.present?
+    if card.end_date.present? || card.start_date.nil?
       return ''
     end
     if card.duration_in_days < 10

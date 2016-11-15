@@ -3,7 +3,7 @@ class Card
   attr_reader :list_id
   attr_reader :name
   attr_reader :list_name
-  attr_reader :start_date
+  attr_accessor :start_date
   attr_accessor :end_date
 
   def initialize(params = {})

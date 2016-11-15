@@ -3,8 +3,8 @@ include ActionView::Helpers::DateHelper
 describe CardsHelper do
   before do
     @card = OpenStruct.new
-    @card.start_date = (Date.today).to_time
-    @card.end_date = (Date.today - 1).to_time
+    @card.start_date = (Date.today - 1).to_time
+    @card.end_date = (Date.today).to_time
     @card.duration_in_days = 1
   end
 
@@ -31,22 +31,24 @@ describe CardsHelper do
   end
 
   describe 'show colour status' do
-    it 'returns the hex code green for cards completed within 10 days' do
+    it 'returns the hex code green for cards active within 10 days' do
+      @card.end_date = nil
       CardsHelper.show_colour_status(@card).should eq('#008000')
     end
 
-    it 'returns the hex code amber for cards completed between 10 and 20 days' do
+    it 'returns the hex code amber for cards active between 10 and 20 days' do
+      @card.end_date = nil
       @card.duration_in_days = 11
       CardsHelper.show_colour_status(@card).should eq('#FFC200')
     end
 
-    it 'returns the hex code red for cards completed after 20 days' do
+    it 'returns the hex code red for cards active after 20 days' do
+      @card.end_date = nil
       @card.duration_in_days = 21
       CardsHelper.show_colour_status(@card).should eq('#FF0000')
     end
 
-    it 'returns no hex code for cards that are still active' do
-      @card.end_date = nil
+    it 'returns no hex code for cards that are inactive' do
       CardsHelper.show_colour_status(@card).should eq('')
     end
   end
