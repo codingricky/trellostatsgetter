@@ -51,6 +51,20 @@ describe 'cards/index', type: :view do
     rendered.should match /1990/
     rendered.should match /1991/
     rendered.should match /365/
+    rendered.should match /background-color:#FF0000/
+  end
+
+  it 'displays correct colour' do
+    @two_cards.second.end_date = '2/1/1990'
+    assign(:cards, @two_cards)
+    render
+    rendered.should match /background-color:#008000/
+
+    @two_cards.second.end_date = '12/1/1990'
+    assign(:cards, @two_cards)
+    render
+    rendered.should match /background-color:#FFC200/
+    #make a cuke test?
   end
 
   it 'displays the error messages' do

@@ -15,5 +15,19 @@ module CardsHelper
     end
   end
 
+  def self.show_colour_status(card)
+    if card.end_date.nil?
+      return ''
+    end
+    if card.duration_in_days < 10
+      return '#008000'
+    end
+    if (card.duration_in_days > 9) && (card.duration_in_days  < 20)
+      return '#FFC200'
+    end
+    if card.duration_in_days > 19
+      return '#FF0000'
+    end
+  end
 end
 

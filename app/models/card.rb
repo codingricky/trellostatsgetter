@@ -4,7 +4,7 @@ class Card
   attr_reader :name
   attr_reader :list_name
   attr_reader :start_date
-  attr_reader :end_date
+  attr_accessor :end_date
 
   def initialize(params = {})
     @name = params[:name]
