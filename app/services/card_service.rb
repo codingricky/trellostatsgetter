@@ -23,7 +23,7 @@ class CardService
     list_id_name = create_list_id_to_name(board)
     Rails.logger.info("calling board.cards")
     all_cards = board.cards.collect{|card| Card.new(id: card.id,
-                                                    name: card.name,
+                                                    name: card.name.gsub(/\$[-.,\w]*|\W*( - \d)[-.,\w]*|\W*( \+ super)\w*/, '  '),
                                                     list_id: card.list_id,
                                                     list_name: list_id_name[card.list_id],
                                                     start_date: find_start_date(card.id, list_of_actions),

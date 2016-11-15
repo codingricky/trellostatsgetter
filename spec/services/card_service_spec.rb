@@ -110,6 +110,19 @@ describe CardService do
     end
   end
 
+  context 'a card from trello with a name that contains sensitive salary info' do
+    before do
+      @card = OpenStruct.new(id: '1', name: 'The money value in this string $3000.00 - 4000 + super should be removed', list_id: @starting_list.id)
+      @create_action = Action.new('copyCard', @card.id, Time.parse('1/1/1991'))
+      @board.cards = [@card]
+      ActionService.stub(:get_actions).and_return([@create_action])
+    end
+
+    it 'should remove the sensitive info from the string' do
+      subject.first.name.should eq('The money value in this string        should be removed')
+    end
+  end
+
   context 'multiple cards' do
     it 'should create the correct number of cards' do
       subject.count.should eql(2)
