@@ -54,22 +54,43 @@ describe CardsController, type: :controller do
 
   context 'the user has input a value into the filter' do
     it 'parses the value as an integer to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(200)
+      expect(TimeFilterService).to receive(:filter_cards).with(200, 'Sydney - Software Engineers')
       get :index, :days_old => '200'
     end
   end
 
   context 'the user has not entered a value into the filter' do
     it 'converts nil to an integer with value 90 and parses it to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(90)
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers')
       get :index
     end
   end
 
   context 'the user inputs a non integer value into the filter' do
     it 'parses 0 to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(0)
+      expect(TimeFilterService).to receive(:filter_cards).with(0, 'Sydney - Software Engineers')
       get :index, :days_old => 'pikachu'
+    end
+  end
+
+  context 'the user has selected Melbourne' do
+    it 'parses the value to TimeFilterService' do
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Melbourne Recruitment Pipeline')
+      get :index, :location => 'Melbourne Recruitment Pipeline'
+    end
+  end
+
+  context 'the user has selected Sydney' do
+    it 'parses the value to TimeFilterService' do
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers')
+      get :index, :location => 'Sydney - Software Engineers'
+    end
+  end
+
+  context 'the user has not selected a location' do
+    it 'parses Sydney as a default value to TimeFilterService' do
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers')
+      get :index, :location => 'Sydney - Software Engineers'
     end
   end
 end

@@ -82,7 +82,7 @@ And(/^I filter the cards that are more than two days old$/) do
   page.should have_content @younger_card_name
   page.should have_content @older_card_name
   fill_in 'days_old', :with => '2'
-  click_button 'Filter'
+  click_button 'Submit'
 end
 
 Then(/^I should only see the card that is one day old$/) do
@@ -94,7 +94,7 @@ And(/^I filter the cards with value 0$/) do
   page.should have_content @younger_card_name
   page.should have_content @older_card_name
   fill_in 'days_old', :with => '-1'
-  click_button 'Filter'
+  click_button 'Submit'
 end
 
 Then(/^I am given an error message telling me to enter a valid value$/) do
