@@ -4,10 +4,11 @@ class CardService
 
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = ['createCard', 'copyCard']
-  STARTING_LANE = 'Resumes to be Screened'
-  FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen', 'Unsuccessful - Code Test', 'Candidate Withdrew', 'Hired!']
+  STARTING_LANE = ['Resumes to be Screened', 'Resumes To Be Screened ']
+  FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen', 'Unsuccessful - Code Test', 'Candidate Withdrew', 'Hired!', 'Hired',
+                        'Candidate withdrawn', 'Candidate Rejected DiUS Offer', 'Candidate Accepted another offer Prior to DiUS offer/process completion', 'Unsuccessful Resumes', 'Code Test Feedback- Unsuccessful', 'Interview - Unsuccessful']
 
-  def self.all
+  def self.all(location)
     Trello.configure do |config|
       config.developer_public_key = "27dbf126a87c20a0a1a6c9f81fcc2e98"
       config.member_token = ENV['TRELLO_MEMBER_TOKEN']
@@ -16,11 +17,10 @@ class CardService
     raise 'Member is invalid/not found.' unless member.present?
 
     Rails.logger.info("calling member.boards")
-    board = member.boards.find { |board| (board.name == ENV['TRELLO_BOARD_NAME']) }
+    board = member.boards.find { |board| (board.name == location) }
     raise 'Board name is invalid/not found.' unless board.present?
-
     list_of_actions = ActionService.get_actions(board)
-    list_id_name = create_list_id_to_name(board)
+    list_id_name = Hash[board.lists.map {|list| [list.id, list.name]}]
     Rails.logger.info("calling board.cards")
     all_cards = board.cards.collect{|card| Card.new(id: card.id,
                                                     name: card.name.gsub(/\$[-.,\w]*|\W*( - \d)[-.,\w]*|\W*( \+ super)\w*/, '  '),
@@ -41,13 +41,13 @@ class CardService
 
   def self.is_create_action_in_starting_lane?(card_id, action)
     (action.type.in? TYPE_CREATE) &&
-        action.data['list']['name'] == STARTING_LANE &&
+        action.data['list']['name'].in?(STARTING_LANE) &&
         action.data['list']['name'].present? &&
         (action.data['card']['id'] == card_id)
   end
 
   def self.did_update_action_end_in_starting_lane?(card_id, action)
-    (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].include?(STARTING_LANE)) && (action.data['card']['id'] == card_id)
+    (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].in?(STARTING_LANE)) && (action.data['card']['id'] == card_id)
   end
 
   def self.find_end_date(card_id, list_name, actions)
@@ -65,11 +65,4 @@ class CardService
     Rails.logger.info('calling Trello find')
     Trello::Member.find(ENV['TRELLO_MEMBER_ID'])
   end
-
-  def self.create_list_id_to_name(board)
-    lists = board.lists
-    return nil if lists.nil?
-    Hash[lists.map {|list| [list.id, list.name]}]
-  end
-
 end

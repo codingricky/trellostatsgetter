@@ -5,7 +5,8 @@ require 'trello'
 describe TimeFilterService do
 
   let(:days_old) { 200 }
-  subject { TimeFilterService.filter_cards(days_old) }
+  let(:location) { 'Name of Selected Location Here' }
+  subject { TimeFilterService.filter_cards(days_old, location) }
 
   before do
     @old_card = OpenStruct.new(start_date: (Date.today - days_old - 1).to_time)
@@ -62,6 +63,12 @@ describe TimeFilterService do
 
       subject.count.should eq(1)
       subject.first.should eq(@young_card)
+    end
+
+    it 'parses location through to card service' do
+      expect(CardService).to receive(:all).with('Name of Selected Location Here')
+      CardService.stub(:all).and_return([])
+      subject
     end
   end
 end

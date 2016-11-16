@@ -4,9 +4,9 @@
       <%= label_tag(:days_old, 'Max. days old:') %>
       <%= number_field_tag(:days_old, (@days_old.nil? ? 90 : @days_old)) %>
       <%= label_tag(:location, 'Melbourne') %>
-      <%= radio_button_tag(:location_melbourne, 'Melbourne Recruitment Pipeline', (@location == 'Melbourne Recruitment Pipeline')) %>
+      <%= radio_button_tag(:location, 'Melbourne Recruitment Pipeline', (@location == 'Melbourne Recruitment Pipeline')) %>
       <%= label_tag(:location, 'Sydney') %>
-      <%= radio_button_tag(:location_sydney, 'Sydney - Software Engineers', (@location == 'Sydney - Software Engineers')) %>
+      <%= radio_button_tag(:location, 'Sydney - Software Engineers', (@location == 'Sydney - Software Engineers')) %>
       <%= submit_tag('Submit') %>
   <% end %> </p>
 <div class="panel-default">
@@ -18,7 +18,7 @@
       <th width="18%"> Date Placed in Start Lane</th>
       <th width="18%"> Date Placed in End Lane ("Success - " or any "Unsuccessful - " lanes)</th>
       <th width="18%"> Duration of Card in days</th>
-      <th width="10%"> Colour Code</th>
+      <th width="10%"> Urgency</th>
     </tr>
     </thead>
     <tbody>

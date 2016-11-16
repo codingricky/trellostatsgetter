@@ -102,3 +102,59 @@ Then(/^I am given an error message telling me to enter a valid value$/) do
   page.should_not have_content @older_card_name
   page.should have_content 'Error: Please input a valid maximum days value.'
 end
+
+Given(/^I am on the Sydney board and can see two cards$/) do
+  now = Date.today
+  yesterday = (now - 1).to_time
+  three_days_old = (now - 3).to_time
+
+  @list_name = 'Resumes To Be Screened '
+  @list_id = '101'
+  @list = List.new(@list_id, @list_name)
+
+  @sydney_card_name = 'Someone applying for a job in Sydney'
+  @sydney_action_date = yesterday
+  @sydney_card_id = '1'
+  @sydney_create_action = Action.new('createCard', @sydney_card_id, @sydney_action_date)
+
+  @melbourne_card_name = 'Someone applying for a job in Melbourne'
+  @melbourne_action_date = three_days_old
+  @melbourne_card_id = '2'
+  @melbourne_create_action = Action.new('createCard', @melbourne_card_id, @melbourne_action_date)
+
+  @melbourne_card = Card.new(name: @melbourne_card_name, id: @melbourne_card_id, list_id: @list_id, list_name: @list_name)
+  @sydney_card = Card.new(name: @sydney_card_name, id: @sydney_card_id, list_id: @list_id, list_name: @list_name)
+
+  sydney_board = Board.new
+  sydney_board.lists = [ @list ]
+  list_of_actions = [ @sydney_create_action, @melbourne_create_action ]
+  sydney_board.actions = [ list_of_actions ]
+  sydney_board.cards = [ @sydney_card ]
+
+  melbourne_board = Board.new
+  melbourne_board.name = 'Melbourne Recruitment Pipeline'
+  melbourne_board.lists = [ @list ]
+  melbourne_board.actions = [ list_of_actions ]
+  melbourne_board.cards = [ @melbourne_card ]
+
+  member = Member.new
+  member.boards = [ sydney_board, melbourne_board ]
+
+  ActionService.stub(:get_actions).and_return(list_of_actions)
+  Trello::Member.stub(:find).and_return(member)
+end
+
+When(/^I click on the Melbourne button and hit Submit$/) do
+  page.should have_content @sydney_card_name
+  page.should_not have_content @melbourne_card_name
+  choose 'location_Melbourne_Recruitment_Pipeline'
+  click_button 'Submit'
+end
+
+Then(/^I can see the card from Melbourne$/) do
+  page.should have_content @melbourne_card_name
+end
+
+And(/^I can not see the card from Sydney anymore$/) do
+  page.should_not have_content @sydney_card_name
+end

@@ -3,7 +3,7 @@ describe SpecsHelper do
   describe 'create empty board' do
     it 'creates and returns an empty board' do
       empty_test_board = SpecsHelper.create_empty_board
-      empty_test_board.name.should eq('TESTING - Sydney Recruitment Board')
+      empty_test_board.name.should eq('Sydney - Software Engineers')
       empty_test_board.cards.count.should eq(0)
     end
   end

@@ -91,8 +91,8 @@ describe 'cards/index', type: :view do
     rendered.should have_content('Max. days old')
     rendered.should have_button('Submit')
     rendered.should have_field('days_old')
-    rendered.should have_field('location_sydney')
-    rendered.should have_field('location_melbourne')
+    rendered.should have_field('location_Sydney_-_Software_Engineers')
+    rendered.should have_field('location_Melbourne_Recruitment_Pipeline')
   end
 
   it 'retains user values' do
@@ -101,8 +101,8 @@ describe 'cards/index', type: :view do
     assign(:location, @location)
     assign(:days_old, @days_old)
     render
-    rendered.should have_field('location_sydney', :checked => false)
-    rendered.should have_field('location_melbourne', :checked => true)
+    rendered.should have_field('location_Sydney_-_Software_Engineers', :checked => false)
+    rendered.should have_field('location_Melbourne_Recruitment_Pipeline', :checked => true)
     rendered.should have_field('days_old', :with => 30)
   end
 end

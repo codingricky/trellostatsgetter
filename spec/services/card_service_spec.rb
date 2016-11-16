@@ -23,14 +23,20 @@ describe CardService do
     Trello::Member.stub(:find).and_return(@member)
 
     @board = Board.new
-    @member.boards = [@board]
     @board.lists = [@starting_list, @finished_list, @old_finished_list]
     @board.cards = [@card_still_in_progress, @finished_card]
+
+    @wrong_board = Board.new
+    @wrong_board.name = 'Not the right board'
+    @wrong_board.lists = [@starting_list, @finished_list, @old_finished_list]
+    @wrong_board.cards = [@old_finished_card]
+
+    @member.boards = [@board]
 
     ActionService.stub(:get_actions).and_return([@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action, @old_finished_card_create_action, @old_finished_card_end_action])
   end
 
-  subject { CardService.all }
+  subject { CardService.all('Sydney - Software Engineers') }
 
   context 'invalid config' do
     it 'raises an error when the member is not found' do
@@ -42,6 +48,16 @@ describe CardService do
       @member.boards = []
       Trello::Member.stub(:find).and_return(@member)
       expect { subject }.to raise_error(RuntimeError)
+    end
+  end
+
+  context 'two boards on Trello' do
+    it 'only gets the cards from the board specified by location' do
+      @member.boards = [@board, @wrong_board]
+      Trello::Member.stub(:find).and_return(@member)
+      subject.count.should eql(2)
+      subject.first.id.should eql('2')
+      subject.second.id.should eql('1')
     end
   end
 
