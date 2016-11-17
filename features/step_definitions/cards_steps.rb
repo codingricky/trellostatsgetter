@@ -200,6 +200,8 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
 end
 
 When(/^I click on the Active Only button and hit Submit$/) do
+  choose 'show_only_all_cards'
+  click_button 'Submit'
   page.should have_content @active_card_name
   page.should have_content @inactive_card_name
   choose 'show_only_active_cards'

@@ -54,42 +54,42 @@ describe CardsController, type: :controller do
 
   context 'the user has input a value into the filter' do
     it 'parses the value as an integer to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(200, 'Sydney - Software Engineers', 'all_cards')
+      expect(TimeFilterService).to receive(:filter_cards).with(200, 'Sydney - Software Engineers', 'active_cards')
       get :index, :days_old => '200'
     end
   end
 
   context 'the user has not entered a value into the filter' do
     it 'converts nil to an integer with value 90 and parses it to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'all_cards')
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'active_cards')
       get :index
     end
   end
 
   context 'the user inputs a non integer value into the filter' do
     it 'parses 0 to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(0, 'Sydney - Software Engineers', 'all_cards')
+      expect(TimeFilterService).to receive(:filter_cards).with(0, 'Sydney - Software Engineers', 'active_cards')
       get :index, :days_old => 'pikachu'
     end
   end
 
   context 'the user has selected Melbourne' do
     it 'parses the value to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Melbourne Recruitment Pipeline', 'all_cards')
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Melbourne Recruitment Pipeline', 'active_cards')
       get :index, :location => 'Melbourne Recruitment Pipeline'
     end
   end
 
   context 'the user has selected Sydney' do
     it 'parses the value to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'all_cards')
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'active_cards')
       get :index, :location => 'Sydney - Software Engineers'
     end
   end
 
   context 'the user has not selected a location' do
     it 'parses Sydney as a default value to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'all_cards')
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'active_cards')
       get :index
     end
   end
@@ -101,7 +101,14 @@ describe CardsController, type: :controller do
     end
   end
 
-  context 'the user has selected to show only active cards' do
+  context 'the user has selected to show all cards' do
+    it 'parses the value to TimeFilterService' do
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'all_cards')
+      get :index, :show_only => 'all_cards'
+    end
+  end
+
+  context 'the user has selected to show active cards' do
     it 'parses the value to TimeFilterService' do
       expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'active_cards')
       get :index, :show_only => 'active_cards'
@@ -109,8 +116,8 @@ describe CardsController, type: :controller do
   end
 
   context 'the user has not selected anything' do
-    it 'parses all_cards as a default value to TimeFilterService' do
-      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'all_cards')
+    it 'parses active_cards as a default value to TimeFilterService' do
+      expect(TimeFilterService).to receive(:filter_cards).with(90, 'Sydney - Software Engineers', 'active_cards')
       get :index
     end
   end
