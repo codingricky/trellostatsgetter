@@ -7,7 +7,7 @@ class Card
   attr_accessor :end_date
 
   def initialize(params = {})
-    @name = params[:name]
+    @name = strip_sensitive_info(params[:name])
     @id = params[:id]
     @list_id = params[:list_id]
     @list_name = params[:list_name]
@@ -21,6 +21,10 @@ class Card
     start_date = @start_date
     end_date = @end_date.nil? ? DateTime.now : @end_date
     (end_date.to_date - start_date.to_date).to_i
+  end
+
+  def strip_sensitive_info(name)
+    name ? name.gsub(/\$[-.,\w]*|\d\d\d[k,\d]*|\d\d[k,]/, '') : name
   end
 
 end
