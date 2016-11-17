@@ -1,14 +1,23 @@
 <h2>Listing cards from Trello</h2>
 <br>
 <p><%= form_tag('/cards', method: 'get') do %>
+      <%= label_tag(:show_only, 'Show all') %>
+      <%= radio_button_tag(:show_only, 'all_cards', (@show_only == 'all_cards')) %>
+      <%= label_tag(:show_only, 'Show only active') %>
+      <%= radio_button_tag(:show_only, 'active_cards', (@show_only == 'active_cards')) %>
+      <%= label_tag(:show_only, 'Show only inactive') %>
+      <%= radio_button_tag(:show_only, 'inactive_cards', (@show_only == 'inactive_cards')) %>
+      <br>
       <%= label_tag(:days_old, 'Max. days old:') %>
       <%= number_field_tag(:days_old, (@days_old.nil? ? 90 : @days_old)) %>
+      <br>
       <%= label_tag(:location, 'Melbourne') %>
       <%= radio_button_tag(:location, 'Melbourne Recruitment Pipeline', (@location == 'Melbourne Recruitment Pipeline')) %>
       <%= label_tag(:location, 'Sydney') %>
       <%= radio_button_tag(:location, 'Sydney - Software Engineers', (@location == 'Sydney - Software Engineers')) %>
+      <br>
       <%= submit_tag('Submit') %>
-  <% end %> </p>
+  <% end %></p>
 <div class="panel-default">
   <table id="trellotable" class="datatable table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
     <thead>

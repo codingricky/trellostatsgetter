@@ -103,7 +103,7 @@ Then(/^I am given an error message telling me to enter a valid value$/) do
   page.should have_content 'Error: Please input a valid maximum days value.'
 end
 
-Given(/^I am on the Sydney board and can see two cards$/) do
+Given(/^I am on the Sydney board and have two cards$/) do
   now = Date.today
   yesterday = (now - 1).to_time
   three_days_old = (now - 3).to_time
@@ -157,4 +157,59 @@ end
 
 And(/^I can not see the card from Sydney anymore$/) do
   page.should_not have_content @sydney_card_name
+end
+
+Given(/^I am on the Sydney board and can see an active and inactive card$/) do
+  now = Date.today
+  yesterday = (now - 1).to_time
+  three_days_old = (now - 3).to_time
+
+  @list_name = 'Resumes To Be Screened '
+  @list_id = '101'
+  @list = List.new(@list_id, @list_name)
+  @list_end_name = 'Success - Hired'
+  @list_end_id = '102'
+  @list = List.new(@list_end_id, @list_end_name)
+
+  @active_card_name = 'Someone applying for a job'
+  @active_action_date = yesterday
+  @active_card_id = '1'
+  @active_create_action = Action.new('createCard', @active_card_id, @active_action_date)
+
+  @inactive_card_name = 'Someone got hired for a job'
+  @inactive_action_date = three_days_old
+  @inactive_end_date = yesterday
+  @inactive_card_id = '2'
+  @inactive_create_action = Action.new('createCard', @inactive_card_id, @inactive_action_date)
+  @inactive_update_action = Action.new('updateCard_finish', @inactive_card_id, @inactive_end_date)
+
+  @inactive_card = Card.new(name: @inactive_card_name, id: @inactive_card_id, list_id: @list_end_id, list_name: @list_end_name)
+  @active_card = Card.new(name: @active_card_name, id: @active_card_id, list_id: @list_id, list_name: @list_name)
+
+  board = Board.new
+  board.lists = [ @list ]
+  list_of_actions = [ @active_create_action, @inactive_create_action, @inactive_update_action ]
+  board.actions = [ list_of_actions ]
+  board.cards = [ @active_card, @inactive_card ]
+
+  member = Member.new
+  member.boards = [ board ]
+
+  ActionService.stub(:get_actions).and_return(list_of_actions)
+  Trello::Member.stub(:find).and_return(member)
+end
+
+When(/^I click on the Active Only button and hit Submit$/) do
+  page.should have_content @active_card_name
+  page.should have_content @inactive_card_name
+  choose 'show_only_active_cards'
+  click_button 'Submit'
+end
+
+Then(/^I can see the active card$/) do
+  page.should have_content @active_card_name
+end
+
+And(/^I can not see the inactive card anymore$/) do
+  page.should_not have_content @inactive_card_name
 end

@@ -93,14 +93,22 @@ describe 'cards/index', type: :view do
     rendered.should have_field('days_old')
     rendered.should have_field('location_Sydney_-_Software_Engineers')
     rendered.should have_field('location_Melbourne_Recruitment_Pipeline')
+    rendered.should have_field('show_only_active_cards')
+    rendered.should have_field('show_only_inactive_cards')
+    rendered.should have_field('show_only_all_cards')
   end
 
   it 'retains user values' do
     @location = 'Melbourne Recruitment Pipeline'
     @days_old = 30
+    @show_only = 'inactive_cards'
     assign(:location, @location)
     assign(:days_old, @days_old)
+    assign(:show_only, @show_only)
     render
+    rendered.should have_field('show_only_all_cards', :checked => false)
+    rendered.should have_field('show_only_active_cards', :checked => false)
+    rendered.should have_field('show_only_inactive_cards', :checked => true)
     rendered.should have_field('location_Sydney_-_Software_Engineers', :checked => false)
     rendered.should have_field('location_Melbourne_Recruitment_Pipeline', :checked => true)
     rendered.should have_field('days_old', :with => 30)

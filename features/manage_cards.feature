@@ -27,8 +27,15 @@ Feature: Manage cards.
     Then I am given an error message telling me to enter a valid value
 
   Scenario: Switching to the Melbourne board.
-    Given I am on the Sydney board and can see two cards
+    Given I am on the Sydney board and have two cards
     And I am logged in as a DiUS employee
     When I click on the Melbourne button and hit Submit
     Then I can see the card from Melbourne
     And I can not see the card from Sydney anymore
+
+  Scenario: Showing only active cards.
+    Given I am on the Sydney board and can see an active and inactive card
+    And I am logged in as a DiUS employee
+    When I click on the Active Only button and hit Submit
+    Then I can see the active card
+    And I can not see the inactive card anymore
