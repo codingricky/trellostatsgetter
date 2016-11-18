@@ -4,9 +4,8 @@ class CardService
 
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = ['createCard', 'copyCard']
-  STARTING_LANE = ['Resumes to be Screened', 'Resumes To Be Screened ']
-  FINISHING_LANES = ['Success - Hired', 'Unsuccessful - Candidate Withdrew', 'Unsuccessful - Interview', 'Unsuccessful - Resume Screen', 'Unsuccessful - Code Test', 'Candidate Withdrew', 'Hired!', 'Hired',
-                        'Candidate withdrawn', 'Candidate Rejected DiUS Offer', 'Candidate Accepted another offer Prior to DiUS offer/process completion', 'Unsuccessful Resumes', 'Code Test Feedback- Unsuccessful', 'Interview - Unsuccessful']
+  STARTING_LANE = ENV['STARTING_LANE'].split('|')
+  FINISHING_LANES = ENV['FINISHING_LANES'].split('|')
 
   def self.all(location)
     Trello.configure do |config|

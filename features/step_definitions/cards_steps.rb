@@ -169,7 +169,7 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
   @list = List.new(@list_id, @list_name)
   @list_end_name = 'Success - Hired'
   @list_end_id = '102'
-  @list = List.new(@list_end_id, @list_end_name)
+  @list_end = List.new(@list_end_id, @list_end_name)
 
   @active_card_name = 'Someone applying for a job'
   @active_action_date = yesterday
@@ -187,7 +187,7 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
   @active_card = Card.new(name: @active_card_name, id: @active_card_id, list_id: @list_id, list_name: @list_name)
 
   board = Board.new
-  board.lists = [ @list ]
+  board.lists = [ @list, @list_end ]
   list_of_actions = [ @active_create_action, @inactive_create_action, @inactive_update_action ]
   board.actions = [ list_of_actions ]
   board.cards = [ @active_card, @inactive_card ]

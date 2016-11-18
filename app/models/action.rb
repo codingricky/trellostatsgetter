@@ -42,7 +42,7 @@ class Action
     end
 
     if type == 'updateCard_finish_old'
-      @data = {'listAfter' =>{'name' => 'Hired!'},
+      @data = {'listAfter' =>{'name' => 'Hired'},
                'card' =>
                    {'id' =>card_id}}
     end
