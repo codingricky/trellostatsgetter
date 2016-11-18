@@ -35,7 +35,7 @@
     <% else
          @cards.each do |card| %>
             <tr>
-              <td><%= card.name %></td>
+              <td><a href="<%= card.url %>"><%= card.name %></a></td>
               <td><%= card.list_name %></td>
               <td><%= CardsHelper.show_start_date(card) %></td>
               <td><%= CardsHelper.show_end_date(card) %></td>

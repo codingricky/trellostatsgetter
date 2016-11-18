@@ -17,7 +17,7 @@ describe CardService do
     @old_finished_card_create_action = Action.new('createCard', @old_finished_card.id, Time.parse('3/2/1991'))
     @old_finished_card_end_action = Action.new('updateCard_finish_old', @old_finished_card.id, Time.parse('4/2/1991'))
 
-    @card_still_in_progress = OpenStruct.new(id: '2', name: 'test card', list_id: @starting_list.id)
+    @card_still_in_progress = OpenStruct.new(id: '2', name: 'test card', list_id: @starting_list.id, url: 'www.test.com')
     @card_still_in_progress_create_action = Action.new('createCard', @card_still_in_progress.id, Time.parse('1/1/1991'))
 
     Trello::Member.stub(:find).and_return(@member)
@@ -84,6 +84,10 @@ describe CardService do
 
     it 'should set the end date to nil' do
       subject.first.end_date.should be_nil
+    end
+
+    it 'should set the correct url' do
+      subject.first.url.should eql('www.test.com')
     end
   end
 

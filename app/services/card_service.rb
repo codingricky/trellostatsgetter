@@ -26,7 +26,8 @@ class CardService
                                                     list_id: card.list_id,
                                                     list_name: list_id_name[card.list_id],
                                                     start_date: find_start_date(card.id, list_of_actions),
-                                                    end_date: find_end_date(card.id, list_id_name[card.list_id], list_of_actions))}
+                                                    end_date: find_end_date(card.id, list_id_name[card.list_id], list_of_actions),
+                                                    url: card.url)}
     Rails.logger.info("calling all_cards.find_all")
 
     return all_cards

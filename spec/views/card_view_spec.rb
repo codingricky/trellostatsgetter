@@ -12,7 +12,7 @@ describe 'cards/index', type: :view do
     create_date = '1/1/1990'
     update_date = '1/1/1991'
 
-    @cards = [ Card.new(name: card_name, id: card_id, list_id: card_list_id, list_name: 'Sample List')]
+    @cards = [ Card.new(name: card_name, id: card_id, list_id: card_list_id, list_name: 'Sample List', url: 'www.test.com')]
     @two_cards = [ @cards.first,
                    Card.new(name: another_card_name, id: '2', list_id: card_list_id, list_name: 'Success - Hired', start_date: create_date, end_date: update_date)]
   end
@@ -64,7 +64,6 @@ describe 'cards/index', type: :view do
     assign(:cards, @two_cards)
     render
     rendered.should match /background-color:#FFC200/
-    #make a cuke test?
   end
 
   it 'displays the error messages' do
@@ -112,5 +111,11 @@ describe 'cards/index', type: :view do
     rendered.should have_field('location_Sydney_-_Software_Engineers', :checked => false)
     rendered.should have_field('location_Melbourne_Recruitment_Pipeline', :checked => true)
     rendered.should have_field('days_old', :with => 30)
+  end
+
+  it 'links the card name to the card url' do
+    assign(:cards, @cards)
+    render
+    rendered.should have_link(@cards.first.name, href: @cards.first.url)
   end
 end
