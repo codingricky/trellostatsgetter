@@ -26,8 +26,9 @@
       <th width="18%"> Current Lane</th>
       <th width="18%"> Date Placed in Start Lane</th>
       <th width="18%"> Date Placed in End Lane ("Success - " or any "Unsuccessful - " lanes)</th>
-      <th width="18%"> Duration of Card in days</th>
-      <th width="10%"> Urgency</th>
+      <th width="8%"> Source</th>
+      <th width="8%"> Duration of Card in days</th>
+      <th width="8%"> Urgency</th>
     </tr>
     </thead>
     <tbody>
@@ -39,6 +40,7 @@
               <td><%= card.list_name %></td>
               <td><%= CardsHelper.show_start_date(card) %></td>
               <td><%= CardsHelper.show_end_date(card) %></td>
+              <td><%= card.source %></td>
               <td><%= card.duration_in_days %></td>
               <td style="background-color:<%= CardsHelper.show_colour_status(card) %>"></td>
             </tr>

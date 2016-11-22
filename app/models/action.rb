@@ -53,6 +53,12 @@ class Action
                    {'id' =>card_id}}
     end
 
+    if type == 'addAttachmentToCard'
+      @data = {'attachment' =>{'name' => 'Resume_Valid Source.pdf'},
+               'card' =>
+                   {'id' =>card_id}}
+    end
+
     @date = date
   end
 end

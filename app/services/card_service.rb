@@ -27,7 +27,8 @@ class CardService
                                                     list_name: list_id_name[card.list_id],
                                                     start_date: find_start_date(card.id, list_of_actions),
                                                     end_date: find_end_date(card.id, list_id_name[card.list_id], list_of_actions),
-                                                    url: card.url)}
+                                                    url: card.url,
+                                                    attachments: get_attachment_names(card.id, list_of_actions))}
     Rails.logger.info("calling all_cards.find_all")
 
     return all_cards
@@ -64,5 +65,15 @@ class CardService
   def self.find_member
     Rails.logger.info('calling Trello find')
     Trello::Member.find(ENV['TRELLO_MEMBER_ID'])
+  end
+
+  def self.get_attachment_names(card_id, list_of_actions)
+    attachment_actions = list_of_actions.find_all { |actions| actions.type == 'addAttachmentToCard' }
+    attachments_for_this_card = attachment_actions.find_all { |actions| actions.data['card']['id'] == card_id }
+    attachment_names = [ ]
+    attachments_for_this_card.each do |action|
+      attachment_names << action.data['attachment']['name']
+    end
+    attachment_names
   end
 end

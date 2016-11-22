@@ -2,16 +2,20 @@ require 'rspec'
 require 'spec_helper'
 
 describe Card do
+  before do
+    allow(ENV).to receive(:[]).with('SOURCE_NAMES').and_return('A Valid Source')
+  end
+
   context 'determine time difference between two dates' do
     it 'returns the amount of days lapsed' do
-      card = Card.new
+      card = Card.new(name: 'This is a test card.')
       card.end_date = (Date.today - 1).to_time
       card.start_date = (Date.today - 2).to_time
       card.duration_in_days.should eq(1)
     end
 
     it 'returns nil if start_date is non existent' do
-      card = Card.new
+      card = Card.new(name: 'This is a test card.')
       card.duration_in_days.should eq(nil)
     end
   end
@@ -43,4 +47,47 @@ describe Card do
       (Card.new(name: 'Billy Bob and Meggy Meg grabbed the $50 000 and ran')).name.should eq('Billy Bob and Meggy Meg grabbed the   and ran')
     end
   end
+
+  context 'a card has no source in its name and there are no attachments' do
+    it 'sets source to nil' do
+      Card.new(name: 'This is a test card.').source.should eq(nil)
+    end
+  end
+
+  context 'a card has a source in its name' do
+    it 'sets source to the name' do
+      Card.new(name: 'This is a test card from a valid source.').source.should eq('A Valid Source')
+    end
+  end
+
+  context 'a card has a source in its name with different casing' do
+    it 'sets source to the name' do
+      Card.new(name: 'This is a test card from a ValiD soUrce.').source.should eq('A Valid Source')
+    end
+  end
+
+  context 'a card does not have a source in its attachment name' do
+    it 'sets source to nil' do
+      Card.new(name: 'This is a test card', attachments: [ 'Blehblah.docx' ]).source.should eq(nil)
+    end
+  end
+
+  context 'a card has a source in its attachment name' do
+    it 'sets source to the name' do
+      Card.new(name: 'This is a test card', attachments: [ 'A Valid Source.pdf' ]).source.should eq('A Valid Source')
+    end
+  end
+
+  context 'a card has a source in its attachment names' do
+    it 'sets source to the name' do
+      Card.new(name: 'This is a test card', attachments: [ 'Blehblah.docx', 'A ValId SourCe.pdf' ]).source.should eq('A Valid Source')
+    end
+  end
+
+  context 'the card has source names in both the card name and attachment name' do
+    it 'sets source to the one found in card name' do
+      Card.new(name: 'This is a test referral card', attachments: [ 'A Valid Source.pdf' ]).source.should eq('A Valid Source')
+    end
+  end
+
 end

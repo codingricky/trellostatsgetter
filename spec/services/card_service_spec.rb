@@ -19,6 +19,7 @@ describe CardService do
 
     @card_still_in_progress = OpenStruct.new(id: '2', name: 'test card', list_id: @starting_list.id, url: 'www.test.com')
     @card_still_in_progress_create_action = Action.new('createCard', @card_still_in_progress.id, Time.parse('1/1/1991'))
+    @card_still_in_progress_attachment_action = Action.new('addAttachmentToCard', @card_still_in_progress.id, Time.parse('1/1/1991'))
 
     Trello::Member.stub(:find).and_return(@member)
 
@@ -33,7 +34,7 @@ describe CardService do
 
     @member.boards = [@board]
 
-    ActionService.stub(:get_actions).and_return([@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action, @old_finished_card_create_action, @old_finished_card_end_action])
+    ActionService.stub(:get_actions).and_return([@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action, @card_still_in_progress_attachment_action, @old_finished_card_create_action, @old_finished_card_end_action])
   end
 
   subject { CardService.all('Sydney - Software Engineers') }
@@ -155,4 +156,25 @@ describe CardService do
       subject.should be_empty
     end
   end
+
+  context 'receives a card from trello with no attachments' do
+    before do
+      @board.cards = [ @finished_card ]
+    end
+
+    it 'returns an empty array' do
+      subject.first.attachments.should eql([])
+    end
+  end
+
+  context 'receives a card from trello with an attachment' do
+    before do
+      @board.cards = [ @card_still_in_progress ]
+    end
+
+    it 'retrieves the attachment names and puts them in an array' do
+      subject.first.attachments.should eql([ @card_still_in_progress_attachment_action.data['attachment']['name'] ])
+    end
+  end
+
 end
