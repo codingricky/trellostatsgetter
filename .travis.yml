@@ -4,6 +4,8 @@ rvm:
 - 2.3.0
 rails:
 - 5.0.0
+env:
+- SOURCE_NAMES="Evolution|Codability|Referral|CircuIT|Naviro"
 before_install:
 - openssl aes-256-cbc -K $encrypted_85f610ce021a_key -iv $encrypted_85f610ce021a_iv
   -in .env.enc -out .env -d
