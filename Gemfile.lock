@@ -165,7 +165,6 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.4.5)
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
     net-http-pipeline (1.0.1)
@@ -371,7 +370,6 @@ DEPENDENCIES
   jquery-turbolinks
   listen (~> 3.0.5)
   logging
-  mysql2
   omniauth
   omniauth-google-oauth2
   pg
@@ -397,4 +395,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.5
+   1.13.6

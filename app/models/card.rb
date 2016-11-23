@@ -35,26 +35,20 @@ class Card
 
   def determine_source(name)
     possible_sources = ENV['SOURCE_NAMES'].split('|')
-    source = nil
     possible_sources.each do |possible_source|
-      if (name.downcase).match(possible_source.downcase)
-        source = possible_source
-      end
+      return possible_source if (name.downcase).match(possible_source.downcase)
     end
-    return source
+    return nil
   end
 
   def search_for_sources(card_name, attachment_names)
-    source = determine_source(card_name)
-    if source.present?
-      return source
-    end
+    return determine_source(card_name) if determine_source(card_name).present?
     if attachment_names.present?
       attachment_names.each do |attachment_name|
-        source = determine_source(attachment_name)
+        return determine_source(attachment_name) if determine_source(attachment_name).present?
       end
     end
-    return source
+    return nil
   end
 
 end
