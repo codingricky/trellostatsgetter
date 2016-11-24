@@ -4,8 +4,6 @@ class CardService
 
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = ['createCard', 'copyCard']
-  STARTING_LANE = ENV['STARTING_LANE'].split('|')
-  FINISHING_LANES = ENV['FINISHING_LANES'].split('|')
 
   def self.all(location)
     Trello.configure do |config|
@@ -42,24 +40,30 @@ class CardService
 
   def self.is_create_action_in_starting_lane?(card_id, action)
     (action.type.in? TYPE_CREATE) &&
-        action.data['list']['name'].in?(STARTING_LANE) &&
+        action.data['list']['name'].in?(ConfigService.starting_lanes) &&
         action.data['list']['name'].present? &&
         (action.data['card']['id'] == card_id)
   end
 
   def self.did_update_action_end_in_starting_lane?(card_id, action)
-    (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].in?(STARTING_LANE)) && (action.data['card']['id'] == card_id)
+    (action.type == TYPE_UPDATE) &&
+        (action.data['listAfter']) &&
+        (action.data['listAfter']['name'].in?(ConfigService.starting_lanes)) &&
+        (action.data['card']['id'] == card_id)
   end
 
   def self.find_end_date(card_id, list_name, actions)
-    if list_name.in?(FINISHING_LANES)
+    if list_name.in?(ConfigService.finishing_lanes)
       selected_action = actions.find { |action| did_update_action_end_in_finishing_lane?(card_id, action) }
     end
     selected_action.try(:date)
   end
 
   def self.did_update_action_end_in_finishing_lane?(card_id, action)
-    (action.type == TYPE_UPDATE) && (action.data['listAfter']) && (action.data['listAfter']['name'].in?(FINISHING_LANES)) && (action.data['card']['id'] == card_id)
+    (action.type == TYPE_UPDATE)  &&
+        (action.data['listAfter']) &&
+        (action.data['listAfter']['name'].in?(ConfigService.finishing_lanes)) &&
+        (action.data['card']['id'] == card_id)
   end
 
   def self.find_member

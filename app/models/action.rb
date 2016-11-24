@@ -19,13 +19,13 @@ class Action
     end
 
     if type == 'copyCard'
-      @data = {'list' =>{'name' => 'Resumes to be Screened'},
+      @data = {'list' =>{'name' => ConfigService.starting_lanes.first},
                'card' =>
                    {'id' =>card_id}}
     end
 
     if type == 'createCard'
-      @data = {'list' =>{'name' => 'Resumes to be Screened'},
+      @data = {'list' =>{'name' => ConfigService.starting_lanes.first},
                'card' =>
                    {'id' =>card_id}}
     end
@@ -36,19 +36,19 @@ class Action
     end
 
     if type == 'updateCard_finish'
-      @data = {'listAfter' =>{'name' => 'Success - Hired'},
+      @data = {'listAfter' =>{'name' => ConfigService.finishing_lanes.first},
                'card' =>
            {'id' =>card_id}}
     end
 
     if type == 'updateCard_finish_old'
-      @data = {'listAfter' =>{'name' => 'Hired'},
+      @data = {'listAfter' =>{'name' => ConfigService.finishing_lanes.first},
                'card' =>
                    {'id' =>card_id}}
     end
 
     if type == 'updateCard'
-      @data = {'listAfter' =>{'name' => 'Resumes to be Screened'},
+      @data = {'listAfter' =>{'name' => ConfigService.starting_lanes.first},
                'card' =>
                    {'id' =>card_id}}
     end

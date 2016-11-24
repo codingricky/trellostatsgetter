@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Card do
   before do
-    allow(ENV).to receive(:[]).with('SOURCE_NAMES').and_return('A Valid Source')
+    ConfigService.stub(:source_names).and_return(['A Valid Source'])
   end
 
   context 'determine time difference between two dates' do

@@ -33,22 +33,18 @@ class Card
     name.gsub(/\$[-.,\w]*|\d\d\d[k,\d]*|\d\d[k,]/, '')
   end
 
-  def determine_source(name)
-    possible_sources = ENV['SOURCE_NAMES'].split('|')
-    possible_sources.each do |possible_source|
-      return possible_source if (name.downcase).match(possible_source.downcase)
-    end
-    return nil
+  def find_matching_source(name)
+    ConfigService.source_names.find {|source_name| name.downcase.match(source_name.downcase)}
   end
 
   def search_for_sources(card_name, attachment_names)
-    return determine_source(card_name) if determine_source(card_name).present?
+    source = find_matching_source(card_name)
+    return source if source.present?
+
     if attachment_names.present?
-      attachment_names.each do |attachment_name|
-        return determine_source(attachment_name) if determine_source(attachment_name).present?
-      end
+      source = attachment_names.map {|attachment_name| find_matching_source(attachment_name)}.compact.first
     end
-    return nil
+    source
   end
 
 end

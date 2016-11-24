@@ -4,11 +4,15 @@ require 'trello'
 
 describe CardService do
   before do
+    ConfigService.stub(:starting_lanes).and_return(['starting', 'another starting lane'])
+    ConfigService.stub(:finishing_lanes).and_return(['finishing', 'another finishing lane'])
+    ConfigService.stub(:source_names).and_return(['source'])
+
     @member = Member.new
-    @starting_list = List.new('101', CardService::STARTING_LANE)
-    @finished_list = List.new('100', CardService::FINISHING_LANES.first)
+    @starting_list = List.new('101', ConfigService.starting_lanes.first)
+    @finished_list = List.new('100', ConfigService.finishing_lanes.first)
     @finished_card = OpenStruct.new(id: '1', name: 'test card', list_id: @finished_list.id)
-    @old_finished_list = List.new('102', CardService::FINISHING_LANES.last)
+    @old_finished_list = List.new('102', ConfigService.finishing_lanes.last)
     @old_finished_card = OpenStruct.new(id: '3', name: 'old test card', list_id: @old_finished_list.id)
 
     @finished_card_create_action = Action.new('createCard', @finished_card.id, Time.parse('1/1/1991'))

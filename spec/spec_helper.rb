@@ -30,6 +30,7 @@ RSpec.configure do |config|
   Warden.test_mode!
   ### For database_cleaner...
   config.before(:suite) do
+
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:deletion) # clean suite now up-front
   end

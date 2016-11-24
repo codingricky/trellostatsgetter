@@ -1,3 +1,9 @@
+Before do
+  ConfigService.stub(:starting_lanes).and_return(['starting', 'another starting lane'])
+  ConfigService.stub(:finishing_lanes).and_return(['finishing', 'another finishing lane'])
+  ConfigService.stub(:source_names).and_return(['source'])
+end
+
 Given(/^My Trello board is empty$/) do
   board = SpecsHelper.create_empty_board
   member = Member.new
@@ -164,10 +170,10 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
   yesterday = (now - 1).to_time
   three_days_old = (now - 3).to_time
 
-  @list_name = 'Resumes To Be Screened '
+  @list_name = ConfigService.starting_lanes.first
   @list_id = '101'
   @list = List.new(@list_id, @list_name)
-  @list_end_name = 'Success - Hired'
+  @list_end_name = ConfigService.finishing_lanes.first
   @list_end_id = '102'
   @list_end = List.new(@list_end_id, @list_end_name)
 
