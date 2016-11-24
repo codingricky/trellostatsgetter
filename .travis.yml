@@ -29,7 +29,7 @@ deploy:
 - provider: elasticbeanstalk
   app: trello-stats-getter
   env: trello-stats-getter-prod
-  bucket_name: elasticbeanstalk-ap-southeast-2-dius-dev-e-arfpnxing2
+  bucket_name: elasticbeanstalk-ap-southeast-2-dius-dev-e-pic2izvh82
   region: ap-southeast-2
   access_key_id:
     secure: jsBuMYMbihtaQGNnbFx7L/rYbA17EDHucnTs5WOcJ04n7xtba6OaJXwhyzLOPSdleaXkp2V2xlKL3vVEpiRcTnbg+aDF4q14mYJZGIpBUztav7u3aSMA27dhGcGCNT1APK940XlgmVpz7YiTccU+BILPVLaKlsneq65dz4js+wr4azGmmCaOeI1nTLLnAe77iJFkPOQNrPPdbI00hCZ5JT5P/EqYg+/YnwDf2J7m8OmrIFCAeui7oDYG3wojnEl8dqcmoFZeQcDozR9Hpx1vKF95O88EYCHPjX86w5DXPHn7OtSu3y1vaxcGTdP/2tTNFx+SaPH/muqhbrYp8thK8KBNOUeBtbYMewBgRkxePSxj2nALtvHjD5eOTp174JhTo6APQWWF9WQGAljZ5LdX4SUyP8hoLc9n/UAzS0aKy/63vGayPXhuGzCDCWKp9IOf+P/GRJFCWv2joVBO7PAT1X4pvfjuBBKxK5WZ2RNHk8DBZC4FNilwiPduD48R/jGm0zXdtbV+I3q6HoD96/qUW+nTEOIEpYA837OqcYGKX0vhVQ+Tkme4BRM8ddkADqCLhF5Su53o5uJ03MUQXROYa3tXL/oA/wIX4d1tVSZbVJ2CkjNznsUCx+fJCV906Kt9EbFIzhHuOCjG8NSwfdzxahC8cwUfUlhf6ssRiCU7spA=
