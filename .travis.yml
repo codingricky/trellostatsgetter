@@ -21,7 +21,6 @@ before_script:
 script:
 - bin/rails db:environment:set RAILS_ENV=test
 - bundle exec rake --trace
-dist: trusty
 deploy:
 - provider: heroku
   api_key:
