@@ -54,8 +54,8 @@ describe DownloadedCard do
     card_id = '123abc'
     list_id = 'abc123'
     list_name = 'Resumes To Be Screened '
-    start_date = (DateTime.now - 1)
-    end_date = (DateTime.now)
+    start_date = Time.parse('1/1/1991')
+    end_date = Time.parse('2/1/1991')
     url = 'www.dius.com.au'
 
     DownloadedCard.create(sanitized_name: name,
