@@ -31,7 +31,7 @@ end
 Given(/^I have a card named Michael$/) do
   @card_name = 'Michael'
   @list_name = 'Yay'
-  @action_date = (Date.today - 1).to_time
+  @action_date = (DateTime.now - 1)
   board = SpecsHelper.create_board_with_card(@card_name, @list_name, @action_date)
   test_action = Action.new('createCard', '1', @action_date)
   list_of_actions = [ test_action ]
