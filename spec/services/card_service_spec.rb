@@ -61,8 +61,8 @@ describe CardService do
       @member.boards = [@board, @wrong_board]
       Trello::Member.stub(:find).and_return(@member)
       subject.count.should eql(2)
-      subject.first.id.should eql('2')
-      subject.second.id.should eql('1')
+      subject.first.card_id.should eql('2')
+      subject.second.card_id.should eql('1')
     end
   end
 
@@ -72,7 +72,7 @@ describe CardService do
     end
 
     it 'should return the correct name' do
-      subject.first.name.should eq(@card_still_in_progress.name)
+      subject.first.sanitized_name.should eq(@card_still_in_progress.name)
     end
 
     it 'should return the correct number of cards' do

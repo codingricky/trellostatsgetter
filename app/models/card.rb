@@ -1,7 +1,7 @@
 class Card
-  attr_reader :id
+  attr_reader :card_id
   attr_reader :list_id
-  attr_reader :name
+  attr_reader :sanitized_name
   attr_reader :list_name
   attr_reader :url
   attr_reader :source
@@ -10,8 +10,8 @@ class Card
   attr_accessor :end_date
 
   def initialize(params = {})
-    @name = sanitized_name(params[:name])
-    @id = params[:id]
+    @sanitized_name = sanitize_name(params[:name])
+    @card_id = params[:id]
     @list_id = params[:list_id]
     @list_name = params[:list_name]
     @start_date = params[:start_date]
@@ -29,7 +29,7 @@ class Card
     (end_date.to_date - start_date.to_date).to_i
   end
 
-  def sanitized_name(name)
+  def sanitize_name(name)
     name.gsub(/\$[-.,\w]*|\d\d\d[k,\d]*|\d\d[k,]/, '')
   end
 

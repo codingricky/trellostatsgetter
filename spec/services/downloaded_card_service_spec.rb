@@ -3,15 +3,15 @@ require 'spec_helper'
 
 describe DownloadedCardService do
   before do
-    @card_one = Card.new(name: 'Michael',
+    @card_one = OpenStruct.new(name: 'Michael',
                         id: '123abc',
                         list_id: 'abc123',
                         list_name: 'Resumes To Be Screened ',
                         start_date: Time.parse('1/1/1991'),
                         end_date: Time.parse('2/1/1991'),
                         url: 'www.dius.com.au')
-    card_two = Card.new(name: 'Ricky', card_id: '2')
-    @card_three = Card.new(name: 'Mario', card_id: '3')
+    card_two = OpenStruct.new(name: 'Ricky', card_id: '2')
+    @card_three = OpenStruct.new(name: 'Mario', card_id: '3')
     @cards = [@card_one, card_two, @card_three]
   end
 

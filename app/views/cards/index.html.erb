@@ -40,7 +40,7 @@
               <td><%= card.list_name %></td>
               <td><%= CardsHelper.show_start_date(card) %></td>
               <td><%= CardsHelper.show_end_date(card) %></td>
-              <td> *** </td>
+              <td><%= card.source %></td>
               <td><%= card.duration_in_days %></td>
               <td style="background-color:<%= CardsHelper.show_colour_status(card) %>"></td>
             </tr>

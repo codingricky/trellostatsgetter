@@ -68,8 +68,8 @@ Given(/^I have a card that is one day old, and a card that is three days old$/) 
   @older_card_id = '2'
   @older_create_action = Action.new('createCard', @older_card_id, @older_action_date)
 
-  @older_card = Card.new(name: @older_card_name, id: @older_card_id, list_id: @list_id, list_name: @list_name)
-  @younger_card = Card.new(name: @younger_card_name, id: @younger_card_id, list_id: @list_id, list_name: @list_name)
+  @older_card = OpenStruct.new(name: @older_card_name, id: @older_card_id, list_id: @list_id, list_name: @list_name)
+  @younger_card = OpenStruct.new(name: @younger_card_name, id: @younger_card_id, list_id: @list_id, list_name: @list_name)
 
   board = Board.new
   board.lists = [ @list ]
@@ -128,8 +128,8 @@ Given(/^I am on the Sydney board and have two cards$/) do
   @melbourne_card_id = '2'
   @melbourne_create_action = Action.new('createCard', @melbourne_card_id, @melbourne_action_date)
 
-  @melbourne_card = Card.new(name: @melbourne_card_name, id: @melbourne_card_id, list_id: @list_id, list_name: @list_name)
-  @sydney_card = Card.new(name: @sydney_card_name, id: @sydney_card_id, list_id: @list_id, list_name: @list_name)
+  @melbourne_card = OpenStruct.new(name: @melbourne_card_name, id: @melbourne_card_id, list_id: @list_id, list_name: @list_name)
+  @sydney_card = OpenStruct.new(name: @sydney_card_name, id: @sydney_card_id, list_id: @list_id, list_name: @list_name)
 
   sydney_board = Board.new
   sydney_board.lists = [ @list ]
@@ -189,8 +189,8 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
   @inactive_create_action = Action.new('createCard', @inactive_card_id, @inactive_action_date)
   @inactive_update_action = Action.new('updateCard_finish', @inactive_card_id, @inactive_end_date)
 
-  @inactive_card = Card.new(name: @inactive_card_name, id: @inactive_card_id, list_id: @list_end_id, list_name: @list_end_name)
-  @active_card = Card.new(name: @active_card_name, id: @active_card_id, list_id: @list_id, list_name: @list_name)
+  @inactive_card = OpenStruct.new(name: @inactive_card_name, id: @inactive_card_id, list_id: @list_end_id, list_name: @list_end_name)
+  @active_card = OpenStruct.new(name: @active_card_name, id: @active_card_id, list_id: @list_id, list_name: @list_name)
 
   board = Board.new
   board.lists = [ @list, @list_end ]
