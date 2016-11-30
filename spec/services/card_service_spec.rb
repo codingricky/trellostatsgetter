@@ -2,7 +2,7 @@ require 'rspec'
 require 'spec_helper'
 require 'trello'
 
-describe CardService do
+describe TrelloService do
   before do
     ConfigService.stub(:starting_lanes).and_return(['starting', 'another starting lane'])
     ConfigService.stub(:finishing_lanes).and_return(['finishing', 'another finishing lane'])
@@ -41,7 +41,7 @@ describe CardService do
     ActionService.stub(:get_actions).and_return([@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action, @card_still_in_progress_attachment_action, @old_finished_card_create_action, @old_finished_card_end_action])
   end
 
-  subject { CardService.all('Sydney - Software Engineers') }
+  subject { TrelloService.all('Sydney - Software Engineers') }
 
   context 'invalid config' do
     it 'raises an error when the member is not found' do

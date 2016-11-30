@@ -1,6 +1,6 @@
 require 'trello'
 
-class CardService
+class TrelloService
 
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = ['createCard', 'copyCard']
