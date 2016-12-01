@@ -39,3 +39,10 @@ Feature: Manage cards.
     When I click on the Active Only button and hit Submit
     Then I can see the active card
     And I can not see the inactive card anymore
+
+  Scenario: Downloading Sydney cards.
+    Given I am on the Sydney board and can see an active and inactive card
+    And I am logged in as a DiUS employee
+    When I navigate to download
+    Then The cards are saved to the db
+    And A blank page is loaded

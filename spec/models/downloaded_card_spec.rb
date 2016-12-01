@@ -2,6 +2,10 @@ require 'rspec'
 require 'spec_helper'
 
 describe DownloadedCard do
+  before do
+    ConfigService.stub(:source_names).and_return(['A Valid Source'])
+  end
+
   it 'saves with a name field (string)' do
     DownloadedCard.create(sanitized_name: 'Vinny')
     DownloadedCard.first.sanitized_name.should eq('Vinny')
@@ -47,6 +51,48 @@ describe DownloadedCard do
       (DownloadedCard.create(sanitized_name:'13/05/2016').sanitized_name.should eq('13/05/'))
       (DownloadedCard.create(sanitized_name:'Billy Bob and Meggy Meg grabbed the $50 000 and ran').sanitized_name.should eq('Billy Bob and Meggy Meg grabbed the   and ran'))
     end
+
+    context 'a card has no source in its name and there are no attachments' do
+      it 'sets source to nil' do
+        DownloadedCard.create(sanitized_name: 'This is a test card.').source.should eq(nil)
+      end
+    end
+
+    context 'a card has a source in its name' do
+      it 'sets source to the name' do
+        DownloadedCard.create(sanitized_name: 'This is a test card from a valid source.').source.should eq('A Valid Source')
+      end
+    end
+
+    context 'a card has a source in its name with different casing' do
+      it 'sets source to the name' do
+        DownloadedCard.create(sanitized_name: 'This is a test card from a ValiD soUrce.').source.should eq('A Valid Source')
+      end
+    end
+
+    context 'a card does not have a source in its attachment name' do
+      it 'sets source to nil' do
+        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: [ 'Blehblah.docx' ]).source.should eq(nil)
+      end
+    end
+
+    context 'a card has a source in its attachment name' do
+      it 'sets source to the name' do
+        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: [ 'A Valid Source.pdf' ]).source.should eq('A Valid Source')
+      end
+    end
+
+    context 'a card has a source in its attachment names' do
+      it 'sets source to the name' do
+        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: [ 'Blehblah.docx', 'A ValId SourCe.pdf' ]).source.should eq('A Valid Source')
+      end
+    end
+
+    context 'the card has source names in both the card name and attachment name' do
+      it 'sets source to the one found in card name' do
+        DownloadedCard.create(sanitized_name: 'This is a test referral card', attachments: [ 'A Valid Source.pdf' ]).source.should eq('A Valid Source')
+      end
+    end
   end
 
   it 'has all card fields' do
@@ -75,5 +121,4 @@ describe DownloadedCard do
     DownloadedCard.first.end_date.should eq(end_date)
     DownloadedCard.first.url.should eq(url)
   end
-
 end

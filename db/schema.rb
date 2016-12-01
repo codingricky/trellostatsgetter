@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128053904) do
+ActiveRecord::Schema.define(version: 20161130044942) do
 
   create_table "downloaded_cards", force: :cascade do |t|
     t.string   "sanitized_name"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20161128053904) do
     t.string   "url"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.string   "location"
+    t.string   "attachments"
+    t.string   "source"
   end
 
   create_table "users", force: :cascade do |t|

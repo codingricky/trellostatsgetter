@@ -20,4 +20,9 @@ class CardsController < ApplicationController
       @error = e.message
     end
   end
+
+  def download
+    DownloadedCardService.save_cards(TrelloService.all('Sydney - Software Engineers'), 'Sydney - Software Engineers')
+    render :nothing => true, :status => 200
+  end
 end

@@ -221,3 +221,15 @@ end
 And(/^I can not see the inactive card anymore$/) do
   page.should_not have_content @inactive_card_name
 end
+
+When(/^I navigate to download$/) do
+  visit '/download'
+end
+
+Then(/^The cards are saved to the db$/) do
+  DownloadedCard.all.count.should eq(2)
+end
+
+Then(/^A blank page is loaded$/) do
+  page.status_code.should eq(200)
+end

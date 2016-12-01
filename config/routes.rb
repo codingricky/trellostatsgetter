@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :cards
 
   root 'cards#index'
+  get '/download', to: 'cards#download'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
