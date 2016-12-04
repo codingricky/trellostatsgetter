@@ -197,9 +197,14 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
   list_of_actions = [ @active_create_action, @inactive_create_action, @inactive_update_action ]
   board.actions = [ list_of_actions ]
   board.cards = [ @active_card, @inactive_card ]
+  empty_board = Board.new
+  empty_board.name = 'Melbourne Recruitment Pipeline'
+  empty_board.lists = []
+  empty_board.cards = []
+  empty_board.actions = []
 
   member = Member.new
-  member.boards = [ board ]
+  member.boards = [ board, empty_board ]
 
   ActionService.stub(:get_actions).and_return(list_of_actions)
   Trello::Member.stub(:find).and_return(member)

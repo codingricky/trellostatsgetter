@@ -22,7 +22,7 @@ class CardsController < ApplicationController
   end
 
   def download
-    DownloadedCardService.save_cards(TrelloService.all('Sydney - Software Engineers'), 'Sydney - Software Engineers')
+    DownloadedCardService.download_cards
     render :nothing => true, :status => 200
   end
 end

@@ -18,13 +18,17 @@ describe DownloadedCardService do
   context 'if the card does not exist, create it -' do
     it 'with no cards, it saves nothing' do
       @cards = []
-      DownloadedCardService.save_cards(@cards, 'Sydney - Software Engineers')
+      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
+      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return([])
+      DownloadedCardService.download_cards
       DownloadedCard.all.count.should eq(0)
     end
 
     it 'with one card, saves a card' do
       @cards = [@card_one]
-      DownloadedCardService.save_cards(@cards, 'Sydney - Software Engineers')
+      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
+      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return([])
+      DownloadedCardService.download_cards
       DownloadedCard.all.count.should eq(1)
       DownloadedCard.first.sanitized_name.should eq(@card_one.sanitized_name)
       DownloadedCard.first.card_id.should eq(@card_one.card_id)
@@ -37,8 +41,19 @@ describe DownloadedCardService do
     end
 
     it 'with multiple cards, iterates through the array and saves each card' do
-      DownloadedCardService.save_cards(@cards, 'Sydney - Software Engineers')
+      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
+      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return([])
+      DownloadedCardService.download_cards
       DownloadedCard.all.count.should eq(3)
+      DownloadedCard.third.sanitized_name.should eq(@card_three.sanitized_name)
+    end
+
+
+    it 'with multiple cards in both boards, iterates through the array and saves each card' do
+      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
+      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return(@cards)
+      DownloadedCardService.download_cards
+      DownloadedCard.all.count.should eq(6)
       DownloadedCard.third.sanitized_name.should eq(@card_three.sanitized_name)
     end
   end
@@ -51,16 +66,11 @@ describe DownloadedCardService do
 
     it 'clears the database before use' do
       @cards = []
-      DownloadedCardService.save_cards(@cards, 'Sydney - Software Engineers')
+      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
+      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return([])
+      DownloadedCardService.download_cards
       DownloadedCard.all.count.should eq(0)
     end
-  end
-
-  it 'returns an array of downloaded cards' do
-    @cards = [@card_one]
-    result = DownloadedCardService.save_cards(@cards, 'Sydney - Software Engineers')
-    result.is_a?(Array).should eq(TRUE)
-    result.first.is_a?(DownloadedCard).should eq(TRUE)
   end
 end
 

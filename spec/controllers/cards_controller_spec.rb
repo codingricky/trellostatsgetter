@@ -124,7 +124,7 @@ describe CardsController, type: :controller do
 
   context '/download' do
     it 'calls DownloadedCardService' do
-      expect(DownloadedCardService).to receive(:save_cards)
+      expect(DownloadedCardService).to receive(:download_cards)
       TrelloService.stub(:all).and_return([])
       response.status.should eq(200)
       get :download
