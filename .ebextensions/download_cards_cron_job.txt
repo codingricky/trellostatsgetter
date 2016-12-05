@@ -1,2 +1,2 @@
 MAILTO=mgrassi@dius.com.au
-*/01 * * * * cd /var/app/current RAILS_ENV=production downloadcards:get_cards_from_trello
+00 * * * * root curl localhost:80/download
