@@ -6,11 +6,13 @@ end
 
 Given(/^My Trello board is empty$/) do
   board = SpecsHelper.create_empty_board
+  melb_board = SpecsHelper.create_empty_melb_board
   member = Member.new
-  member.boards = [ board ]
+  member.boards = [ board, melb_board ]
   Trello::Member.stub(:find).and_return(member)
   list_of_actions = []
   ActionService.stub(:get_actions).and_return(list_of_actions)
+  visit '/download'
 end
 
 When(/^I am logged in as a DiUS employee$/) do
@@ -20,6 +22,7 @@ When(/^I am logged in as a DiUS employee$/) do
 end
 
 And(/^I navigate to the index page for cards$/) do
+  visit '/download'
   visit('/')
 end
 
@@ -33,12 +36,14 @@ Given(/^I have a card named Michael$/) do
   @list_name = 'Yay'
   @action_date = (DateTime.now - 1)
   board = SpecsHelper.create_board_with_card(@card_name, @list_name, @action_date)
+  melb_board = SpecsHelper.create_empty_melb_board
   test_action = Action.new('createCard', '1', @action_date)
   list_of_actions = [ test_action ]
   ActionService.stub(:get_actions).and_return(list_of_actions)
   member = Member.new
-  member.boards = [ board ]
+  member.boards = [ board, melb_board ]
   Trello::Member.stub(:find).and_return(member)
+  visit '/download'
 end
 
 Then(/^I should see a card named Michael$/) do
@@ -72,16 +77,18 @@ Given(/^I have a card that is one day old, and a card that is three days old$/) 
   @younger_card = OpenStruct.new(name: @younger_card_name, id: @younger_card_id, list_id: @list_id, list_name: @list_name)
 
   board = Board.new
+
   board.lists = [ @list ]
   list_of_actions = [ @older_create_action, @younger_create_action ]
   board.actions = [ list_of_actions ]
   board.cards = [ @older_card, @younger_card ]
-
+  melb_board = SpecsHelper.create_empty_melb_board
   member = Member.new
-  member.boards = [ board ]
+  member.boards = [ board, melb_board ]
 
   ActionService.stub(:get_actions).and_return(list_of_actions)
   Trello::Member.stub(:find).and_return(member)
+  visit '/download'
 end
 
 And(/^I filter the cards that are more than two days old$/) do
@@ -148,6 +155,7 @@ Given(/^I am on the Sydney board and have two cards$/) do
 
   ActionService.stub(:get_actions).and_return(list_of_actions)
   Trello::Member.stub(:find).and_return(member)
+  visit '/download'
 end
 
 When(/^I click on the Melbourne button and hit Submit$/) do
@@ -208,6 +216,7 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
 
   ActionService.stub(:get_actions).and_return(list_of_actions)
   Trello::Member.stub(:find).and_return(member)
+  visit '/download'
 end
 
 When(/^I click on the Active Only button and hit Submit$/) do

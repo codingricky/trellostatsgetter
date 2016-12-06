@@ -5,53 +5,53 @@ require 'trello'
 describe TimeFilterService do
 
   let(:days_old) { 200 }
-  let(:location) { 'Name of Selected Location Here' }
+  let(:location) { 'Sydney' }
   let(:show_only) { 'all_cards' }
   subject { TimeFilterService.filter_cards(days_old, location, show_only) }
 
   before do
-    @old_card = OpenStruct.new(sanitized_name: 'Old card', start_date: (Date.today - days_old - 1).to_time)
-    @second_old_card = OpenStruct.new(sanitized_name: 'Second old card', start_date: (Date.today - days_old - 1).to_time)
+    @old_card = DownloadedCard.create(sanitized_name: 'Old card', start_date: (Date.today - days_old - 1).to_time, location: 'Sydney')
+    @second_old_card = DownloadedCard.create(sanitized_name: 'Second old card', start_date: (Date.today - days_old - 1).to_time, location: 'Sydney')
 
-    @young_card = OpenStruct.new(sanitized_name: 'Young card', start_date: (Date.today - days_old + 1).to_time)
-    @second_young_card = OpenStruct.new(sanitized_name: 'Second young card', start_date: (Date.today - days_old + 1).to_time)
+    @young_card = DownloadedCard.create(sanitized_name: 'Young card', start_date: (Date.today - days_old + 1).to_time, location: 'Sydney')
+    @second_young_card = DownloadedCard.create(sanitized_name: 'Second young card', start_date: (Date.today - days_old + 1).to_time, location: 'Sydney')
   end
 
   it 'should return one card that has been created recently' do
-    TrelloService.stub(:all).and_return([@young_card])
+    DownloadedCard.stub(:all).and_return([@young_card])
 
     subject.count.should eq(1)
     subject.first.sanitized_name.should eq(@young_card.sanitized_name)
   end
 
   it 'should return multiple cards that have been created recently' do
-    TrelloService.stub(:all).and_return([@young_card, @second_young_card])
+    DownloadedCard.stub(:all).and_return([@young_card, @second_young_card])
 
     subject.count.should eq(2)
   end
 
   context 'should not return a card(s)' do
     it 'that is older than our filter' do
-      TrelloService.stub(:all).and_return([@old_card])
+      DownloadedCard.stub(:all).and_return([@old_card])
 
       subject.should be_empty
     end
 
     it 'that are older than our filter' do
-      TrelloService.stub(:all).and_return([@old_card, @second_old_card])
+      DownloadedCard.stub(:all).and_return([@old_card, @second_old_card])
 
       subject.should be_empty
     end
 
     it 'that is older than our filter, but should return a card that is younger' do
-      TrelloService.stub(:all).and_return([@old_card, @young_card])
+      DownloadedCard.stub(:all).and_return([@old_card, @young_card])
 
       subject.count.should eq(1)
       subject.first.sanitized_name.should eq(@young_card.sanitized_name)
     end
 
     it 'that are older than our filter, but should return cards that are younger' do
-      TrelloService.stub(:all).and_return([@old_card, @young_card, @second_old_card, @second_young_card])
+      DownloadedCard.stub(:all).and_return([@old_card, @young_card, @second_old_card, @second_young_card])
 
       subject.count.should eq(2)
       subject.first.sanitized_name.should eq(@young_card.sanitized_name)
@@ -60,17 +60,11 @@ describe TimeFilterService do
 
     it 'with invalid start dates' do
       nil_start_date_card = OpenStruct.new(start_date: nil)
-      TrelloService.stub(:all).and_return([@young_card, nil_start_date_card])
+      DownloadedCard.stub(:all).and_return([@young_card, nil_start_date_card])
 
       subject.count.should eq(1)
       subject.first.sanitized_name.should eq(@young_card.sanitized_name)
     end
-  end
-
-  it 'parses location through to card service' do
-    expect(TrelloService).to receive(:all).with('Name of Selected Location Here')
-    TrelloService.stub(:all).and_return([])
-    subject
   end
 
   it 'does not parse show_only through to active filter' do
