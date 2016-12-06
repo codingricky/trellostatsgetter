@@ -7,18 +7,18 @@ describe DownloadedCard do
   end
 
   it 'saves with a name field (string)' do
-    DownloadedCard.create(sanitized_name: 'Vinny')
+    create(:downloaded_card, sanitized_name: 'Vinny')
     DownloadedCard.first.sanitized_name.should eq('Vinny')
   end
 
   context 'is_active?' do
     it 'no end date means it is active' do
-      DownloadedCard.create(sanitized_name: 'Michael')
+      create(:downloaded_card)
       DownloadedCard.first.is_active?.should be true
     end
 
     it 'end date presents means it is active' do
-      DownloadedCard.create(sanitized_name: 'Michael', end_date: DateTime.now)
+      create(:downloaded_card, end_date: DateTime.now)
       DownloadedCard.first.is_active?.should be false
     end
   end
