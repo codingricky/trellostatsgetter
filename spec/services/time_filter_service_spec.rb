@@ -10,11 +10,13 @@ describe TimeFilterService do
   subject { TimeFilterService.filter_cards(days_old, location, show_only) }
 
   before do
-    @old_card = DownloadedCard.create(sanitized_name: 'Old card', start_date: (Date.today - days_old - 1).to_time, location: 'Sydney')
-    @second_old_card = DownloadedCard.create(sanitized_name: 'Second old card', start_date: (Date.today - days_old - 1).to_time, location: 'Sydney')
+    ConfigService.stub(:source_names).and_return(['source'])
 
-    @young_card = DownloadedCard.create(sanitized_name: 'Young card', start_date: (Date.today - days_old + 1).to_time, location: 'Sydney')
-    @second_young_card = DownloadedCard.create(sanitized_name: 'Second young card', start_date: (Date.today - days_old + 1).to_time, location: 'Sydney')
+    @old_card = create(:downloaded_card, start_date: (Date.today - days_old - 1).to_time)
+    @second_old_card = create(:downloaded_card, start_date: (Date.today - days_old - 1).to_time)
+
+    @young_card = create(:downloaded_card, start_date: (Date.today - days_old + 1).to_time)
+    @second_young_card = create(:downloaded_card, start_date: (Date.today - days_old + 1).to_time)
   end
 
   it 'should return one card that has been created recently' do
