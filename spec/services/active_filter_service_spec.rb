@@ -12,10 +12,8 @@ describe ActiveFilterService do
 
   context 'there is one active card and one inactive card and show_only is set to active_cards' do
     it 'returns the active card' do
-      active_card = OpenStruct.new
-      active_card.end_date = nil
+      active_card = OpenStruct.new(:is_active? => true)
       inactive_card = OpenStruct.new
-      inactive_card.end_date = Time.now
       cards = [ active_card, inactive_card ]
       ActiveFilterService.filter_show_active_cards(cards).should eq([ active_card ])
     end
@@ -23,10 +21,8 @@ describe ActiveFilterService do
 
   context 'there is one active card and one inactive card and show_only is set to inactive_cards' do
     it 'returns the inactive card' do
-      active_card = OpenStruct.new
-      active_card.end_date = nil
+      active_card = OpenStruct.new(:is_active? => true)
       inactive_card = OpenStruct.new
-      inactive_card.end_date = Time.now
       cards = [ active_card, inactive_card ]
       ActiveFilterService.filter_show_inactive_cards(cards).should eq([ inactive_card ])
     end

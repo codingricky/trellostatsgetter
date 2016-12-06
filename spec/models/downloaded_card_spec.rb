@@ -11,6 +11,18 @@ describe DownloadedCard do
     DownloadedCard.first.sanitized_name.should eq('Vinny')
   end
 
+  context 'is_active?' do
+    it 'no end date means it is active' do
+      DownloadedCard.create(sanitized_name: 'Michael')
+      DownloadedCard.first.is_active?.should be true
+    end
+
+    it 'end date presents means it is active' do
+      DownloadedCard.create(sanitized_name: 'Michael', end_date: DateTime.now)
+      DownloadedCard.first.is_active?.should be false
+    end
+  end
+
   context 'determines time difference between two dates and' do
     it 'returns the amount of days lapsed' do
       card = DownloadedCard.new(sanitized_name: 'This is a test card.')

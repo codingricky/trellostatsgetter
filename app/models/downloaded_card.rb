@@ -1,6 +1,11 @@
 class DownloadedCard < ActiveRecord::Base
+
   before_save :sanitize_name
   before_save :search_for_sources
+
+  def is_active?
+    self.end_date.nil?
+  end
 
   def duration_in_days
     return nil if self.start_date.nil?
