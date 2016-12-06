@@ -6,6 +6,8 @@ describe DownloadedCard do
     ConfigService.stub(:source_names).and_return(['A Valid Source'])
   end
 
+  let(:sydney) { 'Sydney' }
+
   it 'saves with a name field (string)' do
     create(:downloaded_card, sanitized_name: 'Vinny')
     DownloadedCard.first.sanitized_name.should eq('Vinny')
@@ -21,6 +23,37 @@ describe DownloadedCard do
       create(:downloaded_card, end_date: DateTime.now)
       DownloadedCard.first.is_active?.should be false
     end
+  end
+
+  context 'search' do
+    before do
+      active_sydney_1 = create(:downloaded_card, location: sydney, start_date: DateTime.now - 5.days)
+      active_sydney_2 = create(:downloaded_card, location: sydney, start_date: DateTime.now - 5.days)
+      inactive_sydney_2 = create(:downloaded_card, location: sydney, start_date: DateTime.now - 5.days, end_date: DateTime.now)
+      really_old_sydney = create(:downloaded_card, location: sydney,
+                                                start_date: DateTime.now - 200.days,
+                                                end_date: DateTime.now - 100.days)
+      active_melbourne = create(:downloaded_card, location: 'Melbourne', start_date: DateTime.now - 5.days)
+      invalid_sydney = create(:downloaded_card, location: sydney, start_date: nil)
+
+    end
+
+    it 'should return matching locations only' do
+      DownloadedCard.search(sydney, 90).count.should eq(3)
+    end
+
+    it 'should only return active' do
+      DownloadedCard.search(sydney, 90, true).count.should eq(2)
+    end
+
+    it 'should only return inactive' do
+      DownloadedCard.search(sydney, 90, false).count.should eq(1)
+    end
+
+    it 'should only ignore really old card' do
+      DownloadedCard.search(sydney, 90).count.should eq(3)
+    end
+
   end
 
   context 'determines time difference between two dates and' do

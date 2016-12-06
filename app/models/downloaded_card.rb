@@ -32,4 +32,9 @@ class DownloadedCard < ActiveRecord::Base
     end
     self.source = source
   end
+
+  def self.search(location, days, active=nil)
+    cards = DownloadedCard.where(location: location)
+    cards.find_all {|card| (card.duration_in_days && card.duration_in_days < days)  && (active.nil? || card.is_active? == active)}
+  end
 end
