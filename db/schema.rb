@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130044942) do
+ActiveRecord::Schema.define(version: 20161207010036) do
 
   create_table "downloaded_cards", force: :cascade do |t|
     t.string   "sanitized_name"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20161130044942) do
     t.string   "location"
     t.string   "attachments"
     t.string   "source"
+  end
+
+  create_table "last_updated_times", force: :cascade do |t|
+    t.datetime "time"
+  end
+
+  create_table "time_keeper", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "time", default: '2000-12-31 13:00:00', null: false
   end
 
   create_table "users", force: :cascade do |t|

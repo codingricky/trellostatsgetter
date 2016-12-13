@@ -1,4 +1,15 @@
 class DownloadedCardService
+  def self.update_cards
+    if LastUpdatedTime.first.nil?
+      LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
+    end
+    save_cards(TrelloService.return_new_cards((LastUpdatedTime.first.time), '55ac308c4ae6522bbe90f501'), 'Sydney - Software Engineers')
+    save_cards(TrelloService.return_new_cards((LastUpdatedTime.first.time), '5302d67d65706eef448e5806'), 'Melbourne Recruitment Pipeline')
+    last_run = LastUpdatedTime.first
+    last_run.time = DateTime.current
+    last_run.save!
+  end
+
   def self.download_cards
     DownloadedCard.destroy_all
     save_cards(TrelloService.all('Sydney - Software Engineers'), 'Sydney - Software Engineers')
@@ -8,16 +19,28 @@ class DownloadedCardService
   private
   def self.save_cards(cards, location)
     cards.each do |card|
-      local_card = DownloadedCard.new(sanitized_name: card.sanitized_name,
-                                      card_id: card.card_id,
-                                      list_id: card.list_id,
-                                      list_name: card.list_name,
-                                      start_date: card.start_date,
-                                      end_date: card.end_date,
-                                      url: card.url,
-                                      attachments: card.attachments,
-                                      location: location)
-      local_card.save!
+      if DownloadedCard.exists?(card_id: card.card_id, location: location)
+        existing_cards = DownloadedCard.where(card_id: card.card_id, location: location)
+        existing_cards.first.sanitized_name = card.sanitized_name
+        existing_cards.first.list_id = card.list_id
+        existing_cards.first.list_name = card.list_name
+        if existing_cards.first.end_date.nil? && card.end_date.present?
+          existing_cards.first.end_date = card.end_date
+        end
+        existing_cards.first.save!
+      else
+        new_card = DownloadedCard.new(sanitized_name: card.sanitized_name,
+                                        card_id: card.card_id,
+                                        list_id: card.list_id,
+                                        list_name: card.list_name,
+                                        start_date: card.start_date,
+                                        end_date: card.end_date,
+                                        url: card.url,
+                                        attachments: card.attachments,
+                                        location: location)
+        new_card.save!
+      end
     end
   end
 end
+

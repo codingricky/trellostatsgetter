@@ -16,7 +16,7 @@ class TrelloService
     Rails.logger.info("calling member.boards")
     board = member.boards.find { |board| (board.name == location) }
     raise 'Board name is invalid/not found.' unless board.present?
-    list_of_actions = ActionService.get_actions(board)
+    list_of_actions = ActionService.get_actions(board, 1000)
     list_id_name = Hash[board.lists.map {|list| [list.id, list.name]}]
     Rails.logger.info("calling board.cards")
     all_cards = board.cards.collect{|card| Card.new(id: card.id,
@@ -30,6 +30,35 @@ class TrelloService
     Rails.logger.info("calling all_cards.find_all")
 
     return all_cards
+  end
+
+  def self.return_new_cards(time, location)
+    difference_in_days = ((DateTime.now.to_date - time.to_date).to_i + 1)
+    Trello.configure do |config|
+      config.developer_public_key = "27dbf126a87c20a0a1a6c9f81fcc2e98"
+      config.member_token = ENV['TRELLO_MEMBER_TOKEN']
+    end
+    member = find_member
+    raise 'Member is invalid/not found.' unless member.present?
+    board = member.boards.find { |board| (board.id == location) }
+    raise 'Board name is invalid/not found.' unless board.present?
+    recently_edited_card_ids = get_trello_cards_with_changes(location, difference_in_days).collect{|card| OpenStruct.new(id: card.id)}
+    return [] unless recently_edited_card_ids.any?
+    list_of_actions = ActionService.get_actions(board, difference_in_days)
+    list_id_name_map = Hash[board.lists.map {|list| [list.id, list.name]}]
+    new_cards = get_trello_cards_with_changes(location, difference_in_days).collect{|card| Card.new(id: card.id,
+                                                                                                   name: card.name,
+                                                                                                   list_id: card.list_id,
+                                                                                                   list_name: list_id_name_map[card.list_id],
+                                                                                                   start_date: find_start_date(card.id, list_of_actions),
+                                                                                                   end_date: find_end_date(card.id, list_id_name_map[card.list_id], list_of_actions),
+                                                                                                   url: card.url,
+                                                                                                   attachments: get_attachment_names(card.id, list_of_actions))}
+    return new_cards
+  end
+
+  def self.get_trello_cards_with_changes(location, difference_in_days)
+    Trello::Action.search("board:#{location} edited:#{difference_in_days}", opts = {cards_limit: 1000}).first.second
   end
 
   def self.find_start_date(card_id, actions)

@@ -1,2 +1,2 @@
 MAILTO=mgrassi@dius.com.au
-00 * * * * root curl localhost:80/download
+00 * * * * root curl localhost:80/update

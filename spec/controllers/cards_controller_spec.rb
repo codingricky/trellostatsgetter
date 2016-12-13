@@ -88,4 +88,13 @@ describe CardsController, type: :controller do
       get :download
     end
   end
+
+  context '/update' do
+    it 'calls DownloadedCardService' do
+      expect(DownloadedCardService).to receive(:update_cards)
+      TrelloService.stub(:all).and_return([])
+      response.status.should eq(200)
+      get :update
+    end
+  end
 end

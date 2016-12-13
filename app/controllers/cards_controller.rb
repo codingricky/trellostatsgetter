@@ -23,4 +23,9 @@ class CardsController < ApplicationController
     DownloadedCardService.download_cards
     render :nothing => true, :status => 200
   end
+
+  def update
+    DownloadedCardService.update_cards
+    render :nothing => true, :status => 200
+  end
 end

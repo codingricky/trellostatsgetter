@@ -54,10 +54,10 @@ Then(/^I should see a card named Michael$/) do
   logout
 end
 
-Given(/^I have a card that is one day old, and a card that is three days old$/) do
+Given(/^I have a card that is one day old, and a card that is five days old$/) do
   now = Date.today
   yesterday = (now - 1).to_time
-  three_days_old = (now - 3).to_time
+  five_days_old = (now - 5).to_time
 
   @list_name = 'Backlog List'
   @list_id = '100'
@@ -69,7 +69,7 @@ Given(/^I have a card that is one day old, and a card that is three days old$/) 
   @younger_create_action = Action.new('createCard', @younger_card_id, @younger_action_date)
 
   @older_card_name = 'Three Days Old Card'
-  @older_action_date = three_days_old
+  @older_action_date = five_days_old
   @older_card_id = '2'
   @older_create_action = Action.new('createCard', @older_card_id, @older_action_date)
 
@@ -94,7 +94,7 @@ end
 And(/^I filter the cards that are more than two days old$/) do
   page.should have_content @younger_card_name
   page.should have_content @older_card_name
-  fill_in 'days_old', :with => '2'
+  fill_in 'days_old', :with => '3'
   click_button 'Submit'
 end
 
@@ -119,7 +119,7 @@ end
 Given(/^I am on the Sydney board and have two cards$/) do
   now = Date.today
   yesterday = (now - 1).to_time
-  three_days_old = (now - 3).to_time
+  five_days_old = (now - 5).to_time
 
   @list_name = 'Resumes To Be Screened '
   @list_id = '101'
@@ -131,7 +131,7 @@ Given(/^I am on the Sydney board and have two cards$/) do
   @sydney_create_action = Action.new('createCard', @sydney_card_id, @sydney_action_date)
 
   @melbourne_card_name = 'Someone applying for a job in Melbourne'
-  @melbourne_action_date = three_days_old
+  @melbourne_action_date = five_days_old
   @melbourne_card_id = '2'
   @melbourne_create_action = Action.new('createCard', @melbourne_card_id, @melbourne_action_date)
 
@@ -176,7 +176,7 @@ end
 Given(/^I am on the Sydney board and can see an active and inactive card$/) do
   now = Date.today
   yesterday = (now - 1).to_time
-  three_days_old = (now - 3).to_time
+  five_days_old = (now - 5).to_time
 
   @list_name = ConfigService.starting_lanes.first
   @list_id = '101'
@@ -191,7 +191,7 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
   @active_create_action = Action.new('createCard', @active_card_id, @active_action_date)
 
   @inactive_card_name = 'Someone got hired for a job'
-  @inactive_action_date = three_days_old
+  @inactive_action_date = five_days_old
   @inactive_end_date = yesterday
   @inactive_card_id = '2'
   @inactive_create_action = Action.new('createCard', @inactive_card_id, @inactive_action_date)
