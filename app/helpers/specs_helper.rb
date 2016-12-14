@@ -10,6 +10,7 @@ module SpecsHelper
   def self.create_empty_melb_board
     board = Board.new
     board.name = 'Melbourne Recruitment Pipeline'
+    board.id = '5302d67d65706eef448e5806'
     board.cards = [ ]
     board.lists = [ ]
     board

@@ -12,10 +12,10 @@ describe 'cards/index', type: :view do
     create_date = '1/1/1990'
     update_date = '1/1/1991'
 
-    allow(ENV).to receive(:[]).with('SOURCE_NAMES').and_return('A Valid Source')
-    @cards = [ Card.new(name: card_name, id: card_id, list_id: card_list_id, list_name: 'Sample List', url: 'www.test.com')]
-    @two_cards = [ @cards.first,
-                   Card.new(name: another_card_name, id: '2', list_id: card_list_id, list_name: 'Success - Hired', start_date: create_date, end_date: update_date)]
+    ConfigService.stub(:source_names).and_return( ['A Valid Source'] )
+    @cards = [DownloadedCard.create!(sanitized_name: card_name, card_id: card_id, list_id: card_list_id, list_name: 'Sample List', url: 'www.test.com')]
+    @two_cards = [@cards.first,
+                  DownloadedCard.create!(sanitized_name: another_card_name, card_id: '2', list_id: card_list_id, list_name: 'Success - Hired', start_date: create_date, end_date: update_date)]
   end
 
   it 'should display the correct page' do

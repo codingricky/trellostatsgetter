@@ -3,34 +3,34 @@ require 'spec_helper'
 
 describe DownloadedCardService do
   before do
-    @card_one = OpenStruct.new(sanitized_name: 'Michael',
+    @card_one = OpenStruct.new(name: 'Michael',
                         card_id: '123abc',
                         list_id: 'abc123',
                         list_name: 'Resumes To Be Screened ',
                         start_date: Time.parse('1/1/1991'),
                         end_date: Time.parse('2/1/1991'),
                         url: 'www.dius.com.au')
-    card_two = OpenStruct.new(sanitized_name: 'Ricky', card_id: '2')
-    @card_three = OpenStruct.new(sanitized_name: 'Mario', card_id: '3')
+    card_two = OpenStruct.new(name: 'Ricky', card_id: '2')
+    @card_three = OpenStruct.new(name: 'Mario', card_id: '3')
     @cards = [@card_one, card_two, @card_three]
   end
 
   context 'if the card does not exist, create it -' do
     it 'with no cards, it saves nothing' do
       @cards = []
-      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
-      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return([])
-      DownloadedCardService.download_cards
+      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '55ac308c4ae6522bbe90f501').and_return(@cards)
+      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '5302d67d65706eef448e5806').and_return([])
+      DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(0)
     end
 
     it 'with one card, saves a card' do
       @cards = [@card_one]
-      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
-      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return([])
-      DownloadedCardService.download_cards
+      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '55ac308c4ae6522bbe90f501').and_return(@cards)
+      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '5302d67d65706eef448e5806').and_return([])
+      DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(1)
-      DownloadedCard.first.sanitized_name.should eq(@card_one.sanitized_name)
+      DownloadedCard.first.sanitized_name.should eq(@card_one.name)
       DownloadedCard.first.card_id.should eq(@card_one.card_id)
       DownloadedCard.first.list_id.should eq(@card_one.list_id)
       DownloadedCard.first.list_name.should eq(@card_one.list_name)
@@ -41,26 +41,11 @@ describe DownloadedCardService do
     end
 
     it 'with multiple cards, iterates through the array and saves each card' do
-      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
-      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return([])
-      DownloadedCardService.download_cards
+      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '55ac308c4ae6522bbe90f501').and_return(@cards)
+      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '5302d67d65706eef448e5806').and_return([])
+      DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(3)
-      DownloadedCard.third.sanitized_name.should eq(@card_three.sanitized_name)
-    end
-  end
-
-  context 'database has cards already stored -' do
-    before do
-      DownloadedCard.create(sanitized_name: 'dud1')
-      DownloadedCard.create(sanitized_name: 'dud2')
-    end
-
-    it 'clears the database before use' do
-      @cards = []
-      TrelloService.stub(:all).with('Sydney - Software Engineers').and_return(@cards)
-      TrelloService.stub(:all).with('Melbourne Recruitment Pipeline').and_return([])
-      DownloadedCardService.download_cards
-      DownloadedCard.all.count.should eq(0)
+      DownloadedCard.third.sanitized_name.should eq(@card_three.name)
     end
   end
 
@@ -102,7 +87,7 @@ describe DownloadedCardService do
 
     it 'card already exists, updates the fields of the card' do
       @syd_cards = [ @card_one ]
-      card = DownloadedCard.new(card_id: @card_one.card_id, sanitized_name: @card_one.sanitized_name, location: 'Sydney - Software Engineers')
+      card = DownloadedCard.new(card_id: @card_one.card_id, sanitized_name: @card_one.name, location: 'Sydney - Software Engineers')
       card.save!
       LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
       TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '55ac308c4ae6522bbe90f501').and_return(@syd_cards)

@@ -19,11 +19,6 @@ class CardsController < ApplicationController
     @error = 'No cards.' if @cards.empty?
   end
 
-  def download
-    DownloadedCardService.download_cards
-    render :nothing => true, :status => 200
-  end
-
   def update
     DownloadedCardService.update_cards
     render :nothing => true, :status => 200

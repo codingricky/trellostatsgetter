@@ -80,19 +80,10 @@ describe CardsController, type: :controller do
     get :index
   end
 
-  context '/download' do
-    it 'calls DownloadedCardService' do
-      expect(DownloadedCardService).to receive(:download_cards)
-      TrelloService.stub(:all).and_return([])
-      response.status.should eq(200)
-      get :download
-    end
-  end
-
   context '/update' do
     it 'calls DownloadedCardService' do
       expect(DownloadedCardService).to receive(:update_cards)
-      TrelloService.stub(:all).and_return([])
+      TrelloService.stub(:return_new_cards).and_return([])
       response.status.should eq(200)
       get :update
     end

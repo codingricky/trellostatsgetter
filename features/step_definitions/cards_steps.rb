@@ -12,7 +12,7 @@ Given(/^My Trello board is empty$/) do
   Trello::Member.stub(:find).and_return(member)
   list_of_actions = []
   ActionService.stub(:get_actions).and_return(list_of_actions)
-  visit '/download'
+  visit '/update'
 end
 
 When(/^I am logged in as a DiUS employee$/) do
@@ -22,7 +22,7 @@ When(/^I am logged in as a DiUS employee$/) do
 end
 
 And(/^I navigate to the index page for cards$/) do
-  visit '/download'
+  visit '/update'
   visit('/')
 end
 
@@ -43,7 +43,7 @@ Given(/^I have a card named Michael$/) do
   member = Member.new
   member.boards = [ board, melb_board ]
   Trello::Member.stub(:find).and_return(member)
-  visit '/download'
+  visit '/update'
 end
 
 Then(/^I should see a card named Michael$/) do
@@ -88,7 +88,7 @@ Given(/^I have a card that is one day old, and a card that is five days old$/) d
 
   ActionService.stub(:get_actions).and_return(list_of_actions)
   Trello::Member.stub(:find).and_return(member)
-  visit '/download'
+  visit '/update'
 end
 
 And(/^I filter the cards that are more than two days old$/) do
@@ -146,6 +146,7 @@ Given(/^I am on the Sydney board and have two cards$/) do
 
   melbourne_board = Board.new
   melbourne_board.name = 'Melbourne Recruitment Pipeline'
+  melbourne_board.id = '5302d67d65706eef448e5806'
   melbourne_board.lists = [ @list ]
   melbourne_board.actions = [ list_of_actions ]
   melbourne_board.cards = [ @melbourne_card ]
@@ -155,7 +156,7 @@ Given(/^I am on the Sydney board and have two cards$/) do
 
   ActionService.stub(:get_actions).and_return(list_of_actions)
   Trello::Member.stub(:find).and_return(member)
-  visit '/download'
+  visit '/update'
 end
 
 When(/^I click on the Melbourne button and hit Submit$/) do
@@ -207,6 +208,7 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
   board.cards = [ @active_card, @inactive_card ]
   empty_board = Board.new
   empty_board.name = 'Melbourne Recruitment Pipeline'
+  empty_board.id = '5302d67d65706eef448e5806'
   empty_board.lists = []
   empty_board.cards = []
   empty_board.actions = []
@@ -216,7 +218,7 @@ Given(/^I am on the Sydney board and can see an active and inactive card$/) do
 
   ActionService.stub(:get_actions).and_return(list_of_actions)
   Trello::Member.stub(:find).and_return(member)
-  visit '/download'
+  visit '/update'
 end
 
 When(/^I click on the Active Only button and hit Submit$/) do
@@ -237,7 +239,7 @@ And(/^I can not see the inactive card anymore$/) do
 end
 
 When(/^I navigate to download$/) do
-  visit '/download'
+  visit '/update'
 end
 
 Then(/^The cards are saved to the db$/) do
