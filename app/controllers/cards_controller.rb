@@ -21,6 +21,6 @@ class CardsController < ApplicationController
 
   def update
     DownloadedCardService.update_cards
-    render :nothing => true, :status => 200
+    head :ok
   end
 end
