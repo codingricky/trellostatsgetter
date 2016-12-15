@@ -9,16 +9,16 @@ Given(/^My Trello board is empty$/) do
   board = OpenStruct.new
   board.name = 'Sydney - Software Engineers'
   board.id = '55ac308c4ae6522bbe90f501'
-  board.cards = [ ]
-  board.lists = [ ]
+  board.cards = []
+  board.lists = []
   other_board = OpenStruct.new
   other_board.name = 'Melbourne Recruitment Pipeline'
   other_board.id = '5302d67d65706eef448e5806'
-  other_board.cards = [ ]
-  other_board.lists = [ ]
+  other_board.cards = []
+  other_board.lists = []
   # Assign the boards to a fake member.
   member = OpenStruct.new
-  member.boards = [ board, other_board ]
+  member.boards = [board, other_board]
   # Stub the Trello response with the fake data.
   list_of_actions = []
   Trello::Member.stub(:find).and_return(member)
@@ -44,34 +44,34 @@ end
 Given(/^I have a card named Michael$/) do
   # Fake a card named Michael.
   @card = OpenStruct.new(id: '1',
-                 name: 'Michael',
-                 list_id: '1',
-                 url: 'www.test.com')
+                         name: 'Michael',
+                         list_id: '1',
+                         url: 'www.test.com')
   # Fake the list it lives in.
   @list = OpenStruct.new(id: '1', name: ConfigService.starting_lanes.first)
   # Fake the action that created it.
   @action = OpenStruct.new(type: 'createCard',
-                          date: DateTime.current - 1,
-                          data: {'list' =>{'name' => ConfigService.starting_lanes.first},
-                                 'card' =>
-                                     {'id' => @card.id}})
+                           date: DateTime.current - 1,
+                           data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                  'card' =>
+                                      {'id' => @card.id}})
   # Fake an empty board for each location.
   board = OpenStruct.new
   board.name = 'Sydney - Software Engineers'
   board.id = '55ac308c4ae6522bbe90f501'
-  board.cards = [ @card ]
-  board.lists = [ @list ]
-  board.actions = [ @action ]
+  board.cards = [@card]
+  board.lists = [@list]
+  board.actions = [@action]
   other_board = OpenStruct.new
   other_board.name = 'Melbourne Recruitment Pipeline'
   other_board.id = '5302d67d65706eef448e5806'
-  other_board.cards = [ ]
-  other_board.lists = [ ]
+  other_board.cards = []
+  other_board.lists = []
   # Assign the boards to a fake member.
   member = OpenStruct.new
-  member.boards = [ board, other_board ]
+  member.boards = [board, other_board]
   # Stub the Trello response with the fake data.
-  list_of_actions = [ @action ]
+  list_of_actions = [@action]
   Trello::Member.stub(:find).and_return(member)
   Trello::Action.stub(:search).and_return([['ignore this string', member.boards.first.cards]])
   Trello::Action.stub(:search).with("board:5302d67d65706eef448e5806 edited:#{((DateTime.now.to_date - (DateTime.civil_from_format :local, 2001).to_date).to_i + 1)}", opts = {cards_limit: 1000}).and_return([['ignore this string', []]])
@@ -102,32 +102,32 @@ Given(/^I have a card that is one day old, and a card that is five days old$/) d
   @list = OpenStruct.new(id: '1', name: ConfigService.starting_lanes.first)
   # Fake the actions that created them.
   @young_action = OpenStruct.new(type: 'createCard',
-                           date: DateTime.current - 1,
-                           data: {'list' =>{'name' => ConfigService.starting_lanes.first},
-                                  'card' =>
-                                      {'id' => @young_card.id}})
+                                 date: DateTime.current - 1,
+                                 data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                        'card' =>
+                                            {'id' => @young_card.id}})
   @old_action = OpenStruct.new(type: 'createCard',
-                           date: DateTime.current - 5,
-                           data: {'list' =>{'name' => ConfigService.starting_lanes.first},
-                                  'card' =>
-                                      {'id' => @old_card.id}})
+                               date: DateTime.current - 5,
+                               data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                      'card' =>
+                                          {'id' => @old_card.id}})
   # Fake an empty board for each location.
   board = OpenStruct.new
   board.name = 'Sydney - Software Engineers'
   board.id = '55ac308c4ae6522bbe90f501'
-  board.cards = [ @young_card, @old_card ]
-  board.lists = [ @list ]
-  board.actions = [ @young_action, @old_action ]
+  board.cards = [@young_card, @old_card]
+  board.lists = [@list]
+  board.actions = [@young_action, @old_action]
   other_board = OpenStruct.new
   other_board.name = 'Melbourne Recruitment Pipeline'
   other_board.id = '5302d67d65706eef448e5806'
-  other_board.cards = [ ]
-  other_board.lists = [ ]
+  other_board.cards = []
+  other_board.lists = []
   # Assign the boards to a fake member.
   member = OpenStruct.new
-  member.boards = [ board, other_board ]
+  member.boards = [board, other_board]
   # Stub the Trello response with the fake data.
-  list_of_actions = [ @young_action, @old_action ]
+  list_of_actions = [@young_action, @old_action]
   Trello::Member.stub(:find).and_return(member)
   Trello::Action.stub(:search).and_return([['ignore this string', member.boards.first.cards]])
   Trello::Action.stub(:search).with("board:5302d67d65706eef448e5806 edited:#{((DateTime.now.to_date - (DateTime.civil_from_format :local, 2001).to_date).to_i + 1)}", opts = {cards_limit: 1000}).and_return([['ignore this string', []]])
@@ -151,44 +151,44 @@ end
 Given(/^I am on the first board and have two cards - one from each board$/) do
   # Fake the cards.
   @l1_card = OpenStruct.new(id: '1',
-                               name: 'Location 1 Card',
-                               list_id: '1',
-                               url: 'www.test.com')
+                            name: 'Location 1 Card',
+                            list_id: '1',
+                            url: 'www.test.com')
   @l2_card = OpenStruct.new(id: '2',
-                             name: 'Location 2 Card',
-                             list_id: '1',
-                             url: 'www.test_two.com')
+                            name: 'Location 2 Card',
+                            list_id: '1',
+                            url: 'www.test_two.com')
   # Fake the list they live in.
   @list = OpenStruct.new(id: '1', name: ConfigService.starting_lanes.first)
   # Fake the actions that created them.
   @l1_action = OpenStruct.new(type: 'createCard',
-                                 date: DateTime.current - 1,
-                                 data: {'list' =>{'name' => ConfigService.starting_lanes.first},
-                                        'card' =>
-                                            {'id' => @l1_card.id}})
+                              date: DateTime.current - 1,
+                              data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                     'card' =>
+                                         {'id' => @l1_card.id}})
   @l2_action = OpenStruct.new(type: 'createCard',
-                               date: DateTime.current - 1,
-                               data: {'list' =>{'name' => ConfigService.starting_lanes.first},
-                                      'card' =>
-                                          {'id' => @l2_card.id}})
+                              date: DateTime.current - 1,
+                              data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                     'card' =>
+                                         {'id' => @l2_card.id}})
   # Fake an empty board for each location.
   board = OpenStruct.new
   board.name = 'Sydney - Software Engineers'
   board.id = '55ac308c4ae6522bbe90f501'
-  board.cards = [ @l1_card ]
-  board.lists = [ @list ]
-  board.actions = [ @l1_action ]
+  board.cards = [@l1_card]
+  board.lists = [@list]
+  board.actions = [@l1_action]
   other_board = OpenStruct.new
   other_board.name = 'Melbourne Recruitment Pipeline'
   other_board.id = '5302d67d65706eef448e5806'
-  other_board.cards = [ @l2_card ]
-  other_board.lists = [ @list ]
-  other_board.actions = [ @l2_action ]
+  other_board.cards = [@l2_card]
+  other_board.lists = [@list]
+  other_board.actions = [@l2_action]
   # Assign the boards to a fake member.
   member = OpenStruct.new
-  member.boards = [ board, other_board ]
+  member.boards = [board, other_board]
   # Stub the Trello response with the fake data.
-  list_of_actions = [ @l1_action, @l2_action ]
+  list_of_actions = [@l1_action, @l2_action]
   Trello::Member.stub(:find).and_return(member)
   Trello::Action.stub(:search).and_return([['ignore this string', member.boards.first.cards]])
   Trello::Action.stub(:search).with("board:5302d67d65706eef448e5806 edited:#{((DateTime.now.to_date - (DateTime.civil_from_format :local, 2001).to_date).to_i + 1)}", opts = {cards_limit: 1000}).and_return([['ignore this string', []]])
@@ -215,49 +215,49 @@ end
 Given(/^I am on the first board and can see an active and inactive card$/) do
   # Fake the cards.
   @active_card = OpenStruct.new(id: '1',
-                               name: 'Active Card',
-                               list_id: '1',
-                               url: 'www.test.com')
+                                name: 'Active Card',
+                                list_id: '1',
+                                url: 'www.test.com')
   @inactive_card = OpenStruct.new(id: '2',
-                             name: 'Finished Card',
-                             list_id: '2',
-                             url: 'www.test_two.com')
+                                  name: 'Finished Card',
+                                  list_id: '2',
+                                  url: 'www.test_two.com')
   # Fake the list they live in.
   @list = OpenStruct.new(id: '1', name: ConfigService.starting_lanes.first)
   @finish_list = OpenStruct.new(id: '2', name: ConfigService.finishing_lanes.first)
   # Fake the actions that created them.
   @active_action = OpenStruct.new(type: 'createCard',
-                                 date: DateTime.current - 1,
-                                 data: {'list' =>{'name' => ConfigService.starting_lanes.first},
-                                        'card' =>
-                                            {'id' => @active_card.id}})
+                                  date: DateTime.current - 1,
+                                  data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                         'card' =>
+                                             {'id' => @active_card.id}})
   @inactive_action = OpenStruct.new(type: 'createCard',
-                               date: DateTime.current - 2,
-                               data: {'list' =>{'name' => ConfigService.starting_lanes.first},
-                                      'card' =>
-                                          {'id' => @inactive_card.id}})
+                                    date: DateTime.current - 2,
+                                    data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                           'card' =>
+                                               {'id' => @inactive_card.id}})
   @inactive_finish_action = OpenStruct.new(type: 'updateCard',
-                               date: DateTime.current - 1,
-                               data: {'listAfter' =>{'name' => ConfigService.finishing_lanes.first},
-                                              'card' =>
-                                                  {'id' =>@inactive_card.id}})
+                                           date: DateTime.current - 1,
+                                           data: {'listAfter' => {'name' => ConfigService.finishing_lanes.first},
+                                                  'card' =>
+                                                      {'id' => @inactive_card.id}})
   # Fake an empty board for each location.
   board = OpenStruct.new
   board.name = 'Sydney - Software Engineers'
   board.id = '55ac308c4ae6522bbe90f501'
-  board.cards = [ @active_card, @inactive_card ]
-  board.lists = [ @list, @finish_list ]
-  board.actions = [ @active_action, @inactive_action, @inactive_finish_action ]
+  board.cards = [@active_card, @inactive_card]
+  board.lists = [@list, @finish_list]
+  board.actions = [@active_action, @inactive_action, @inactive_finish_action]
   other_board = OpenStruct.new
   other_board.name = 'Melbourne Recruitment Pipeline'
   other_board.id = '5302d67d65706eef448e5806'
-  other_board.cards = [ ]
-  other_board.lists = [ ]
+  other_board.cards = []
+  other_board.lists = []
   # Assign the boards to a fake member.
   member = OpenStruct.new
-  member.boards = [ board, other_board ]
+  member.boards = [board, other_board]
   # Stub the Trello response with the fake data.
-  list_of_actions = [ @active_action, @inactive_action, @inactive_finish_action ]
+  list_of_actions = [@active_action, @inactive_action, @inactive_finish_action]
   Trello::Member.stub(:find).and_return(member)
   Trello::Action.stub(:search).and_return([['ignore this string', member.boards.first.cards]])
   Trello::Action.stub(:search).with("board:5302d67d65706eef448e5806 edited:#{((DateTime.now.to_date - (DateTime.civil_from_format :local, 2001).to_date).to_i + 1)}", opts = {cards_limit: 1000}).and_return([['ignore this string', []]])

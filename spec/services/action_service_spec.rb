@@ -5,8 +5,8 @@ require 'trello'
 describe ActionService do
   before 'receives all actions from a board' do
     @board = double("board")
-    @actions1 = 0.upto(999).collect{|i| OpenStruct.new(id: i)}
-    @actions2 = 1000.upto(1005).collect{|i| OpenStruct.new(id: i)}
+    @actions1 = 0.upto(999).collect { |i| OpenStruct.new(id: i) }
+    @actions2 = 1000.upto(1005).collect { |i| OpenStruct.new(id: i) }
   end
 
   it "paginates them into an array, and returns the array" do

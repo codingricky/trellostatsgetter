@@ -20,7 +20,7 @@ class DownloadedCard < ActiveRecord::Base
   end
 
   def find_matching_source(name)
-    ConfigService.source_names.find {|source_name| name.downcase.match(source_name.downcase)}
+    ConfigService.source_names.find { |source_name| name.downcase.match(source_name.downcase) }
   end
 
   def search_for_sources
@@ -36,6 +36,6 @@ class DownloadedCard < ActiveRecord::Base
   def self.search(location, days, active=nil)
     cards = DownloadedCard.where(location: location)
     # a lot of cards not being returned due to lack of start_date
-    cards.find_all {|card| (card.duration_in_days && card.duration_in_days < days)  && (active.nil? || card.is_active? == active)}
+    cards.find_all { |card| (card.duration_in_days && card.duration_in_days < days) && (active.nil? || card.is_active? == active) }
   end
 end

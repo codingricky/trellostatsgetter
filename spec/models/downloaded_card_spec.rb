@@ -31,8 +31,8 @@ describe DownloadedCard do
       active_sydney_2 = create(:downloaded_card, location: sydney, start_date: DateTime.now - 5.days)
       inactive_sydney_2 = create(:downloaded_card, location: sydney, start_date: DateTime.now - 5.days, end_date: DateTime.now)
       really_old_sydney = create(:downloaded_card, location: sydney,
-                                                start_date: DateTime.now - 200.days,
-                                                end_date: DateTime.now - 100.days)
+                                 start_date: DateTime.now - 200.days,
+                                 end_date: DateTime.now - 100.days)
       active_melbourne = create(:downloaded_card, location: 'Melbourne', start_date: DateTime.now - 5.days)
       invalid_sydney = create(:downloaded_card, location: sydney, start_date: nil)
 
@@ -72,29 +72,29 @@ describe DownloadedCard do
 
   context 'when a card is saved,' do
     it 'removes money values from the card name' do
-      (DownloadedCard.create(sanitized_name:'70000').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'70 000').sanitized_name.should eq('70 '))
-      (DownloadedCard.create(sanitized_name:'700000').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'700 000').sanitized_name.should eq(' '))
-      (DownloadedCard.create(sanitized_name:'70,000').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'70, 000').sanitized_name.should eq(' '))
-      (DownloadedCard.create(sanitized_name:'$70 000').sanitized_name.should eq(' '))
-      (DownloadedCard.create(sanitized_name:'$700000').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'$700 000').sanitized_name.should eq(' '))
-      (DownloadedCard.create(sanitized_name:'$70,000').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'$70, 000').sanitized_name.should eq(' '))
-      (DownloadedCard.create(sanitized_name:'70, 000 - 80, 000').sanitized_name.should eq('  -  '))
-      (DownloadedCard.create(sanitized_name:'70.000').sanitized_name.should eq('70.'))
-      (DownloadedCard.create(sanitized_name:'20k').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'135k').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'$20k').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'$135k').sanitized_name.should eq(''))
-      (DownloadedCard.create(sanitized_name:'135k - 140k').sanitized_name.should eq(' - '))
-      (DownloadedCard.create(sanitized_name:'$135k - $140k').sanitized_name.should eq(' - '))
-      (DownloadedCard.create(sanitized_name:'145 per day').sanitized_name.should eq(' per day'))
-      (DownloadedCard.create(sanitized_name:'1200 per week').sanitized_name.should eq(' per week'))
-      (DownloadedCard.create(sanitized_name:'13/05/2016').sanitized_name.should eq('13/05/'))
-      (DownloadedCard.create(sanitized_name:'Billy Bob and Meggy Meg grabbed the $50 000 and ran').sanitized_name.should eq('Billy Bob and Meggy Meg grabbed the   and ran'))
+      (DownloadedCard.create(sanitized_name: '70000').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '70 000').sanitized_name.should eq('70 '))
+      (DownloadedCard.create(sanitized_name: '700000').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '700 000').sanitized_name.should eq(' '))
+      (DownloadedCard.create(sanitized_name: '70,000').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '70, 000').sanitized_name.should eq(' '))
+      (DownloadedCard.create(sanitized_name: '$70 000').sanitized_name.should eq(' '))
+      (DownloadedCard.create(sanitized_name: '$700000').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '$700 000').sanitized_name.should eq(' '))
+      (DownloadedCard.create(sanitized_name: '$70,000').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '$70, 000').sanitized_name.should eq(' '))
+      (DownloadedCard.create(sanitized_name: '70, 000 - 80, 000').sanitized_name.should eq('  -  '))
+      (DownloadedCard.create(sanitized_name: '70.000').sanitized_name.should eq('70.'))
+      (DownloadedCard.create(sanitized_name: '20k').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '135k').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '$20k').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '$135k').sanitized_name.should eq(''))
+      (DownloadedCard.create(sanitized_name: '135k - 140k').sanitized_name.should eq(' - '))
+      (DownloadedCard.create(sanitized_name: '$135k - $140k').sanitized_name.should eq(' - '))
+      (DownloadedCard.create(sanitized_name: '145 per day').sanitized_name.should eq(' per day'))
+      (DownloadedCard.create(sanitized_name: '1200 per week').sanitized_name.should eq(' per week'))
+      (DownloadedCard.create(sanitized_name: '13/05/2016').sanitized_name.should eq('13/05/'))
+      (DownloadedCard.create(sanitized_name: 'Billy Bob and Meggy Meg grabbed the $50 000 and ran').sanitized_name.should eq('Billy Bob and Meggy Meg grabbed the   and ran'))
     end
 
     context 'a card has no source in its name and there are no attachments' do
@@ -117,25 +117,25 @@ describe DownloadedCard do
 
     context 'a card does not have a source in its attachment name' do
       it 'sets source to nil' do
-        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: [ 'Blehblah.docx' ]).source.should eq(nil)
+        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: ['Blehblah.docx']).source.should eq(nil)
       end
     end
 
     context 'a card has a source in its attachment name' do
       it 'sets source to the name' do
-        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: [ 'A Valid Source.pdf' ]).source.should eq('A Valid Source')
+        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: ['A Valid Source.pdf']).source.should eq('A Valid Source')
       end
     end
 
     context 'a card has a source in its attachment names' do
       it 'sets source to the name' do
-        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: [ 'Blehblah.docx', 'A ValId SourCe.pdf' ]).source.should eq('A Valid Source')
+        DownloadedCard.create(sanitized_name: 'This is a test card', attachments: ['Blehblah.docx', 'A ValId SourCe.pdf']).source.should eq('A Valid Source')
       end
     end
 
     context 'the card has source names in both the card name and attachment name' do
       it 'sets source to the one found in card name' do
-        DownloadedCard.create(sanitized_name: 'This is a test referral card', attachments: [ 'A Valid Source.pdf' ]).source.should eq('A Valid Source')
+        DownloadedCard.create(sanitized_name: 'This is a test referral card', attachments: ['A Valid Source.pdf']).source.should eq('A Valid Source')
       end
     end
   end

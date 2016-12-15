@@ -9,31 +9,31 @@ describe TrelloService do
     ConfigService.stub(:source_names).and_return(['source'])
 
     @member = OpenStruct.new
-    @starting_list = OpenStruct.new(id:'101', name:ConfigService.starting_lanes.first)
-    @finished_list = OpenStruct.new(id:'100', name:ConfigService.finishing_lanes.first)
+    @starting_list = OpenStruct.new(id: '101', name: ConfigService.starting_lanes.first)
+    @finished_list = OpenStruct.new(id: '100', name: ConfigService.finishing_lanes.first)
     @finished_card = OpenStruct.new(id: '1', name: 'test card', list_id: @finished_list.id)
-    @old_finished_list = OpenStruct.new(id:'102', name:ConfigService.finishing_lanes.last)
+    @old_finished_list = OpenStruct.new(id: '102', name: ConfigService.finishing_lanes.last)
     @old_finished_card = OpenStruct.new(id: '3', name: 'old test card', list_id: @old_finished_list.id)
 
-    @finished_card_create_action = OpenStruct.new(type:'createCard', date:Time.parse('1/1/1991'), data:{'list' =>{'name' => ConfigService.starting_lanes.first},
-                                                                                                         'card' =>
-                                                                                                             {'id' => @finished_card.id}})
-    @finished_card_end_action = OpenStruct.new(type:'updateCard', date:Time.parse('2/1/1991'), data:{'listAfter' =>{'name' => ConfigService.finishing_lanes.first},
-                                                                                                      'card' =>
-                                                                                                          {'id' =>@finished_card.id}})
+    @finished_card_create_action = OpenStruct.new(type: 'createCard', date: Time.parse('1/1/1991'), data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                                                                                           'card' =>
+                                                                                                               {'id' => @finished_card.id}})
+    @finished_card_end_action = OpenStruct.new(type: 'updateCard', date: Time.parse('2/1/1991'), data: {'listAfter' => {'name' => ConfigService.finishing_lanes.first},
+                                                                                                        'card' =>
+                                                                                                            {'id' => @finished_card.id}})
 
-    @old_finished_card_create_action = OpenStruct.new(type:'createCard', date:Time.parse('3/2/1991'), data:{'list' =>{'name' => ConfigService.starting_lanes.first},
-                                                                                                              'card' =>
-                                                                                                                  {'id' => @old_finished_card.id}})
-    @old_finished_card_end_action = OpenStruct.new(type:'updateCard', date:Time.parse('4/2/1991'), data:{'listAfter' =>{'name' => ConfigService.finishing_lanes.first},
-                                                                                                                     'card' =>
-                                                                                                                         {'id' =>@old_finished_card.id}})
+    @old_finished_card_create_action = OpenStruct.new(type: 'createCard', date: Time.parse('3/2/1991'), data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                                                                                               'card' =>
+                                                                                                                   {'id' => @old_finished_card.id}})
+    @old_finished_card_end_action = OpenStruct.new(type: 'updateCard', date: Time.parse('4/2/1991'), data: {'listAfter' => {'name' => ConfigService.finishing_lanes.first},
+                                                                                                            'card' =>
+                                                                                                                {'id' => @old_finished_card.id}})
 
     @card_still_in_progress = OpenStruct.new(id: '2', name: 'test card', list_id: @starting_list.id, url: 'www.test.com')
-    @card_still_in_progress_create_action = OpenStruct.new(type:'createCard', date:Time.parse('1/1/1991'), data:{'list' =>{'name' => ConfigService.starting_lanes.first},
-                                                                                                                  'card' =>
-                                                                                                                      {'id' => @card_still_in_progress.id}})
-    @card_still_in_progress_attachment_action = OpenStruct.new(type:'addAttachmentToCard', date:Time.parse('1/1/1991'), data: {'attachment' =>{'name' => 'Resume_Valid Source.pdf'},
+    @card_still_in_progress_create_action = OpenStruct.new(type: 'createCard', date: Time.parse('1/1/1991'), data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                                                                                                    'card' =>
+                                                                                                                        {'id' => @card_still_in_progress.id}})
+    @card_still_in_progress_attachment_action = OpenStruct.new(type: 'addAttachmentToCard', date: Time.parse('1/1/1991'), data: {'attachment' => {'name' => 'Resume_Valid Source.pdf'},
                                                                                                                                  'card' =>
                                                                                                                                      {'id' => @card_still_in_progress.id}})
 
@@ -128,9 +128,9 @@ describe TrelloService do
   context 'card that has never been in the Starting swimlane' do
     before do
       @card = OpenStruct.new(id: '1', name: 'test card', list_id: @starting_list.id)
-      @create_action = OpenStruct.new(type:'createCard', date:Time.parse('1/1/1991'), data:{'list' =>{'name' => ConfigService.finishing_lanes.first},
-                                                                                            'card' =>
-                                                                                                {'id' =>@card.id}})
+      @create_action = OpenStruct.new(type: 'createCard', date: Time.parse('1/1/1991'), data: {'list' => {'name' => ConfigService.finishing_lanes.first},
+                                                                                               'card' =>
+                                                                                                   {'id' => @card.id}})
       TrelloService.stub(:get_trello_cards_with_changes).with(any_args).and_return([@card])
       ActionService.stub(:get_actions).and_return([@create_action])
     end
@@ -143,9 +143,9 @@ describe TrelloService do
   context 'a card from trello that was copied in to the Starting swimlane' do
     before do
       @card = OpenStruct.new(id: '1', name: 'test card', list_id: @starting_list.id)
-      @create_action = OpenStruct.new(type:'copyCard', date:Time.parse('1/1/1991'), data:{'list' =>{'name' => ConfigService.starting_lanes.first},
-                                                                                           'card' =>
-                                                                                               {'id' =>@card.id}})
+      @create_action = OpenStruct.new(type: 'copyCard', date: Time.parse('1/1/1991'), data: {'list' => {'name' => ConfigService.starting_lanes.first},
+                                                                                             'card' =>
+                                                                                                 {'id' => @card.id}})
       TrelloService.stub(:get_trello_cards_with_changes).with(any_args).and_return([@card])
       ActionService.stub(:get_actions).and_return([@create_action])
     end
@@ -197,7 +197,7 @@ describe TrelloService do
     end
 
     it 'retrieves the attachment names and puts them in an array' do
-      subject.first.attachments.should eql([ @card_still_in_progress_attachment_action.data['attachment']['name'] ])
+      subject.first.attachments.should eql([@card_still_in_progress_attachment_action.data['attachment']['name']])
     end
   end
 

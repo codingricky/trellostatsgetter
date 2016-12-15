@@ -24,14 +24,14 @@ class DownloadedCardService
         existing_cards.first.save!
       else
         new_card = DownloadedCard.new(sanitized_name: card.name,
-                                        card_id: card.card_id,
-                                        list_id: card.list_id,
-                                        list_name: card.list_name,
-                                        start_date: card.start_date,
-                                        end_date: card.end_date,
-                                        url: card.url,
-                                        attachments: card.attachments,
-                                        location: location)
+                                      card_id: card.card_id,
+                                      list_id: card.list_id,
+                                      list_name: card.list_name,
+                                      start_date: card.start_date,
+                                      end_date: card.end_date,
+                                      url: card.url,
+                                      attachments: card.attachments,
+                                      location: location)
         new_card.save!
       end
     end

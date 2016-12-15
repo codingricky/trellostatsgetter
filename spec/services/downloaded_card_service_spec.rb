@@ -4,12 +4,12 @@ require 'spec_helper'
 describe DownloadedCardService do
   before do
     @card_one = OpenStruct.new(name: 'Michael',
-                        card_id: '123abc',
-                        list_id: 'abc123',
-                        list_name: 'Resumes To Be Screened ',
-                        start_date: Time.parse('1/1/1991'),
-                        end_date: Time.parse('2/1/1991'),
-                        url: 'www.dius.com.au')
+                               card_id: '123abc',
+                               list_id: 'abc123',
+                               list_name: 'Resumes To Be Screened ',
+                               start_date: Time.parse('1/1/1991'),
+                               end_date: Time.parse('2/1/1991'),
+                               url: 'www.dius.com.au')
     card_two = OpenStruct.new(name: 'Ricky', card_id: '2')
     @card_three = OpenStruct.new(name: 'Mario', card_id: '3')
     @cards = [@card_one, card_two, @card_three]
@@ -67,7 +67,7 @@ describe DownloadedCardService do
     end
 
     it 'Trello returns two cards, saves cards to the db' do
-      @cards = [ @card_one, @card_three ]
+      @cards = [@card_one, @card_three]
       LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
       TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '55ac308c4ae6522bbe90f501').and_return(@cards)
       TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '5302d67d65706eef448e5806').and_return([])
@@ -76,8 +76,8 @@ describe DownloadedCardService do
     end
 
     it 'Trello returns one card from each board, saves cards to the db' do
-      @syd_cards = [ @card_one ]
-      @mel_cards = [ @card_three ]
+      @syd_cards = [@card_one]
+      @mel_cards = [@card_three]
       LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
       TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '55ac308c4ae6522bbe90f501').and_return(@syd_cards)
       TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '5302d67d65706eef448e5806').and_return(@mel_cards)
@@ -86,7 +86,7 @@ describe DownloadedCardService do
     end
 
     it 'card already exists, updates the fields of the card' do
-      @syd_cards = [ @card_one ]
+      @syd_cards = [@card_one]
       card = DownloadedCard.new(card_id: @card_one.card_id, sanitized_name: @card_one.name, location: 'Sydney - Software Engineers')
       card.save!
       LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
