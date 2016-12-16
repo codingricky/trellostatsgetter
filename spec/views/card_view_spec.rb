@@ -120,4 +120,11 @@ describe 'cards/index', type: :view do
     render
     rendered.should have_link(@cards.first.sanitized_name, href: @cards.first.url)
   end
+
+  it 'displays the average' do
+    ViewHelper.stub(:calculate_average_duration).with(any_args).and_return(5.33333333)
+    assign(:cards, @cards)
+    render
+    rendered.should match /5.33/
+  end
 end
