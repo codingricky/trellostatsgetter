@@ -201,11 +201,6 @@ describe TrelloService do
     end
   end
 
-  it 'finds the difference in days between now and the day since the last update was run' do
-    expect(TrelloService).to receive(:get_trello_cards_with_changes).with('55ac308c4ae6522bbe90f501', 2)
-    TrelloService.return_new_cards((DateTime.yesterday), '55ac308c4ae6522bbe90f501')
-  end
-
   it 'returns an empty array without continuing if there are no recently changed cards' do
     TrelloService.stub(:get_trello_cards_with_changes).with(any_args).and_return([])
     expect(TrelloService).to receive(:get_trello_cards_with_changes).once.with('55ac308c4ae6522bbe90f501', 1)
