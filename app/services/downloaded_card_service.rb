@@ -11,14 +11,14 @@ class DownloadedCardService
     if LastUpdatedTime.first.nil?
       LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
     end
-    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current, SYDNEY_BOARD_ID), SYDNEY_BOARD_NAME)
-    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current, MELB_BOARD_ID), MELB_BOARD_NAME)
-    last_run = LastUpdatedTime.first
-    last_run.time = DateTime.current
-    last_run.save!
+    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, SYDNEY_BOARD_ID), SYDNEY_BOARD_NAME)
+    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, MELB_BOARD_ID), MELB_BOARD_NAME)
+
+    LastUpdatedTime.update_time
   end
 
   private
+
   def self.save_cards(cards, location)
     cards.each do |card|
       if DownloadedCard.exists?(card_id: card.card_id, location: location)
