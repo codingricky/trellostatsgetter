@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161221095810) do
     t.string   "location"
     t.string   "attachments"
     t.string   "source"
-    t.         "actions"
+    t.string   "action_string"
   end
 
   create_table "last_updated_times", force: :cascade do |t|
