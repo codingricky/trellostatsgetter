@@ -13,7 +13,7 @@ class TrelloCard
     self.start_date = TrelloCard.find_start_date(card.id, actions)
     self.end_date = TrelloCard.find_end_date(card.id, list_name, actions)
     self.url = card.url
-    self.actions = matching_actions(actions)
+    self.actions = TrelloCard.matching_actions(card.id, actions).to_json
     self.attachments = TrelloCard.get_attachment_names(card.id, actions)
   end
 
@@ -61,7 +61,7 @@ class TrelloCard
     attachment_names
   end
 
-  def self.matching_actions(list_of_actions)
-    list_of_actions.find_all { |actions| actions.data['card']['id'] == self.card_id }
+  def self.matching_actions(card_id, list_of_actions)
+    list_of_actions.find_all { |actions| actions.data['card']['id'] == card_id }
   end
 end
