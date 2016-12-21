@@ -27,7 +27,7 @@ class DownloadedCard < ActiveRecord::Base
     card_name = self.sanitized_name
     attachment_names = self.attachments
     source = find_matching_source(card_name)
-    if attachment_names.present?
+    if !source && attachment_names.present?
       source = find_matching_source(attachment_names)
     end
     self.source = source

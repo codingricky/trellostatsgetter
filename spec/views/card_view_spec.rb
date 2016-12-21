@@ -125,6 +125,6 @@ describe 'cards/index', type: :view do
     ViewHelper.stub(:calculate_average_duration).with(any_args).and_return(5.33333333)
     assign(:cards, @cards)
     render
-    rendered.should match /5.33/
+    rendered.should match /5/
   end
 end

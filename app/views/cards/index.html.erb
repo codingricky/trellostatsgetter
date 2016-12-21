@@ -18,6 +18,9 @@
       <br>
       <%= submit_tag('Submit') %>
   <% end %></p>
+
+<p>Our current cycle time is <%= ViewHelper.calculate_average_duration(@cards).round(0) %> days</p>
+
 <div class="panel-default">
   <table id="trellotable" class="datatable table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
     <thead>
@@ -49,5 +52,4 @@
     </tbody>
   </table>
   <br>
-  <p>Average duration of these cards in days: <%= ViewHelper.calculate_average_duration(@cards).round(2) %></p>
 </div>

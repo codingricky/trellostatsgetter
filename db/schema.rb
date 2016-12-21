@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207010036) do
+ActiveRecord::Schema.define(version: 20161221095810) do
 
   create_table "downloaded_cards", force: :cascade do |t|
     t.string   "sanitized_name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20161207010036) do
     t.string   "location"
     t.string   "attachments"
     t.string   "source"
+    t.         "actions"
   end
 
   create_table "last_updated_times", force: :cascade do |t|
