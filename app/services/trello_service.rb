@@ -5,7 +5,7 @@ class TrelloService
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = ['createCard', 'copyCard']
 
-  def self.return_new_cards(time, location)
+  def self.return_new_cards(time, board_id)
     difference_in_days = ((DateTime.now.to_date - time.to_date).to_i + 1)
     Trello.configure do |config|
       config.developer_public_key = "27dbf126a87c20a0a1a6c9f81fcc2e98"
@@ -13,13 +13,13 @@ class TrelloService
     end
     member = find_member
     raise 'Member is invalid/not found.' unless member.present?
-    board = member.boards.find { |board| (board.id == location) }
+    board = member.boards.find { |board| (board.id == board_id) }
     raise 'Board name is invalid/not found.' unless board.present?
-    recently_edited_card_ids = get_trello_cards_with_changes(location, difference_in_days).collect { |card| OpenStruct.new(id: card.id) }
+    recently_edited_card_ids = get_trello_cards_with_changes(board_id, difference_in_days).collect { |card| OpenStruct.new(id: card.id) }
     return [] unless recently_edited_card_ids.any?
     list_of_actions = ActionService.get_actions(board, difference_in_days)
     list_id_name_map = Hash[board.lists.map { |list| [list.id, list.name] }]
-    new_cards = get_trello_cards_with_changes(location, difference_in_days).collect { |card| OpenStruct.new(card_id: card.id,
+    new_cards = get_trello_cards_with_changes(board_id, difference_in_days).collect { |card| OpenStruct.new(card_id: card.id,
                                                                                                             name: card.name,
                                                                                                             list_id: card.list_id,
                                                                                                             list_name: list_id_name_map[card.list_id],
