@@ -1,10 +1,19 @@
 class DownloadedCardService
+
+  SYDNEY_BOARD_ID = '55ac308c4ae6522bbe90f501'
+  SYDNEY_BOARD_NAME = 'Sydney - Software Engineers'
+  MELBOURNE_BOARD_ID = '5302d67d65706eef448e5806'
+  MELBOURNE_BOARD_NAME = 'Melbourne Recruitment Pipeline'
+
+  DEFAULT_NEW_DATE = DateTime.new(2001, 1, 1)
+
   def self.update_cards
     if LastUpdatedTime.current.nil?
-      LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
+      LastUpdatedTime.create!(time: (DEFAULT_NEW_DATE))
     end
-    save_cards(TrelloService.return_new_cards((LastUpdatedTime.current.time), '55ac308c4ae6522bbe90f501'), 'Sydney - Software Engineers')
-    save_cards(TrelloService.return_new_cards((LastUpdatedTime.current.time), '5302d67d65706eef448e5806'), 'Melbourne Recruitment Pipeline')
+
+    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, SYDNEY_BOARD_ID), SYDNEY_BOARD_NAME)
+    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, MELBOURNE_BOARD_ID), MELBOURNE_BOARD_NAME)
     LastUpdatedTime.update_time
   end
 

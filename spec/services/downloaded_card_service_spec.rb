@@ -18,16 +18,14 @@ describe DownloadedCardService do
   context 'if the card does not exist, create it -' do
     it 'with no cards, it saves nothing' do
       @cards = []
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '55ac308c4ae6522bbe90f501').and_return(@cards)
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '5302d67d65706eef448e5806').and_return([])
+      TrelloService.stub(:return_new_cards).with(any_args).and_return(@cards, [])
       DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(0)
     end
 
     it 'with one card, saves a card' do
       @cards = [@card_one]
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '55ac308c4ae6522bbe90f501').and_return(@cards)
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '5302d67d65706eef448e5806').and_return([])
+      TrelloService.stub(:return_new_cards).with(any_args).and_return(@cards, [])
       DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(1)
       DownloadedCard.first.sanitized_name.should eq(@card_one.name)
@@ -41,8 +39,7 @@ describe DownloadedCardService do
     end
 
     it 'with multiple cards, iterates through the array and saves each card' do
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '55ac308c4ae6522bbe90f501').and_return(@cards)
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '5302d67d65706eef448e5806').and_return([])
+      TrelloService.stub(:return_new_cards).with(any_args).and_return(@cards, [])
       DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(3)
       DownloadedCard.third.sanitized_name.should eq(@card_three.name)
@@ -51,15 +48,13 @@ describe DownloadedCardService do
 
   context 'update cards - ' do
     it 'has never been run before, creates a LastUpdatedTime object' do
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '55ac308c4ae6522bbe90f501').and_return([])
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '5302d67d65706eef448e5806').and_return([])
+      TrelloService.stub(:return_new_cards).with(any_args).and_return([], [])
       DownloadedCardService.update_cards
       LastUpdatedTime.first.should be_present
     end
 
     it 'updates LastUpdatedTime' do
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '55ac308c4ae6522bbe90f501').and_return([])
-      TrelloService.stub(:return_new_cards).with((DateTime.civil_from_format :local, 2001), '5302d67d65706eef448e5806').and_return([])
+      TrelloService.stub(:return_new_cards).with(any_args).and_return([], [])
       DownloadedCardService.update_cards
       time = DateTime.current
       DateTime.stub(:current).and_return(time)
@@ -68,9 +63,8 @@ describe DownloadedCardService do
 
     it 'Trello returns two cards, saves cards to the db' do
       @cards = [@card_one, @card_three]
-      LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
-      TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '55ac308c4ae6522bbe90f501').and_return(@cards)
-      TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '5302d67d65706eef448e5806').and_return([])
+      LastUpdatedTime.create!(time: DownloadedCardService::DEFAULT_NEW_DATE)
+      TrelloService.stub(:return_new_cards).with(any_args).and_return(@cards, [])
       DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(2)
     end
@@ -78,9 +72,8 @@ describe DownloadedCardService do
     it 'Trello returns one card from each board, saves cards to the db' do
       @syd_cards = [@card_one]
       @mel_cards = [@card_three]
-      LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
-      TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '55ac308c4ae6522bbe90f501').and_return(@syd_cards)
-      TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '5302d67d65706eef448e5806').and_return(@mel_cards)
+      LastUpdatedTime.create!(time: DownloadedCardService::DEFAULT_NEW_DATE)
+      TrelloService.stub(:return_new_cards).with(any_args).and_return(@syd_cards, @mel_cards)
       DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(2)
     end
@@ -89,9 +82,8 @@ describe DownloadedCardService do
       @syd_cards = [@card_one]
       card = DownloadedCard.new(card_id: @card_one.card_id, sanitized_name: @card_one.name, location: 'Sydney - Software Engineers')
       card.save!
-      LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
-      TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '55ac308c4ae6522bbe90f501').and_return(@syd_cards)
-      TrelloService.stub(:return_new_cards).with((LastUpdatedTime.first.time), '5302d67d65706eef448e5806').and_return([])
+      LastUpdatedTime.create!(time: DownloadedCardService::DEFAULT_NEW_DATE)
+      TrelloService.stub(:return_new_cards).with(any_args).and_return(@syd_cards, [])
       DownloadedCardService.update_cards
       DownloadedCard.all.count.should eq(1)
     end
