@@ -23,16 +23,11 @@ ActiveRecord::Schema.define(version: 20161221095810) do
     t.string   "location"
     t.string   "attachments"
     t.string   "source"
-    t.         "action_data"
+    t.string   "actions"
   end
 
   create_table "last_updated_times", force: :cascade do |t|
     t.datetime "time"
-  end
-
-  create_table "time_keeper", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "time", default: '2000-12-31 13:00:00', null: false
   end
 
   create_table "users", force: :cascade do |t|
