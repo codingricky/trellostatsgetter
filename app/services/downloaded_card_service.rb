@@ -1,35 +1,26 @@
 class DownloadedCardService
-
-  SYDNEY_BOARD_ID = '55ac308c4ae6522bbe90f501'
-  SYDNEY_BOARD_NAME = 'Sydney - Software Engineers'
-
-  MELB_BOARD_ID = '5302d67d65706eef448e5806'
-  MELB_BOARD_NAME = 'Melbourne Recruitment Pipeline'
-
-
   def self.update_cards
-    if LastUpdatedTime.first.nil?
+    if LastUpdatedTime.current.nil?
       LastUpdatedTime.create!(time: (DateTime.civil_from_format :local, 2001))
     end
-    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, SYDNEY_BOARD_ID), SYDNEY_BOARD_NAME)
-    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, MELB_BOARD_ID), MELB_BOARD_NAME)
-
+    save_cards(TrelloService.return_new_cards((LastUpdatedTime.current.time), '55ac308c4ae6522bbe90f501'), 'Sydney - Software Engineers')
+    save_cards(TrelloService.return_new_cards((LastUpdatedTime.current.time), '5302d67d65706eef448e5806'), 'Melbourne Recruitment Pipeline')
     LastUpdatedTime.update_time
   end
 
   private
-
   def self.save_cards(cards, location)
     cards.each do |card|
       if DownloadedCard.exists?(card_id: card.card_id, location: location)
         existing_cards = DownloadedCard.where(card_id: card.card_id, location: location)
-        existing_cards.first.sanitized_name = card.name
-        existing_cards.first.list_id = card.list_id
-        existing_cards.first.list_name = card.list_name
-        if existing_cards.first.end_date.nil? && card.end_date.present?
-          existing_cards.first.end_date = card.end_date
+        current_card = existing_cards.first
+        current_card.sanitized_name = card.name
+        current_card.list_id = card.list_id
+        current_card.list_name = card.list_name
+        if current_card.end_date.nil? && card.end_date.present?
+          current_card.end_date = card.end_date
         end
-        existing_cards.first.save!
+        current_card.save!
       else
         new_card = DownloadedCard.new(sanitized_name: card.name,
                                       card_id: card.card_id,

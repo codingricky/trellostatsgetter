@@ -29,11 +29,6 @@ ActiveRecord::Schema.define(version: 20161207010036) do
     t.datetime "time"
   end
 
-  create_table "time_keeper", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "time", default: '2000-12-31 13:00:00', null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

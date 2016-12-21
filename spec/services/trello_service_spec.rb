@@ -3,6 +3,8 @@ require 'spec_helper'
 require 'trello'
 
 describe TrelloService do
+  BOARD_ID = '123'
+
   before do
     ConfigService.stub(:starting_lanes).and_return(['starting', 'another starting lane'])
     ConfigService.stub(:finishing_lanes).and_return(['finishing', 'another finishing lane'])
@@ -41,7 +43,7 @@ describe TrelloService do
 
     @board = OpenStruct.new
     @board.name = 'Sydney - Software Engineers'
-    @board.id = '55ac308c4ae6522bbe90f501'
+    @board.id = BOARD_ID
     @board.lists = [@starting_list, @finished_list, @old_finished_list]
     @board.cards = [@card_still_in_progress, @finished_card]
 
@@ -54,10 +56,11 @@ describe TrelloService do
     @member.boards = [@board]
 
     ActionService.stub(:get_actions).and_return([@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action, @card_still_in_progress_attachment_action, @old_finished_card_create_action, @old_finished_card_end_action])
-    TrelloService.stub(:get_trello_cards_with_changes).with(any_args).and_return(@member.boards.first.cards)
+    # TODO shouldn't stub the class under test
+    TrelloService.stub(:get_trello_cards_with_changes).with(any_args).and_return(@board.cards)
   end
 
-  subject { TrelloService.return_new_cards((DateTime.civil_from_format :local, 1975), '55ac308c4ae6522bbe90f501') }
+  subject { TrelloService.return_new_cards((DateTime.civil_from_format :local, 1975), BOARD_ID) }
 
   context 'invalid config' do
     it 'raises an error when the member is not found' do
@@ -203,7 +206,7 @@ describe TrelloService do
 
   it 'returns an empty array without continuing if there are no recently changed cards' do
     TrelloService.stub(:get_trello_cards_with_changes).with(any_args).and_return([])
-    expect(TrelloService).to receive(:get_trello_cards_with_changes).once.with('55ac308c4ae6522bbe90f501', 1)
-    TrelloService.return_new_cards((DateTime.now), '55ac308c4ae6522bbe90f501').should eq([])
+    expect(TrelloService).to receive(:get_trello_cards_with_changes).once.with(BOARD_ID, 1)
+    TrelloService.return_new_cards((DateTime.now), BOARD_ID).should eq([])
   end
 end
