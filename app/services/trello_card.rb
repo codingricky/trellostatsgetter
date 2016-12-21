@@ -3,7 +3,7 @@ class TrelloCard
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = ['createCard', 'copyCard']
 
-  attr_accessor :card_id, :name, :list_id, :list_name, :start_date, :end_date, :url, :attachments
+  attr_accessor :card_id, :name, :list_id, :list_name, :start_date, :end_date, :url, :attachments, :actions
 
   def initialize(card, actions, list_name)
     self.card_id = card.id
@@ -13,6 +13,7 @@ class TrelloCard
     self.start_date = TrelloCard.find_start_date(card.id, actions)
     self.end_date = TrelloCard.find_end_date(card.id, list_name, actions)
     self.url = card.url
+    self.actions = matching_actions(actions)
     self.attachments = TrelloCard.get_attachment_names(card.id, actions)
   end
 
@@ -58,5 +59,9 @@ class TrelloCard
       attachment_names << action.data['attachment']['name']
     end
     attachment_names
+  end
+
+  def self.matching_actions(list_of_actions)
+    list_of_actions.find_all { |actions| actions.data['card']['id'] == self.card_id }
   end
 end
