@@ -47,11 +47,11 @@ describe TrelloService do
     @board.lists = [@starting_list, @finished_list, @old_finished_list]
     @board.cards = [@card_still_in_progress, @finished_card]
 
-    @wrong_board = OpenStruct.new
-    @wrong_board.name = 'Melbourne Recruitment Pipeline'
-    @wrong_board.id = '5302d67d65706eef448e5806'
-    @wrong_board.lists = [@starting_list, @finished_list, @old_finished_list]
-    @wrong_board.cards = [@old_finished_card]
+    @other_board = OpenStruct.new
+    @other_board.name = 'Melbourne Recruitment Pipeline'
+    @other_board.id = '2'
+    @other_board.lists = [@starting_list, @finished_list, @old_finished_list]
+    @other_board.cards = [@old_finished_card]
 
     @member.boards = [@board]
 
@@ -77,7 +77,7 @@ describe TrelloService do
 
   context 'two boards on Trello' do
     it 'only gets the cards from the board specified by location' do
-      @member.boards = [@board, @wrong_board]
+      @member.boards = [@board, @other_board]
       Trello::Member.stub(:find).and_return(@member)
       subject.count.should eql(2)
       subject.first.card_id.should eql('2')
