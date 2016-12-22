@@ -30,6 +30,9 @@ class DownloadedCard < ActiveRecord::Base
     if !source && attachment_names.present?
       source = find_matching_source(attachment_names)
     end
+    if !source && actions
+      source = find_matching_source(actions)
+    end
     self.source = source
   end
 

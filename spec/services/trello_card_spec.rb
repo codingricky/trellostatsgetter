@@ -47,12 +47,6 @@ describe TrelloCard do
     @board.lists = [@starting_list, @finished_list, @old_finished_list]
     @board.cards = [@card_still_in_progress, @finished_card]
 
-    @other_board = OpenStruct.new
-    @other_board.name = 'Melbourne Recruitment Pipeline'
-    @other_board.id = '5302d67d65706eef448e5806'
-    @other_board.lists = [@starting_list, @finished_list, @old_finished_list]
-    @other_board.cards = [@old_finished_card]
-
     @actions = [@finished_card_create_action, @finished_card_end_action, @card_still_in_progress_create_action, @card_still_in_progress_attachment_action, @old_finished_card_create_action, @old_finished_card_end_action]
   end
 
@@ -79,6 +73,10 @@ describe TrelloCard do
 
     it 'should set the correct url' do
       @card.url.should eql('www.test.com')
+    end
+
+    it 'should set the actions' do
+      @card.actions.should_not be_nil
     end
 
   end

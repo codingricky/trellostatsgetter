@@ -26,6 +26,7 @@ class DownloadedCardService
         current_card.sanitized_name = card.name
         current_card.list_id = card.list_id
         current_card.list_name = card.list_name
+        current_card.actions = card.actions
         if current_card.end_date.nil? && card.end_date.present?
           current_card.end_date = card.end_date
         end
@@ -39,6 +40,7 @@ class DownloadedCardService
                                       end_date: card.end_date,
                                       url: card.url,
                                       attachments: card.attachments,
+                                      actions: card.actions,
                                       location: location)
         new_card.save!
       end
