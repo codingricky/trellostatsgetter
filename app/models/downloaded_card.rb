@@ -1,6 +1,6 @@
 class DownloadedCard < ActiveRecord::Base
 
-  before_save :sanitize_name
+  before_save :sanitize
   before_save :search_for_sources
 
   def is_active?
@@ -15,8 +15,9 @@ class DownloadedCard < ActiveRecord::Base
     (end_date.to_date - start_date.to_date).to_i
   end
 
-  def sanitize_name
-    self.sanitized_name = self.sanitized_name.gsub(/\$[-.,\w]*|\d\d\d[k,\d]*|\d\d[k,]/, '')
+  def sanitize
+    self.sanitized_name = strip_money(self.sanitized_name)
+    self.actions = strip_money(self.actions)
   end
 
   def find_matching_source(name)
@@ -40,5 +41,11 @@ class DownloadedCard < ActiveRecord::Base
     cards = DownloadedCard.where(location: location)
     # a lot of cards not being returned due to lack of start_date
     cards.find_all { |card| (card.duration_in_days && card.duration_in_days < days) && (active.nil? || card.is_active? == active) }
+  end
+
+  private
+
+  def strip_money(value)
+    value.gsub(/\$[-.,\w]*|\d\d\d[k,\d]*|\d\d[k,]/, '') if value
   end
 end
