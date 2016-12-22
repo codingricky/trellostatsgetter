@@ -8,11 +8,12 @@ class TrelloCard
   def initialize(card, actions, list_name)
     self.card_id = card.id
     self.name = card.name
+    self.url = card.url
     self.list_id = card.list_id
     self.list_name = list_name
+
     self.start_date = TrelloCard.find_start_date(card.id, actions)
-    self.end_date = TrelloCard.find_end_date(card.id, list_name, actions)
-    self.url = card.url
+    self.end_date = TrelloCard.find_end_date(card.id, actions, list_name)
     self.actions = TrelloCard.matching_actions(card.id, actions).to_json
     self.attachments = TrelloCard.get_attachment_names(card.id, actions)
   end
@@ -37,7 +38,7 @@ class TrelloCard
         (action.data['card']['id'] == card_id)
   end
 
-  def self.find_end_date(card_id, list_name, actions)
+  def self.find_end_date(card_id, actions, list_name)
     if list_name.in?(ConfigService.finishing_lanes)
       selected_action = actions.find { |action| did_update_action_end_in_finishing_lane?(card_id, action) }
     end
