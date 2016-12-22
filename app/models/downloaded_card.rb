@@ -20,21 +20,18 @@ class DownloadedCard < ActiveRecord::Base
     self.actions = strip_money(self.actions)
   end
 
-  def find_matching_source(name)
-    ConfigService.source_names.find { |source_name| name.downcase.match(source_name.downcase) }
+  def search_for_sources
+    [self.sanitized_name, self.attachments, self.actions].each do |value|
+      source = find_matching_source(value)
+      if source
+        self.source = source.name
+        return
+      end
+    end
   end
 
-  def search_for_sources
-    card_name = self.sanitized_name
-    attachment_names = self.attachments
-    source = find_matching_source(card_name)
-    if !source && attachment_names.present?
-      source = find_matching_source(attachment_names)
-    end
-    if !source && actions
-      source = find_matching_source(actions)
-    end
-    self.source = source
+  def find_matching_source(value)
+    Source.all.find {|source| source.matches?(value)}
   end
 
   def self.search(location, days, active=nil)
