@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222093126) do
+ActiveRecord::Schema.define(version: 20161223005003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(version: 20161222093126) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "location"
-    t.string   "attachments"
     t.string   "source"
-    t.string   "actions"
+    t.json     "card_json"
+    t.json     "actions"
+    t.json     "attachments"
   end
 
   create_table "last_updated_times", force: :cascade do |t|

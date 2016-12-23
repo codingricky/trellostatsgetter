@@ -17,7 +17,6 @@ class DownloadedCard < ActiveRecord::Base
 
   def sanitize
     self.sanitized_name = strip_money(self.sanitized_name)
-    self.actions = strip_money(self.actions)
   end
 
   def search_for_sources

@@ -3,7 +3,7 @@ class TrelloCard
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = ['createCard', 'copyCard']
 
-  attr_accessor :card_id, :name, :list_id, :list_name, :start_date, :end_date, :url, :attachments, :actions
+  attr_accessor :card_id, :name, :list_id, :list_name, :start_date, :end_date, :url, :attachments, :actions, :card_json
 
   def initialize(card, actions, list_name)
     self.card_id = card.id
@@ -13,8 +13,13 @@ class TrelloCard
     self.list_name = list_name
     self.start_date = TrelloCard.find_start_date(card.id, actions)
     self.end_date = TrelloCard.find_end_date(card.id, actions, list_name)
-    self.actions = TrelloCard.matching_actions(card.id, actions).to_json
-    self.attachments = TrelloCard.get_attachment_names(card.id, actions)
+    self.actions = JSON.parse(card.actions.to_json)
+    self.attachments = JSON.parse(card.attachments.to_json)
+    self.card_json = JSON.parse(card.to_json)
+  end
+
+  def sanitize_money(value)
+    value.gsub(/\$[-.,\w]*|\d\d\d[k,\d]*|\d\d[k,]/, '') if value
   end
 
   def self.find_start_date(card_id, actions)
