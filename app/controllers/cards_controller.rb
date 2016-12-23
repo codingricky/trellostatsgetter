@@ -21,6 +21,11 @@ class CardsController < ApplicationController
 
   def update
     DownloadedCardService.update_cards
-    head :ok
+    render :text => 'ok'
+  end
+
+  def save_all
+    DownloadedCard.all.to_a.map!(&:save!)
+    render :text => 'ok'
   end
 end

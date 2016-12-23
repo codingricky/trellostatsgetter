@@ -28,7 +28,7 @@ class DownloadedCardService
         current_card.list_name = card.list_name
         current_card.actions = card.actions
         current_card.attachments =  card.attachments
-        current_card.card_data =  card.card_data
+        current_card.card_json =  card.card_json
         if current_card.end_date.nil? && card.end_date.present?
           current_card.end_date = card.end_date
         end
@@ -43,7 +43,7 @@ class DownloadedCardService
                                       url: card.url,
                                       attachments: card.attachments,
                                       actions: card.actions,
-                                      card_data: card.card_data,
+                                      card_json: card.card_json,
                                       location: location)
         new_card.save!
       end

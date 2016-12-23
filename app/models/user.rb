@@ -11,5 +11,9 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0, 20]
     end
   end
+
+  def admin?
+    email == "ryim@dius.com.au"
+  end
 end
 

@@ -1,5 +1,7 @@
 class DownloadedCard < ActiveRecord::Base
 
+  DEFAULT_SOURCE = "Direct"
+
   before_save :sanitize
   before_save :search_for_sources
 
@@ -17,16 +19,22 @@ class DownloadedCard < ActiveRecord::Base
 
   def sanitize
     self.sanitized_name = strip_money(self.sanitized_name)
+    self.actions.each do |action|
+      if action['data'] && action['data']['text']
+        action['data']['text'] = strip_money(action['data']['text'])
+      end
+    end
   end
 
   def search_for_sources
-    [self.sanitized_name, self.attachments, self.actions].each do |value|
+    [self.sanitized_name, self.attachments.to_s, self.actions.to_s].each do |value|
       source = find_matching_source(value)
       if source
         self.source = source.name
         return
       end
     end
+    self.source = DEFAULT_SOURCE
   end
 
   def find_matching_source(value)
