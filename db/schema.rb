@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223005003) do
+ActiveRecord::Schema.define(version: 20161223214609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boards", force: :cascade do |t|
+    t.string "trello_id"
+    t.string "location"
+  end
 
   create_table "downloaded_cards", force: :cascade do |t|
     t.string   "sanitized_name"

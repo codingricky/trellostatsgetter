@@ -1,10 +1,5 @@
 class DownloadedCardService
 
-  SYDNEY_BOARD_ID = '55ac308c4ae6522bbe90f501'
-  SYDNEY_BOARD_NAME = 'Sydney - Software Engineers'
-  MELBOURNE_BOARD_ID = '5302d67d65706eef448e5806'
-  MELBOURNE_BOARD_NAME = 'Melbourne Recruitment Pipeline'
-
   DEFAULT_NEW_DATE = DateTime.new(2001, 1, 1)
 
   def self.update_cards
@@ -12,8 +7,9 @@ class DownloadedCardService
       LastUpdatedTime.create!(time: (DEFAULT_NEW_DATE))
     end
 
-    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, SYDNEY_BOARD_ID), SYDNEY_BOARD_NAME)
-    save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, MELBOURNE_BOARD_ID), MELBOURNE_BOARD_NAME)
+    Board.all.each do |board|
+      save_cards(TrelloService.return_new_cards(LastUpdatedTime.current.time, board.trello_id), board.location)
+    end
     LastUpdatedTime.update_time
   end
 

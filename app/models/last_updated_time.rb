@@ -1,4 +1,4 @@
-class LastUpdatedTime < ActiveRecord::Base
+class LastUpdatedTime < ApplicationRecord
 
   def self.current
     LastUpdatedTime.first

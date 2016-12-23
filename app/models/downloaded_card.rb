@@ -1,4 +1,4 @@
-class DownloadedCard < ActiveRecord::Base
+class DownloadedCard < ApplicationRecord
 
   DEFAULT_SOURCE = "Direct"
 
