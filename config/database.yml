@@ -1,14 +1,16 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  encoding: utf8
+  database: trello_dev
+  username: trello
+  password: trello
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  encoding: utf8
+  database: trello_test
+  username: trello
+  password: trello
 
 production:
   adapter: postgresql

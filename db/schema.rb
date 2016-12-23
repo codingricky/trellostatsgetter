@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20161222093126) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "downloaded_cards", force: :cascade do |t|
     t.string   "sanitized_name"
     t.string   "card_id"
@@ -52,8 +55,8 @@ ActiveRecord::Schema.define(version: 20161222093126) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end
