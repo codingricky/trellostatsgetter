@@ -43,7 +43,7 @@ class DownloadedCardService
                                       url: card.url,
                                       attachments: card.attachments,
                                       actions: card.actions,
-                                      card_data: card.data,
+                                      card_data: card.card_data,
                                       location: location)
         new_card.save!
       end
