@@ -25,13 +25,10 @@ class TrelloService
     has_recently_edited_cards = get_trello_cards_with_changes(board_id, difference_in_days).any?
     return [] unless has_recently_edited_cards
 
-    list_of_actions = ActionService.get_actions(board, difference_in_days)
     list_id_name_map = Hash[board.lists.map { |list| [list.id, list.name] }]
 
-    new_cards = get_trello_cards_with_changes(board_id, difference_in_days).collect { |card| TrelloCard.new(card,
-                                                                                                         list_of_actions,
-                                                                                                         list_id_name_map[card.list_id]) }
-    return new_cards
+    return get_trello_cards_with_changes(board_id, difference_in_days).collect { |card| TrelloCard.new(card,
+                                                                                                       list_id_name_map[card.list_id]) }
   end
 
   def self.get_trello_cards_with_changes(board_id, difference_in_days)

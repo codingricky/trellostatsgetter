@@ -3,6 +3,7 @@ class DownloadedCard < ApplicationRecord
   DEFAULT_SOURCE = "Direct"
 
   before_save :set_start_date
+  before_save :set_end_date
   before_save :sanitize
   before_save :search_for_sources
 
@@ -16,6 +17,12 @@ class DownloadedCard < ApplicationRecord
     start_date = self.start_date
     end_date = (self.end_date.nil? ? DateTime.now : self.end_date)
     (end_date.to_date - start_date.to_date).to_i
+  end
+
+  def set_end_date
+    action_that_put_card_in_finishing_lane = self.actions.find {|a| a['data']['listAfter'] &&
+        a['data']['listAfter']['name'].in?(ConfigService.finishing_lanes)}
+    self.end_date = action_that_put_card_in_finishing_lane['date'].to_datetime if action_that_put_card_in_finishing_lane
   end
 
   def set_start_date
@@ -48,8 +55,8 @@ class DownloadedCard < ApplicationRecord
 
   def self.search(location, days, active=nil)
     cards = DownloadedCard.where(location: location)
-    # a lot of cards not being returned due to lack of start_date
-    cards.find_all { |card| (card.duration_in_days && card.duration_in_days < days) && (active.nil? || card.is_active? == active) }
+    days_ago_limit = DateTime.now - days
+    cards.find_all { |card| (card.start_date > days_ago_limit) && (active.nil? || card.is_active? == active) }
   end
 
   private
