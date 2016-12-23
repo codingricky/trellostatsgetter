@@ -3,7 +3,7 @@ class TrelloCard
   TYPE_UPDATE = 'updateCard'
   TYPE_CREATE = ['createCard', 'copyCard']
 
-  attr_accessor :card_id, :name, :list_id, :list_name, :start_date, :end_date, :url, :attachments, :actions, :card_json
+  attr_accessor :card_id, :name, :list_id, :list_name, :end_date, :url, :attachments, :actions, :card_json
 
   def initialize(card, actions, list_name)
     self.card_id = card.id
@@ -11,7 +11,6 @@ class TrelloCard
     self.url = card.url
     self.list_id = card.list_id
     self.list_name = list_name
-    self.start_date = TrelloCard.find_start_date(card.id, actions)
     self.end_date = TrelloCard.find_end_date(card.id, actions, list_name)
     self.actions = JSON.parse(card.actions.to_json)
     self.attachments = JSON.parse(card.attachments.to_json)
@@ -20,26 +19,6 @@ class TrelloCard
 
   def sanitize_money(value)
     value.gsub(/\$[-.,\w]*|\d\d\d[k,\d]*|\d\d[k,]/, '') if value
-  end
-
-  def self.find_start_date(card_id, actions)
-    selected_action = actions.find { |action| is_create_action_in_starting_lane?(card_id, action) }
-    selected_action ||= actions.find { |action| did_update_action_end_in_starting_lane?(card_id, action) }
-    selected_action.try(:date)
-  end
-
-  def self.is_create_action_in_starting_lane?(card_id, action)
-    (action.type.in? TYPE_CREATE) &&
-        action.data['list']['name'].in?(ConfigService.starting_lanes) &&
-        action.data['list']['name'].present? &&
-        (action.data['card']['id'] == card_id)
-  end
-
-  def self.did_update_action_end_in_starting_lane?(card_id, action)
-    (action.type == TYPE_UPDATE) &&
-        (action.data['listAfter']) &&
-        (action.data['listAfter']['name'].in?(ConfigService.starting_lanes)) &&
-        (action.data['card']['id'] == card_id)
   end
 
   def self.find_end_date(card_id, actions, list_name)
@@ -54,16 +33,6 @@ class TrelloCard
         (action.data['listAfter']) &&
         (action.data['listAfter']['name'].in?(ConfigService.finishing_lanes)) &&
         (action.data['card']['id'] == card_id)
-  end
-
-  def self.get_attachment_names(card_id, list_of_actions)
-    attachment_actions = list_of_actions.find_all { |actions| actions.type == 'addAttachmentToCard' }
-    attachments_for_this_card = attachment_actions.find_all { |actions| actions.data['card']['id'] == card_id }
-    attachment_names = []
-    attachments_for_this_card.each do |action|
-      attachment_names << action.data['attachment']['name']
-    end
-    attachment_names
   end
 
   def self.matching_actions(card_id, list_of_actions)

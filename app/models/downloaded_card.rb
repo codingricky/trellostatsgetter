@@ -2,6 +2,7 @@ class DownloadedCard < ApplicationRecord
 
   DEFAULT_SOURCE = "Direct"
 
+  before_save :set_start_date
   before_save :sanitize
   before_save :search_for_sources
 
@@ -15,6 +16,10 @@ class DownloadedCard < ApplicationRecord
     start_date = self.start_date
     end_date = (self.end_date.nil? ? DateTime.now : self.end_date)
     (end_date.to_date - start_date.to_date).to_i
+  end
+
+  def set_start_date
+    self.start_date = self.actions.map {|a| a['date']}.min.to_datetime
   end
 
   def sanitize
