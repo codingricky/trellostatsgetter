@@ -1,6 +1,7 @@
 class DownloadedCard < ApplicationRecord
 
   DEFAULT_SOURCE = "Direct"
+  HIRED = "Hired"
 
   before_save :set_start_date
   before_save :set_end_date
@@ -11,8 +12,9 @@ class DownloadedCard < ApplicationRecord
     self.end_date.nil?
   end
 
+
   def is_hired?
-    self.list_name.include?("Hired") if self.list_name
+    self.list_name.include?(HIRED) if self.list_name
   end
 
   def duration_in_days
