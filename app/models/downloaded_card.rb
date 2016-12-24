@@ -6,7 +6,7 @@ class DownloadedCard < ApplicationRecord
   before_save :set_start_date
   before_save :set_end_date
   before_save :sanitize
-  before_save :search_for_sources
+  before_save :set_source
 
   def is_active?
     self.end_date.nil?
@@ -44,7 +44,12 @@ class DownloadedCard < ApplicationRecord
     end
   end
 
-  def search_for_sources
+  def set_source
+    if manual_source
+      self.source = manual_source
+      return
+    end
+
     [self.sanitized_name, self.attachments.to_s, self.actions.to_s].each do |value|
       source = find_matching_source(value)
       if source

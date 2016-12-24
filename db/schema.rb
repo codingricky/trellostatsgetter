@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224051543) do
+ActiveRecord::Schema.define(version: 20161224062653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20161224051543) do
     t.json     "card_json"
     t.json     "actions"
     t.json     "attachments"
+    t.string   "manual_source"
   end
 
   create_table "hired_lanes", force: :cascade do |t|
