@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   root 'cards#index'
   get '/update', to: 'cards#update'
   get '/save_all', to: 'cards#save_all'
+  get '/stats', to: 'stats#index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

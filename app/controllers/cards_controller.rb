@@ -1,9 +1,3 @@
-require 'logging'
-
-logger = Logging.logger(STDOUT)
-logger.level = :warn
-logger.warn 'Only log messages that are warnings or higher will be logged.'
-
 class CardsController < ApplicationController
   def index
     @days_old = params['days_old'] || 90

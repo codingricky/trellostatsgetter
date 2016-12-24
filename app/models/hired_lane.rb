@@ -1,0 +1,3 @@
+class HiredLane < ApplicationRecord
+
+end
