@@ -1,0 +1,29 @@
+<h2>Stats</h2>
+<br>
+<div class="panel-default">
+  <table id="trellotable" class="datatable table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
+    <thead>
+    <tr>
+      <th width="18%">Location</th>
+      <th width="18%">Source</th>
+      <th width="18%">No of hired</th>
+      <th width="18%">No of non-hired</th>
+      <th width="8%">Total</th>
+      <th width="8%">Success rate</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @stats.each do |stat| %>
+        <tr>
+          <td><%= stat.location %></td>
+          <td><%= stat.source %></td>
+          <td><%= stat.no_of_hired %></td>
+          <td><%= stat.no_of_non_hired %></td>
+          <td><%= stat.total %></td>
+          <td><%= number_to_percentage(stat.no_of_hired/stat.total.to_f * 100) if stat.total > 0 %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
