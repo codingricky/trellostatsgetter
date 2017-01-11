@@ -1,7 +1,7 @@
 class StatsController < ApplicationController
 
   def index
-    @days = params[:days] || 90
+    @days = params[:days] || 365
     @stats = []
     Board.all.each do |board|
       sources = Source.all.to_a
