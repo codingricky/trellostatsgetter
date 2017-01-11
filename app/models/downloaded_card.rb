@@ -69,6 +69,11 @@ class DownloadedCard < ApplicationRecord
     self.start_date && self.start_date > days_ago_limit
   end
 
+  def hired_more_recent_than(days)
+    days_ago_limit = DateTime.now - days.to_i
+    self.is_hired? && self.end_date && self.end_date > days_ago_limit
+  end
+
   def self.search(location, days, active=nil)
     cards = DownloadedCard.where(location: location)
     cards.find_all { |card| (card.younger_than(days)) && (active.nil? || card.is_active? == active) }

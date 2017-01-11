@@ -1,0 +1,53 @@
+
+<h2>Last hires</h2>
+<br>
+<p>
+  <%= form_tag('/hires', method: 'get') do %>
+      <br>
+      <%= label_tag(:days, 'Days ago:') %>
+      <%= number_field_tag(:days, (@days.nil? ? 90 : @days)) %>
+      <br>
+      <%= label_tag(:location, 'Melbourne') %>
+      <%= radio_button_tag(:location, 'Melbourne Recruitment Pipeline', (@location == 'Melbourne Recruitment Pipeline')) %>
+      <%= label_tag(:location, 'Sydney') %>
+      <%= radio_button_tag(:location, 'Sydney - Software Engineers', (@location == 'Sydney - Software Engineers')) %>
+      <%= submit_tag('Submit') %>
+  <% end %>
+</p>
+
+<div>
+  <p>We have had <b><%= @hires %></b> hires in the last <b><%= @days %></b> days</p>
+</div>
+
+<div class="panel-default">
+  <table id="trellotable" class="datatable table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
+    <thead>
+    <tr>
+      <th width="18%"> Card Name</th>
+      <th width="18%"> Current Lane</th>
+      <th width="18%"> Date Placed in Start Lane</th>
+      <th width="18%"> Date Placed in End Lane ("Success - " or any "Unsuccessful - " lanes)</th>
+      <th width="8%"> Source</th>
+      <th width="8%"> Duration of Card in days</th>
+      <th width="8%"> Hired</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @error.present? %> <h1><font color="#ff0000"><b><%= @error %></b></font></h1>
+    <% else
+         @cards.each do |card| %>
+            <tr>
+              <td><a href="<%= card.url %>"><%= card.sanitized_name %></a></td>
+              <td><%= card.list_name %></td>
+              <td><%= CardsHelper.show_start_date(card) %></td>
+              <td><%= CardsHelper.show_end_date(card) %></td>
+              <td><%= card.source %></td>
+              <td><%= card.duration_in_days %></td>
+              <td><%= !card.is_active? ? card.is_hired?.humanize : ""%></td>
+            </tr>
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>

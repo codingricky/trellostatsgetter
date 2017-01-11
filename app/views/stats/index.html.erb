@@ -2,13 +2,15 @@
 
 <h2>Stats</h2>
 <br>
-<p><%= form_tag('/stats', method: 'get') do %>
+<p>
+  <%= form_tag('/stats', method: 'get') do %>
       <br>
       <%= label_tag(:days, 'Days ago:') %>
       <%= number_field_tag(:days, (@days.nil? ? 90 : @days)) %>
       <br>
       <%= submit_tag('Submit') %>
-  <% end %></p>
+  <% end %>
+</p>
 <div class="panel-default">
   <table id="trellotable" class="datatable table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
     <thead>
