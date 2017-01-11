@@ -1,4 +1,7 @@
+<div class = "col-xs-2" align="center">
+  <span><%= link_to 'Cards', controller: :cards, action: :index %></span> | <span><%= link_to 'Stats', controller: :stats, action: :index %></span>
 
+</div>
 <h2>Listing cards from Trello</h2>
 <br>
 <p><%= form_tag('/cards', method: 'get') do %>
