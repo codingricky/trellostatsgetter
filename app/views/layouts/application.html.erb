@@ -14,8 +14,11 @@
     <br>
     <div class = "row">
       <div class = "col-xs-2" align="center">
+        <span><%= link_to 'Cards', controller: :cards, action: :index %></span> | <span><%= link_to 'Stats', controller: :stats, action: :index %></span>
+
       </div>
       <div class = "col-xs-8 rcorners2" style="text-align: center">
+
         <%= yield %>
       </div>
       <div class = "col-xs-2">
