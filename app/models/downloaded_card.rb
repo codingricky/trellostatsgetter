@@ -64,10 +64,14 @@ class DownloadedCard < ApplicationRecord
     Source.all.find {|source| source.matches?(value)}
   end
 
+  def younger_than(days)
+    days_ago_limit = DateTime.now - days.to_i
+    self.start_date && self.start_date > days_ago_limit
+  end
+
   def self.search(location, days, active=nil)
     cards = DownloadedCard.where(location: location)
-    days_ago_limit = DateTime.now - days
-    cards.find_all { |card| (card.start_date > days_ago_limit) && (active.nil? || card.is_active? == active) }
+    cards.find_all { |card| (card.younger_than(days)) && (active.nil? || card.is_active? == active) }
   end
 
   private
