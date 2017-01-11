@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Trellostatsgetter</title>
+  <title>Recruity</title>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
@@ -13,6 +13,11 @@
     <br>
     <br>
     <div class = "row">
+    <% if user_signed_in? %>
+      <div class = "col-xs-2" align="center">
+        <span><%= link_to 'Cards', controller: :cards, action: :index %></span> | <span><%= link_to 'Stats', controller: :stats, action: :index %></span>
+      </div>
+      <% end %>
 
       <div class = "col-xs-8 rcorners2" style="text-align: center">
 
