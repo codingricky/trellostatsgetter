@@ -12,6 +12,13 @@
   <% end %>
 </p>
 <div class="panel-default">
+  <% @cycle_time.each do |cycle_time|%>
+    <p>The median Cycle time for <%= cycle_time.location %> is <%= number_to_human(cycle_time.cycle_time) %></p>
+  <% end %>
+</div>
+<br>
+
+<div class="panel-default">
   <table id="trellotable" class="datatable table-striped custom-stripe table-bordered custom-border sortable" width="100%" align="center">
     <thead>
     <tr>

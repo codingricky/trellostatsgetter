@@ -12,9 +12,16 @@ class DownloadedCard < ApplicationRecord
     self.end_date.nil?
   end
 
-
   def is_hired?
     self.list_name.include?(HIRED) if self.list_name
+  end
+
+  def finished?
+    !is_active?
+  end
+
+  def cycle_time
+    duration_in_days
   end
 
   def duration_in_days
