@@ -32,6 +32,7 @@
       <th width="8%"> Duration of Card in days</th>
       <th width="8%"> Urgency</th>
       <th width="8%"> Hired</th>
+      <th>Edit</th>
     </tr>
     </thead>
     <tbody>
@@ -47,6 +48,7 @@
               <td><%= card.duration_in_days %></td>
               <td style="background-color:<%= CardsHelper.show_colour_status(card) %>"></td>
               <td><%= !card.is_active? ? card.is_hired?.humanize : ""%></td>
+              <td><%= link_to('edit', rails_admin.edit_path(model_name: 'DownloadedCard', id: card.id)) %></td>
             </tr>
         <% end %>
     <% end %>
